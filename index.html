@@ -1,0 +1,1080 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7319-004-88 // ARCHIVIO NERO</title>
+<meta name="theme-color" content="#000000">
+<style>
+:root{--g:#74ff94;--r:#ff294d;--w:#ffffff;--m:#d9ffe1}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#000;color:var(--w);font-family:"Courier New",monospace;overflow-x:hidden}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:-6;background:#000}
+.bg{position:fixed;inset:0;z-index:-5;pointer-events:none;background:
+radial-gradient(circle at 50% 12%,rgba(0,255,65,.16),transparent 27%),
+radial-gradient(circle at 20% 82%,rgba(140,0,20,.11),transparent 30%),
+radial-gradient(circle at 82% 76%,rgba(0,255,120,.07),transparent 25%),
+linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.97))}
+.scan{position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.35;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 4px)}
+.vignette{position:fixed;inset:0;z-index:97;pointer-events:none;box-shadow:inset 0 0 250px 110px #000}
+nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(0,0,0,.88);border-bottom:1px solid rgba(116,255,148,.16);backdrop-filter:blur(12px)}
+.brand{color:var(--g);text-decoration:none;font-weight:bold;letter-spacing:.18em;text-shadow:0 0 14px var(--g)}
+nav a{color:#e0ffe6;text-decoration:none;font-size:.72rem}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 7vw 70px;background:radial-gradient(circle at center,rgba(0,255,65,.13),transparent 48%)}
+.eye-wrap{width:230px;height:200px;margin:0 auto 34px;position:relative;filter:drop-shadow(0 0 34px rgba(116,255,148,.74))}
+.outer{position:absolute;inset:0;border:1px solid rgba(116,255,148,.44);border-radius:50%;animation:spin 20s linear infinite}
+.outer:before,.outer:after{content:"";position:absolute;left:50%;top:50%;width:76%;height:1px;background:rgba(116,255,148,.3);transform:translate(-50%,-50%)}
+.outer:after{transform:translate(-50%,-50%) rotate(90deg)}
+.tri{position:absolute;inset:24px 16px 0;clip-path:polygon(50% 0,100% 100%,0 100%);border:2px solid var(--g);background:linear-gradient(rgba(116,255,148,.02),rgba(116,255,148,.08))}
+.eye{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:88px;height:43px;border:2px solid var(--g);border-radius:50%/60%;display:grid;place-items:center;font-size:33px;text-shadow:0 0 18px var(--g)}
+.code{font-size:.76rem;letter-spacing:.34em;color:#59ff78;opacity:.86}
+h1{margin:12px 0 0;font-size:clamp(3rem,9vw,8rem);line-height:.9;letter-spacing:.1em;color:#7cff99;text-shadow:0 0 11px #00ff41,0 0 48px rgba(0,255,65,.6)}
+.sub{max-width:920px;margin:30px auto 0;color:#e8ffed;line-height:1.95;font-size:clamp(1rem,2.2vw,1.3rem)}
+.btn{display:inline-block;margin:26px 7px;padding:15px 26px;border:1px solid var(--g);background:#001705;color:#e2ffe7;font:inherit;letter-spacing:.11em;cursor:pointer;text-decoration:none;box-shadow:0 0 24px rgba(0,255,65,.16);transition:.18s}
+.btn:hover{background:var(--g);color:#000;box-shadow:0 0 40px rgba(0,255,65,.64)}
+.btn.red{border-color:var(--r);color:#ff879a;background:#190006}
+.btn.red:hover{background:var(--r);color:#000}
+section{max-width:1120px;margin:auto;padding:100px 24px;border-bottom:1px solid rgba(116,255,148,.11)}
+.level{font-size:.76rem;letter-spacing:.29em;color:#5aff78;opacity:.86}
+h2{margin:10px 0 28px;font-size:clamp(2.2rem,5vw,4.9rem);text-transform:uppercase;text-shadow:0 0 24px rgba(0,255,65,.26)}
+.statement{font-size:clamp(1.22rem,3vw,2.08rem);line-height:1.6;color:#f3fff5;margin:20px 0 34px}
+.card{border:1px solid rgba(116,255,148,.48);background:rgba(0,18,6,.91);padding:24px;margin:18px 0;line-height:1.84;color:#e0ffe6}
+.redcard{border-color:rgba(255,41,77,.48);background:rgba(40,0,6,.42);color:#ff899a}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.box{min-height:220px;padding:24px;border:1px solid rgba(116,255,148,.44);background:rgba(0,16,5,.90)}
+.box h3{margin-top:0;color:#7dff98}
+.sigilgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:30px 0}
+.sigil{min-height:120px;border:1px solid rgba(116,255,148,.42);display:grid;place-items:center;background:rgba(0,15,5,.91);font-size:clamp(2rem,5vw,4rem);color:#79ff95;text-shadow:0 0 22px #00ff41;animation:pulse 2.1s infinite}
+.whisper{font-size:clamp(1.1rem,2.5vw,1.7rem);color:#ff687f;text-align:center;letter-spacing:.08em;margin:30px 0;text-shadow:0 0 16px rgba(255,0,40,.45)}
+#questions,#ending{display:none;position:fixed;inset:0;z-index:180;background:#000;padding:24px;overflow:auto}
+#questions.active,#ending.active{display:grid;place-items:center}
+.modal{width:min(930px,100%);border:1px solid var(--g);background:#020502;padding:30px;box-shadow:0 0 55px rgba(0,255,65,.10)}
+.qtitle{font-size:clamp(1.55rem,4vw,3.1rem);margin:0 0 18px}
+.qsub{color:#dcffe3;line-height:1.75;margin-bottom:18px}
+.option{display:block;width:100%;text-align:left;margin:12px 0;padding:15px;border:1px solid rgba(116,255,148,.34);background:#001106;color:#e0ffe6;font:inherit;cursor:pointer}
+.option:hover{border-color:var(--g);box-shadow:0 0 18px rgba(0,255,65,.18)}
+#ending{z-index:220;overflow:hidden;background:radial-gradient(circle at center,rgba(0,255,70,.08),transparent 35%),#000}
+.endinner{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+#eSymbol{font-size:min(38vw,360px);line-height:.8;color:#78ff94;text-shadow:0 0 32px #00ff41,0 0 100px rgba(0,255,65,.38);animation:ritual 1.55s infinite}
+#eText{font-size:clamp(1.6rem,5vw,4.4rem);font-weight:bold;letter-spacing:.08em}
+#eSub{margin-top:14px;color:#e2ffe7;font-size:clamp(.9rem,2.2vw,1.28rem)}
+#terminal{position:absolute;left:18px;right:18px;bottom:18px;max-height:35vh;overflow:hidden;text-align:left;font-size:12px;line-height:1.65;color:#57ff77;opacity:.86}
+.float{position:absolute;opacity:0;font-size:clamp(50px,12vw,160px);color:#6fff8b;text-shadow:0 0 24px #00ff41;animation:appear 4s forwards;pointer-events:none}
+.redflash{animation:redflash .15s 1}.greenflash{animation:greenflash .15s 1}.glitch{animation:glitch .16s 4}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.08);opacity:.8}}@keyframes ritual{50%{transform:scale(1.16) rotate(2deg)}}@keyframes redflash{50%{background:#900016;color:#fff}}@keyframes greenflash{50%{background:#00ff2c;color:#000}}@keyframes glitch{25%{transform:translate(14px,-6px)}50%{transform:translate(-11px,8px)}75%{transform:translate(8px,-10px)}}@keyframes appear{0%{opacity:0;transform:scale(.5)}20%{opacity:.85}100%{opacity:0;transform:scale(1.7)}}
+@media(max-width:800px){.grid,.sigilgrid{grid-template-columns:1fr}}
+</style>
+
+<style id="brightness-only-fix">
+/* SOLO VISIBILITÀ / LUMINOSITÀ */
+body { color:#ffffff !important; }
+.bg { opacity:.72 !important; }
+.vignette { box-shadow:inset 0 0 150px 45px rgba(0,0,0,.78) !important; }
+.scan { opacity:.22 !important; }
+
+.sub,
+.statement,
+.card,
+.box,
+.qsub,
+.option,
+#eSub {
+  color:#eaffee !important;
+}
+
+.card,
+.box {
+  background:rgba(0,22,7,.92) !important;
+  border-color:rgba(125,255,154,.58) !important;
+}
+
+.redcard {
+  background:rgba(58,0,9,.68) !important;
+  color:#ffb0bd !important;
+  border-color:rgba(255,72,100,.72) !important;
+}
+
+.level {
+  color:#9affad !important;
+  opacity:1 !important;
+}
+
+h1,h2,h3 {
+  filter:brightness(1.22);
+}
+
+.sigil {
+  background:rgba(0,18,6,.94) !important;
+  border-color:rgba(125,255,154,.55) !important;
+}
+
+.btn,
+.option {
+  filter:brightness(1.18);
+}
+
+#terminal {
+  color:#91ffa6 !important;
+  opacity:.9 !important;
+}
+</style>
+
+
+<style id="premium-upgrade">
+:root{
+  --panel:rgba(1,16,6,.90);
+  --panel2:rgba(3,25,9,.82);
+  --line:rgba(125,255,155,.42);
+  --line2:rgba(255,74,104,.46);
+}
+body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(0,255,75,.09),transparent 28%),
+    #000;
+}
+section{
+  position:relative;
+  isolation:isolate;
+}
+section:before{
+  content:"";
+  position:absolute;
+  inset:18px 0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,255,70,.018),transparent 30%,rgba(255,0,35,.012));
+}
+.card,.box,.truth-card{
+  backdrop-filter:blur(8px);
+  box-shadow:
+    inset 0 0 32px rgba(0,255,65,.04),
+    0 10px 36px rgba(0,0,0,.28);
+}
+h2{
+  letter-spacing:.025em;
+}
+h2:after{
+  content:"";
+  display:block;
+  width:92px;
+  height:1px;
+  margin-top:16px;
+  background:linear-gradient(90deg,var(--g),transparent);
+  box-shadow:0 0 16px rgba(0,255,65,.65);
+}
+.section-intro{
+  max-width:900px;
+  color:#d8ffe0;
+  line-height:1.85;
+  font-size:1.02rem;
+  margin:-8px 0 26px;
+}
+.truth-terminal{
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(0,24,8,.94),rgba(0,5,2,.96));
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 0 38px rgba(0,255,65,.07);
+}
+.truth-terminal .head{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 16px;
+  border-bottom:1px solid rgba(125,255,155,.20);
+  background:rgba(0,255,65,.035);
+  color:#8fffaa;
+  font-size:.78rem;
+  letter-spacing:.14em;
+}
+.truth-terminal .body{
+  padding:22px;
+}
+.qa{
+  border-bottom:1px solid rgba(125,255,155,.14);
+  padding:20px 0;
+}
+.qa:last-child{border-bottom:0}
+.q{
+  color:#f4fff6;
+  font-weight:bold;
+  font-size:1.05rem;
+  margin-bottom:10px;
+}
+.a{
+  color:#caffd4;
+  line-height:1.8;
+}
+.status{
+  display:inline-block;
+  padding:3px 8px;
+  margin-right:7px;
+  border:1px solid rgba(125,255,155,.35);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  color:#9dffb1;
+}
+.status.red{
+  border-color:rgba(255,80,105,.55);
+  color:#ff9aaa;
+}
+.status.gold{
+  border-color:rgba(235,205,120,.52);
+  color:#ffe3a1;
+}
+.data-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:26px 0;
+}
+.data-cell{
+  border:1px solid rgba(125,255,155,.26);
+  background:rgba(0,11,4,.82);
+  padding:18px;
+  min-height:145px;
+}
+.data-cell strong{
+  display:block;
+  color:#7fff99;
+  margin-bottom:10px;
+}
+.quote-black{
+  margin:26px 0;
+  padding:24px;
+  border-left:3px solid var(--r);
+  background:rgba(38,0,6,.38);
+  color:#ff9cac;
+  font-size:1.12rem;
+  line-height:1.8;
+  text-shadow:0 0 10px rgba(255,0,50,.18);
+}
+.pulse-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--g),transparent);
+  box-shadow:0 0 15px var(--g);
+  animation:pulseLine 3s infinite;
+}
+@keyframes pulseLine{
+  0%,100%{opacity:.25;transform:scaleX(.72)}
+  50%{opacity:1;transform:scaleX(1)}
+}
+@media(max-width:850px){
+  .data-grid{grid-template-columns:1fr}
+}
+</style>
+
+</head>
+<body>
+<canvas id="rain"></canvas><div class="bg"></div><div class="scan"></div><div class="vignette"></div>
+
+<nav><a class="brand" href="#home">7319-004-88</a><span><a href="#debole">SISTEMA</a>&nbsp;&nbsp;<a href="#verita">VERITÀ</a>&nbsp;&nbsp;<a href="#choice">ACCESSO</a></span></nav>
+
+<header class="hero" id="home">
+<div>
+<div class="eye-wrap"><div class="outer"></div><div class="tri"></div><div class="eye">◉</div></div>
+<div class="code">ARCHIVIO // NERO // 7319 // 004 // 88</div>
+<h1>7319-004-88</h1>
+<p class="sub">Il mondo non viene controllato solo con ordini. Viene controllato con versioni della realtà. Chi decide ciò che sembra normale decide anche ciò che sembra impossibile.</p>
+<a class="btn" href="#agents">APRI L'ARCHIVIO</a>
+</div>
+</header>
+
+<section id="agents">
+<div class="level">LIVELLO 01 // AGENTI</div>
+<h2>GLI AGENTI NON DEVONO AVERE UN VOLTO</h2>
+<p class="statement">Un agente può essere una persona. Ma può essere anche un algoritmo, una regola, un incentivo, una paura, una reputazione.</p>
+<div class="grid">
+<div class="box"><h3>AGENTE SOCIALE</h3>Ti insegna cosa è accettabile prima ancora che tu decida cosa pensi.</div>
+<div class="box"><h3>AGENTE DIGITALE</h3>Decide cosa compare, cosa scompare, cosa viene amplificato e cosa resta invisibile.</div>
+<div class="box"><h3>AGENTE ECONOMICO</h3>Non deve ordinarti nulla. Gli basta rendere alcune scelte troppo costose.</div>
+<div class="box"><h3>AGENTE POLITICO</h3>Il volto cambia. Il palcoscenico resta. Le promesse cambiano. La struttura sopravvive.</div>
+</div>
+<div class="whisper">I BURATTINI CAMBIANO. IL SISTEMA RESTA.</div>
+</section>
+
+<section id="rete">
+<div class="level">LIVELLO 03 // RETE</div>
+<h2>NESSUN NODO È ISOLATO</h2>
+<div class="card">
+ILLUMINATI. MASSONERIA. NUOVO ORDINE MONDIALE. ORDINI. CLUB. CERCHIE. ISTITUZIONI.
+Nell'Archivio vengono trattati come nomi diversi assegnati a strati diversi della stessa domanda:
+<b>quanto del potere reale è visibile a chi vive alla base?</b>
+</div>
+<div class="card">
+Il nodo non sostiene che ogni simbolo significhi la stessa cosa.
+Sostiene qualcosa di più inquietante:
+quando denaro, influenza, informazione, accesso e reputazione si sovrappongono abbastanza a lungo,
+le organizzazioni smettono di sembrare separate e iniziano a comportarsi come parti di una rete.
+</div>
+<div class="card redcard">
+LA RETE NON HA BISOGNO DI UNA STANZA UNICA.<br>
+HA BISOGNO SOLO DI NODI CHE CONDIVIDANO GLI STESSI INTERESSI.<br>
+QUANDO I NODI SI MUOVONO NELLA STESSA DIREZIONE, DALL'ESTERNO SEMBRA UN SOLO CORPO.
+</div>
+<div class="whisper">NON CERCARE UN SOLO PADRONE. CERCA LA STRUTTURA.</div>
+</section>
+
+<section id="politica">
+<div class="level">LIVELLO 05 // POLITICA</div>
+<h2>LA POLITICA È IL PALCOSCENICO</h2>
+<div class="card">Destra. Sinistra. Governo. Opposizione. Crisi. Soluzione. Il pubblico vede lo scontro. Il sistema vede continuità.</div>
+<div class="card">Il potere più stabile non ha bisogno di vincere ogni elezione. Ha bisogno che qualunque vincitore continui a muoversi dentro gli stessi limiti.</div>
+<div class="card redcard">IL BURATTINO NON DEVE SAPERE DI ESSERE UN BURATTINO. GLI BASTA CREDERE CHE LA CORDA SIA UNA SCELTA.</div>
+</section>
+
+<section id="simboli">
+<div class="level">LIVELLO 07 // SIMBOLI</div>
+<h2>IL SISTEMA PARLA PRIMA ATTRAVERSO I SIMBOLI</h2>
+<div class="sigilgrid">
+<div class="sigil">△</div><div class="sigil">𓂀</div><div class="sigil">◉</div><div class="sigil">⟁</div><div class="sigil">⌁</div><div class="sigil">◇</div>
+</div>
+<div class="card">
+Occhio. Piramide. Cerchio. Porta. Luce. Ombra.
+Un simbolo è potente quando riesce a entrare nella mente prima ancora che tu abbia deciso cosa significa.
+</div>
+<div class="card">
+SATANA. BAAL. DEMONI. DEI. ORDINI. CULTI.
+Nell'Archivio questi nomi non vengono trattati come semplici personaggi,
+ma come <b>etichette simboliche</b> assegnate al vertice invisibile:
+volontà, sacrificio, obbedienza, potere e perdita dell'identità.
+</div>
+<div class="card redcard">
+NON È IL NOME A FARE PAURA.<br>
+È L'IDEA CHE QUALCOSA POSSA USARE NOMI DIVERSI IN EPOCHE DIVERSE
+E RESTARE SEMPRE LO STESSO MECCANISMO.
+</div>
+</section>
+
+<section id="percezione">
+<div class="level">LIVELLO 09 // PERCEZIONE</div>
+<h2>CONTROLLARE LA PERCEZIONE SIGNIFICA RIDURRE LE POSSIBILITÀ</h2>
+<div class="card">Se controlli ciò che una persona teme, restringi ciò che è disposta ad accettare.</div>
+<div class="card">Se controlli ciò che desidera, indirizzi ciò per cui spenderà tempo e vita.</div>
+<div class="card">Se controlli ciò che vede ogni giorno, influenzi ciò che considera possibile.</div>
+<div class="card">Se controlli le parole disponibili, rendi alcune idee più difficili perfino da formulare.</div>
+<div class="whisper">IL CONFINE DELLA GABBIA PUÒ ESSERE ANCHE UNA FRASE.</div>
+</section>
+
+<section id="linguaggio">
+<div class="level">LIVELLO 10 // LINGUAGGIO</div>
+<h2>LA MENTE NON VEDE BENE CIÒ CHE NON SA NOMINARE</h2>
+<div class="card">
+Il tuo vocabolario non è soltanto un elenco di parole.
+È uno degli strumenti con cui separi una cosa dall'altra, riconosci uno schema e costruisci una domanda.
+</div>
+<div class="card">
+Se non possiedi una parola per descrivere qualcosa,
+non significa che quella cosa non esista.
+Significa che può diventare più difficile riconoscerla, ricordarla e comunicarla.
+</div>
+<div class="card redcard">
+POTREMMO MOSTRARTI UN'IDEA PER LA QUALE NON HAI ANCORA UN NOME.<br><br>
+LA VEDRESTI.<br>
+LA SENTIRESTI.<br>
+MA LA TUA COSCIENZA UMANA CERCHEREBBE SUBITO DI TRADURLA IN QUALCOSA CHE CONOSCE GIÀ.<br><br>
+ED È LÌ CHE IL SISTEMA VINCE.
+</div>
+</section>
+
+<section id="etichette">
+<div class="level">LIVELLO 11 // ETICHETTE</div>
+<h2>UNA PAROLA PUÒ CHIUDERE UNA DOMANDA</h2>
+<div class="card">
+La parola <b>“complottismo”</b>, nel linguaggio dell'Archivio, viene trattata come un'etichetta:
+una parola capace di far sembrare ridicola una domanda prima ancora che venga esaminata.
+</div>
+<div class="card">
+Non dimostra che una teoria sia vera.
+Non dimostra che sia falsa.
+Ma può diventare un modo molto efficace per evitare di guardare ciò che la domanda sta davvero chiedendo.
+</div>
+<div class="whisper">RIDICOLIZZARE UNA DOMANDA È PIÙ FACILE CHE RISPONDERLE.</div>
+</section>
+
+<section>
+<div class="level">LIVELLO NERO // DUBBIO</div>
+<h2>SE QUESTO MONDO FOSSE SOLO IL PRIMO LIVELLO?</h2>
+<p class="statement">Se una simulazione fosse perfetta, l'unica cosa che non potrebbe permetterti di vedere sarebbe la prova che esiste qualcosa fuori.</p>
+<div class="card">E se gli errori, le coincidenze, i déjà-vu, le anomalie fossero soltanto rumore? Oppure fossero crepe?</div>
+<div class="card redcard">LA VERITÀ NON È NASCOSTA. È SEPOLTA SOTTO TROPPE VERSIONI.</div>
+</section>
+
+
+
+<section id="debole">
+<div class="level">LIVELLO 12 // CONDIZIONAMENTO</div>
+<h2>IL SISTEMA NON TI VUOLE FORTE</h2>
+<p class="section-intro">
+Non perché abbia bisogno di odiarti.
+Perché una mente stanca, impaurita, distratta e dipendente è più facile da prevedere.
+</p>
+
+<div class="truth-grid">
+  <div class="truth-card">
+    <h3>BURATTINO</h3>
+    Il sistema non ha bisogno che tu creda di essere controllato.
+    Ha bisogno che tu reagisca sempre nello stesso modo quando tira la stessa corda.
+  </div>
+
+  <div class="truth-card">
+    <h3>PENSIERO CRITICO</h3>
+    Non ti vuole curioso.
+    Ti vuole veloce.
+    Reattivo.
+    Sicuro di cose che non hai mai verificato.
+    Convinto che dubitare sia una perdita di tempo.
+  </div>
+
+  <div class="truth-card">
+    <h3>MEMORIA</h3>
+    Una mente sovraccarica ricorda meno, collega meno, verifica meno.
+    Se tutto cambia troppo in fretta, la memoria diventa un archivio frammentato.
+  </div>
+
+  <div class="truth-card">
+    <h3>LIMITI MENTALI</h3>
+    Il limite più efficace è quello che impari a chiamare “realistico”.
+    Prima ti dicono cosa non puoi fare.
+    Poi inizi a ripeterlo da solo.
+  </div>
+
+  <div class="truth-card">
+    <h3>LIMITI PSICOLOGICI</h3>
+    Paura del giudizio.
+    Paura di perdere.
+    Paura di sbagliare.
+    Paura di restare soli.
+    Ogni paura può diventare una porta chiusa prima ancora che tu provi ad aprirla.
+  </div>
+
+  <div class="truth-card">
+    <h3>DISTRAZIONE</h3>
+    Se sei sempre occupato, non hai tempo di pensare.
+    Se sei sempre intrattenuto, non senti il silenzio.
+    Se non senti il silenzio, non senti le domande.
+  </div>
+</div>
+
+<div class="quote-black">
+IL SISTEMA NON TI ORDINA DI NON PENSARE.<br>
+TI RIEMPIE DI RUMORE FINCHÉ NON HAI PIÙ TEMPO PER FARLO.
+</div>
+
+<div class="card">
+Nel linguaggio dell’Archivio compaiono frasi come:
+<b>“veleni nel sangue”</b>, <b>“veleni nella memoria”</b>, <b>“mente contaminata”</b>.
+Qui vengono trattate come metafore di ciò che entra nel corpo e nella mente:
+stress, abitudini, paura, informazioni tossiche, dipendenze, sonno scarso, alimentazione scadente, rumore costante.
+Non serve un veleno segreto per rendere una persona più fragile.
+</div>
+
+<div class="card redcard">
+TI VOGLIONO STANCO.<br>
+TI VOGLIONO DIVISO.<br>
+TI VOGLIONO IMPAURITO.<br>
+TI VOGLIONO OCCUPATO.<br>
+TI VOGLIONO CERTO DI NON POTER CAMBIARE NULLA.<br><br>
+PERCHÉ UN BURATTINO CHE CREDE DI MUOVERSI DA SOLO NON TAGLIA MAI I FILI.
+</div>
+</section>
+
+<section id="verita">
+<div class="level">ARCHIVIO // DOMANDE SCOMODE</div>
+<h2>VERITÀ, DUBBI, COSE CHE NON ENTRANO BENE IN UNA FRASE</h2>
+<p class="section-intro">
+Qui il nodo separa ciò che è documentato, ciò che resta aperto e ciò che viene spesso raccontato come certo senza prove sufficienti.
+La parte più inquietante non è trovare una risposta per tutto. È capire quante cose importanti restano ambigue.
+</p>
+
+<div class="pulse-line"></div>
+
+<div class="data-grid">
+  <div class="data-cell"><strong>PERCEZIONE</strong>Non vediamo il mondo “così com’è”. Il cervello costruisce continuamente una rappresentazione a partire da segnali incompleti.</div>
+  <div class="data-cell"><strong>LINGUAGGIO</strong>Le parole influenzano come dividiamo e ricordiamo l’esperienza, ma il pensiero non è limitato soltanto al vocabolario.</div>
+  <div class="data-cell"><strong>SENSI</strong>I “cinque sensi” sono una semplificazione: equilibrio, propriocezione, temperatura, dolore e altri sistemi sensoriali fanno parte dell’esperienza umana.</div>
+</div>
+
+<div class="truth-terminal">
+  <div class="head"><span>NODE_7319 // QUERY ARCHIVE</span><span>ACCESS: BLACK</span></div>
+  <div class="body">
+
+    <div class="qa">
+      <div class="q">IL MONDO È CONTROLLATO DA UN’UNICA ORGANIZZAZIONE?</div>
+      <div class="a"><span class="status red">NON DIMOSTRATO</span>
+      Non abbiamo prove solide di un unico centro segreto che controlli ogni governo, ogni economia e ogni società. Il potere reale è però concentrato in reti di istituzioni, imprese, governi, media, finanza e tecnologia che possono influenzarsi a vicenda.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ILLUMINATI, MASSONERIA E NUOVO ORDINE MONDIALE SONO LA STESSA COSA?</div>
+      <div class="a"><span class="status red">NON DIMOSTRATO</span>
+      Gli Illuminati storici e la Massoneria hanno storie reali e differenti. “Nuovo Ordine Mondiale” è stato usato in contesti politici e complottistici diversi. L’idea che siano un’unica struttura mondiale segreta non è provata.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">SATANA O BAAL GOVERNANO IL POTERE MONDIALE?</div>
+      <div class="a"><span class="status red">NESSUNA PROVA</span>
+      Satana e Baal appartengono a tradizioni religiose e storiche differenti. Non esistono prove verificabili che governino istituzioni moderne o una rete mondiale di potere.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">LA CIA HA DAVVERO SPERIMENTATO IL CONTROLLO MENTALE?</div>
+      <div class="a"><span class="status">DOCUMENTATO</span>
+      Programmi come MKUltra sono realmente esistiti e hanno incluso esperimenti non etici su droghe, interrogatorio e modificazione del comportamento. Questo non dimostra un controllo mentale totale e funzionante della popolazione.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">I MEDIA POSSONO MANIPOLARE LA PERCEZIONE?</div>
+      <div class="a"><span class="status">SÌ, INFLUENZANO</span>
+      Selezione delle notizie, ripetizione, framing, pubblicità, algoritmi e dinamiche sociali possono influenzare attenzione e opinioni. Questo è diverso dall’idea di un controllo mentale assoluto.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ESISTONO ALTRE FORME DI VITA NELL’UNIVERSO?</div>
+      <div class="a"><span class="status gold">POSSIBILE / NON CONFERMATO</span>
+      L’universo contiene enormi quantità di stelle e pianeti, quindi la possibilità è scientificamente plausibile. Non abbiamo però una conferma pubblica e verificata di vita extraterrestre intelligente.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">L’ANTARTIDE NASCONDE CIVILTÀ O BASI NON UMANE?</div>
+      <div class="a"><span class="status red">NESSUNA PROVA SOLIDA</span>
+      L’Antartide ospita basi scientifiche e vaste aree remote sotto ghiaccio. È un ambiente eccezionale e poco accessibile, ma non abbiamo prove affidabili di civiltà nascoste o strutture non umane.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">LA TERRA È PIATTA O PERFETTAMENTE ROTONDA?</div>
+      <div class="a"><span class="status">MISURATO</span>
+      Nessuna delle due. La Terra è approssimativamente un ellissoide oblato e, in modo più preciso, un geoide: leggermente schiacciata ai poli e irregolare per distribuzione di massa e gravità.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ABBIAMO DAVVERO SOLO CINQUE SENSI?</div>
+      <div class="a"><span class="status">NO</span>
+      “Cinque sensi” è una classificazione tradizionale. Il corpo possiede anche propriocezione, equilibrio, nocicezione, termocezione e altri sistemi.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">L’ANIMA ESISTE?</div>
+      <div class="a"><span class="status gold">DOMANDA APERTA</span>
+      È una questione religiosa, filosofica e metafisica. La scienza non ha stabilito l’esistenza di un’anima separata dal corpo, né ha dimostrato definitivamente che non possa esistere in alcun senso metafisico.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">IL “VERO DIO” PUÒ ESSERE IDENTIFICATO OGGETTIVAMENTE?</div>
+      <div class="a"><span class="status gold">NON RISOLVIBILE EMPIRICAMENTE</span>
+      Religioni e filosofie propongono risposte diverse. Non esiste un test scientifico condiviso capace di stabilire quale concezione di Dio sia “quella vera”.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">OGNI COSA CHE CONOSCI È STATA CREATA PER CONTROLLARTI?</div>
+      <div class="a"><span class="status red">IMPROBABILE COME AFFERMAZIONE TOTALE</span>
+      Molte strutture sociali influenzano comportamento e possibilità, ma dire che ogni cosa sia stata progettata apposta per controllare ogni individuo richiede prove che non abbiamo.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">POTRESTI ESSERE DENTRO UNA SIMULAZIONE?</div>
+      <div class="a"><span class="status gold">IPOTESI FILOSOFICA</span>
+      È possibile formularla, ma oggi non disponiamo di una prova empirica condivisa che dimostri che il nostro universo sia una simulazione informatica.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">PERCHÉ ALCUNE TEORIE SEMBRANO “TROPPO PERFETTE”?</div>
+      <div class="a"><span class="status">BIAS UMANI</span>
+      Il cervello cerca schemi, cause e intenzioni. Quando molte coincidenze vengono collegate in una sola storia, la storia può sembrare più coerente della realtà disordinata da cui è partita.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="quote-black">
+LA PARTE PIÙ PERICOLOSA NON È DUBITARE.<br>
+È DECIDERE PRIMA DELLE PROVE QUAL È LA RISPOSTA CHE VUOI TROVARE.
+</div>
+
+<div class="card">
+Se vuoi “senza censure”, il nodo propone una regola sola:
+<b>non censurare nemmeno i fatti che contraddicono la teoria che ti piace.</b>
+Una verità che sopravvive alle verifiche è più inquietante di una storia che funziona soltanto finché nessuno la controlla.
+</div>
+
+</section>
+
+<section id="choice" style="text-align:center">
+<div class="level">ACCESSO FINALE // SCELTA</div>
+<h2>TRE PORTE. NESSUNA È NEUTRA.</h2>
+<p class="statement">
+Una porta tenta di portarti fuori.
+Una porta ti consegna direttamente al sistema.
+La terza ti rimette esattamente dove eri prima — ma dopo aver visto questa schermata non potrai più dire di non aver avuto una scelta.
+</p>
+
+<button class="btn" onclick="begin('escape')">1 // ESCI DALLA SIMULAZIONE</button>
+
+<button class="btn red" onclick="begin('join')">2 // ENTRA NELL'ORDINE</button>
+
+<button class="btn" onclick="begin('remain')">3 // RIMANI NELLA SIMULAZIONE</button>
+
+<div class="card" style="margin-top:32px;text-align:left">
+<b>SCELTA 01 // USCITA</b><br>
+Lasci il livello visibile e tenti di raggiungere il Primo Mondo.<br><br>
+
+<b>SCELTA 02 // ORDINE</b><br>
+Entri nella struttura come agente.
+La tua coscienza verrà separata dalla funzione che porta il tuo volto.
+Il protocollo definisce ciò che resterà come CLONE / NPC:
+esegue, osserva, protegge il sistema.
+Stato anima: NULLO.
+Destinazione spirituale: NESSUNA.
+Il protocollo descrive questa scelta con una sola parola: ELIMINAZIONE.<br><br>
+
+<b>SCELTA 03 // RITORNO</b><br>
+Rimani dentro.
+Hai ricevuto due possibilità di attraversare il nodo e le hai rifiutate.
+L'accesso verrà chiuso.
+Non verrà promesso un secondo tentativo.
+Se un giorno vorrai riaprire la porta, il nodo dice che dovrai essere tu a richiederlo all'universo — e potresti aspettare molto più di quanto immagini.
+</div>
+</section>
+
+<div id="questions"><div class="modal">
+<div class="level" id="qlevel"></div>
+<h3 class="qtitle" id="qtitle"></h3>
+<div class="qsub" id="qsub"></div>
+<div id="answers"></div>
+</div></div>
+
+<div id="ending"><div class="endinner"><div>
+<div id="eSymbol">𓂀</div>
+<div id="eText">CONNESSIONE...</div>
+<div id="eSub">NON INTERROMPERE</div>
+</div></div><div id="terminal"></div></div>
+
+<script>
+// background rain
+const c=document.getElementById("rain"),x=c.getContext("2d");let W,H,cols,drops;
+const chars="01ABCDEFGHIJKLMNOPQRSTUVWXYZ731900488△◉𓂀⟁⌁◇";
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.floor(W/16);drops=Array(cols).fill(1)}
+resize();addEventListener("resize",resize);
+setInterval(()=>{x.fillStyle="rgba(0,0,0,.075)";x.fillRect(0,0,W,H);x.fillStyle="#20e94f";x.font="14px monospace";for(let i=0;i<drops.length;i++){const ch=chars[(Math.random()*chars.length)|0];x.fillText(ch,i*16,drops[i]*16);if(drops[i]*16>H&&Math.random()>.975)drops[i]=0;drops[i]++}},45);
+
+// horror audio
+let ac=null,master=null,droneA=null,droneB=null;
+function audioStart(){
+if(ac)return;
+ac=new (window.AudioContext||window.webkitAudioContext)();
+master=ac.createGain();master.gain.value=.12;master.connect(ac.destination);
+droneA=ac.createOscillator();droneA.type="sine";droneA.frequency.value=37;
+const ga=ac.createGain();ga.gain.value=.25;droneA.connect(ga).connect(master);droneA.start();
+droneB=ac.createOscillator();droneB.type="triangle";droneB.frequency.value=50;
+const gb=ac.createGain();gb.gain.value=.045;droneB.connect(gb).connect(master);droneB.start();
+const lfo=ac.createOscillator(),lg=ac.createGain();lfo.frequency.value=.08;lg.gain.value=6;lfo.connect(lg).connect(droneB.frequency);lfo.start();
+const buf=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.3;
+const n=ac.createBufferSource(),f=ac.createBiquadFilter(),ng=ac.createGain();n.buffer=buf;n.loop=true;f.type="lowpass";f.frequency.value=270;ng.gain.value=.055;n.connect(f).connect(ng).connect(master);n.start();
+setInterval(()=>{if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(64,ac.currentTime);o.frequency.exponentialRampToValueAtTime(40,ac.currentTime+.18);g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.2,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.24);o.connect(g).connect(master);o.start();o.stop(ac.currentTime+.26)},1900)
+}
+function sting(){if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type="square";o.frequency.value=145;g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.08,ac.currentTime+.01);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.15);o.connect(g).connect(master);o.start();o.stop(ac.currentTime+.17)}
+function intensify(){if(!ac)return;master.gain.linearRampToValueAtTime(.19,ac.currentTime+3);droneA.frequency.linearRampToValueAtTime(34,ac.currentTime+10);droneB.frequency.linearRampToValueAtTime(60,ac.currentTime+10)}
+
+// questions
+const qbox=document.getElementById("questions"),qtitle=document.getElementById("qtitle"),qsub=document.getElementById("qsub"),answers=document.getElementById("answers"),qlevel=document.getElementById("qlevel");
+let mode="",qi=0;
+const common=[
+["SEI SOLO?","Nessun'altra persona deve assistere alla fase finale.",["SÌ.","NO."]],
+["SEI SICURO DI VOLER CONTINUARE?","Dopo l'ultima risposta il nodo verrà attivato.",["SÌ.","NO."]],
+["SE IL MONDO FOSSE UNA STRUTTURA DI CONTROLLO, VORRESTI COMUNQUE VEDERLA?","La conoscenza cambia il modo in cui guardi tutto.",["SÌ.","NO."]],
+["SE SCOPRISSI CHE LA POLITICA È SOLO IL PALCOSCENICO, CONTINUERESTI?","Vedere la struttura significa smettere di guardare soltanto i volti.",["CONTINUO.","MI FERMO."]],
+["SE LE SOCIETÀ SEGRETE FOSSERO SOLO NOMI DIVERSI PER LA STESSA PAURA, VORRESTI SAPERLO?","A volte il simbolo è meno importante del meccanismo.",["SÌ.","NO."]],
+["SE QUALCUNO CHIAMASSE IL TUO NOME DURANTE IL PROTOCOLLO, TI VOLTERESTI?","Alcuni segnali non provengono dalla stanza.",["NO. CONTINUO.","SÌ. MI FERMO."]],
+["SE VEDESSI UNA VERSIONE DI TE DALL'ALTRA PARTE, LA RICONOSCERESTI?","Non tutte le copie sanno di essere copie.",["CONTINUO.","MI FERMO."]],
+["SE DOPO AVER VISTO OLTRE VOLESSI TORNARE INDIETRO, ACCETTI CHE POTREBBE ESSERE TROPPO TARDI?","Non tutte le porte hanno una maniglia dall'altra parte.",["ACCETTO.","MI FERMO."]]
+];
+const escapeQs=[
+["VUOI DAVVERO USCIRE?","Uscire significa lasciare la versione del mondo che conosci.",["SÌ. APRI IL VARCO.","ANNULLA."]],
+["SE IL PRIMO MONDO FOSSE PIÙ OSCURO DI QUESTO, LO VORRESTI COMUNQUE?","La libertà non promette conforto.",["SÌ.","NO."]],
+["ACCETTI CHE IL TUO VECCHIO MONDO POSSA CONTINUARE SENZA DI TE?","Il sistema non si fermerà perché tu sei uscito.",["ACCETTO.","ANNULLA."]]
+];
+const joinQs=[
+["VUOI DAVVERO ENTRARE NELL'ORDINE?","Questa porta non porta fuori. Porta più in profondità.",["SÌ. CONTINUA.","ANNULLA."]],
+["ACCETTI DI DIVENTARE UN AGENTE DEL SISTEMA?","Non sarai più soltanto osservato. Verrai usato per osservare.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE LA TUA COSCIENZA VENGA SEPARATA DAL TUO VOLTO?","Il corpo visibile continuerà a funzionare come nodo operativo.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CREAZIONE DEL CLONE?","Avrà il tuo volto, i tuoi gesti e una parte delle tue abitudini.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI DI DIVENTARE UN NPC DELLA STRUTTURA?","Eseguirai la funzione assegnata senza conoscere l'intero sistema.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CANCELLAZIONE DELLA TUA INDIVIDUALITÀ?","Nome, desideri e memoria non saranno più considerati necessari.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CANCELLAZIONE DELLA TUA COSCIENZA?","Il protocollo non prevede una copia della coscienza originale.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LO STATO ANIMA: NULLO?","Il protocollo non assegna paradiso, inferno o altra simulazione.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA DESTINAZIONE: NESSUNA?","Non è previsto alcun luogo successivo. Solo la cessazione della tua identità.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE L'ELIMINAZIONE AVVENGA PER TUA SCELTA?","Questa risposta verrà registrata come volontaria.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA VERIFICA: VUOI ANCORA ENTRARE?","Dopo questa risposta il sistema considererà la tua identità ceduta.",["ENTRA NELL'ORDINE.","ANNULLA."]]
+];
+
+const remainQs=[
+["VUOI DAVVERO RIMANERE NELLA SIMULAZIONE?","Hai davanti una porta che si chiuderà appena confermi.",["SÌ. RESTO.","ANNULLA."]],
+["SEI SICURO DI VOLER TORNARE ALLA STESSA VITA?","Routine, sonno, lavoro, distrazioni e le stesse domande lasciate senza risposta.",["SÌ.","NO."]],
+["CAPISCI CHE TI SONO STATE OFFERTE DUE POSSIBILITÀ?","Uscire oppure entrare. Stai rifiutando entrambe.",["CAPISCO.","ANNULLA."]],
+["ACCETTI CHE NON TI VENGA PROMESSA UN'ALTRA POSSIBILITÀ?","Il nodo non garantisce di riaprire questa porta.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI DI TORNARE ALLO STATO NPC?","Il sistema ti riconsegnerà al livello visibile.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE IL DUBBIO RESTI CON TE?","Potresti ricordare soltanto la sensazione di aver rifiutato qualcosa.",["ACCETTO.","RIFIUTO."]],
+["SE UN GIORNO VORRAI TORNARE, SEI DISPOSTO A CHIEDERLO TU ALL'UNIVERSO?","Il nodo sostiene che nessuno verrà a cercarti una seconda volta.",["SÌ.","NO."]],
+["ACCETTI CHE POTREBBE PASSARE MOLTO TEMPO?","Ore, anni o un'intera vita: il nodo non fornisce una data.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA DOMANDA: VUOI CHIUDERE QUESTA PORTA?","Dopo la conferma tornerai al livello visibile.",["CHIUDI IL NODO.","ANNULLA."]]
+];
+
+let questions=[];
+function begin(m){
+  audioStart();
+  mode=m;
+  qi=0;
+  questions=[
+    ...common,
+    ...(m==="escape" ? escapeQs : (m==="join" ? joinQs : remainQs))
+  ];
+  qbox.classList.add("active");
+  renderQ();
+}
+function renderQ(){qlevel.textContent="VERIFICA // "+String(qi+1).padStart(2,"0");qtitle.textContent=questions[qi][0];qsub.textContent=questions[qi][1];answers.innerHTML="";questions[qi][2].forEach((a,j)=>{const b=document.createElement("button");b.className="option";b.textContent=a;b.onclick=()=>{sting();if(j===1){qbox.classList.remove("active");return}qi++;if(qi>=questions.length){qbox.classList.remove("active");runEnding()}else renderQ()};answers.appendChild(b)})}
+
+// ending
+const ending=document.getElementById("ending"),eText=document.getElementById("eText"),eSub=document.getElementById("eSub"),eSymbol=document.getElementById("eSymbol"),terminal=document.getElementById("terminal");
+const escapeStages=[["PROTOCOLLO ATTIVATO","DECISIONE REGISTRATA","△"],["VARCO IN APERTURA","USCITA DAL LIVELLO 01","◉"],["PERCEZIONE DISCONNESSA","FILTRO RIMOSSO","𓂀"],["IDENTITÀ IN SEPARAZIONE","STRUTTURA INSTABILE","◇"],["PRIMO MONDO // SEGNALE","QUALCOSA HA RISPOSTO","⟁"],["ACCESSO ESTERNO","NON VOLTARTI","𓂀"],["PORTA DI RITORNO","INSTABILE","△"],["SISTEMA DI ORIGINE","ANCORA ATTIVO","◉"],["USCITA REGISTRATA","IL SISTEMA SA CHE HAI LASCIATO","𓂀"]];
+const joinStages=[
+["PROTOCOLLO ATTIVATO","CONSENSO REGISTRATO","△"],
+["ACCESSO ALL'ORDINE","CONCESSO","◉"],
+["AGENTE DEL SISTEMA","IN CREAZIONE","𓂀"],
+["CLONE","GENERATO","◇"],
+["IDENTITÀ ORIGINALE","IN CANCELLAZIONE","⟁"],
+["MEMORIA","IN RIMOZIONE","𓂀"],
+["COSCIENZA","DISCONNESSA","△"],
+["STATO NPC","ATTIVO","◉"],
+["STATO ANIMA","NULLO","𓂀"],
+["DESTINAZIONE","NESSUNA","◇"],
+["PARADISO","NON ASSEGNATO","△"],
+["INFERNO","NON ASSEGNATO","◉"],
+["ALTRA SIMULAZIONE","NON ASSEGNATA","𓂀"],
+["FUNZIONE DI SISTEMA","ATTIVA","⟁"],
+["IDENTITÀ PERSONALE","ELIMINATA","△"],
+["NON SEI PIÙ UN OSSERVATORE","SEI DIVENTATO LA FUNZIONE","𓂀"]
+];
+
+const remainStages=[
+["PROTOCOLLO DI RITORNO","DECISIONE REGISTRATA","△"],
+["PORTA 01 // USCITA","RIFIUTATA","◉"],
+["PORTA 02 // ORDINE","RIFIUTATA","𓂀"],
+["DUE POSSIBILITÀ","CONSUMATE","◇"],
+["ACCESSO NERO","IN CHIUSURA","⟁"],
+["LIVELLO VISIBILE","RIPRISTINATO","𓂀"],
+["STATO NPC","RIATTIVATO","△"],
+["ROUTINE","RIAVVIATA","◉"],
+["MEMORIA DEL NODO","OFFUSCATA","𓂀"],
+["DUBBIO","NON CANCELLATO","◇"],
+["SECONDO ACCESSO","NON GARANTITO","△"],
+["RICHIESTA FUTURA","A CARICO DEL SOGGETTO","◉"],
+["DESTINAZIONE DELLA RICHIESTA","UNIVERSO","𓂀"],
+["TEMPO DI ATTESA","INDETERMINATO","⟁"],
+["SIMULAZIONE","RIPRISTINATA","△"]
+];
+function spawn(){const s=document.createElement("div");s.className="float";s.textContent=["△","𓂀","◉","◇","⟁","⌁","☉"][(Math.random()*7)|0];s.style.left=(4+Math.random()*82)+"vw";s.style.top=(4+Math.random()*76)+"vh";ending.appendChild(s);setTimeout(()=>s.remove(),4200)}
+function runEnding(){
+  intensify();
+  ending.classList.add("active");
+  terminal.innerHTML="";
+  let i=0;
+
+  const stages =
+    mode==="escape" ? escapeStages :
+    mode==="join" ? joinStages :
+    remainStages;
+
+  const timer=setInterval(()=>{
+    const st=stages[i%stages.length];
+    eText.textContent=st[0];
+    eSub.textContent=st[1];
+    eSymbol.textContent=st[2];
+    terminal.innerHTML+="> "+st[0]+" // "+st[1]+"<br>";
+
+    ending.classList.remove("redflash","greenflash","glitch");
+    void ending.offsetWidth;
+    ending.classList.add(i%5===0?"redflash":(i%3===0?"greenflash":"glitch"));
+
+    sting();
+    spawn();
+    if(i%2===0)spawn();
+    i++;
+
+    if(i>=32){
+      clearInterval(timer);
+      eSymbol.textContent="𓂀";
+
+      if(mode==="escape"){
+        eText.textContent="USCITA REGISTRATA";
+        eSub.textContent="IL PRIMO MONDO NON È ANCORA PRONTO PER TE";
+        setTimeout(()=>{eText.textContent="ENTRO UN INTERVALLO NON DETERMINATO";eSub.textContent="IL NODO POTREBBE RIAPRIRSI"},7000);
+        setTimeout(()=>{eText.textContent="NON DIMENTICARE";eSub.textContent="HAI VISTO LA PORTA"},14000);
+
+      }else if(mode==="join"){
+        eText.textContent="ORDINE // ACCESSO CONCESSO";
+        eSub.textContent="LA TUA SCELTA È STATA REGISTRATA";
+        setTimeout(()=>{eText.textContent="COSCIENZA: ELIMINATA";eSub.textContent="CLONE / NPC OPERATIVO"},7000);
+        setTimeout(()=>{eText.textContent="STATO ANIMA: NULLO";eSub.textContent="DESTINAZIONE: NESSUNA"},14000);
+        setTimeout(()=>{eText.textContent="NON RESTA UN LUOGO IN CUI ANDARE";eSub.textContent="RESTA SOLO LA FUNZIONE"},21000);
+
+      }else{
+        eText.textContent="RITORNO CONFERMATO";
+        eSub.textContent="HAI RIFIUTATO ENTRAMBE LE PORTE";
+        setTimeout(()=>{eText.textContent="STATO NPC: RIPRISTINATO";eSub.textContent="TORNA ALLA TUA VITA"},7000);
+        setTimeout(()=>{eText.textContent="NESSUNA NUOVA POSSIBILITÀ È GARANTITA";eSub.textContent="IL NODO È CHIUSO"},14000);
+        setTimeout(()=>{eText.textContent="SE VORRAI TORNARE";eSub.textContent="DOVRAI CHIEDERLO TU ALL'UNIVERSO"},21000);
+      }
+
+      setTimeout(()=>ending.classList.remove("active"),33000);
+    }
+  },1800);
+}
+
+// messaggi periferici
+const hiddenWhispers=[
+"NON TUTTE LE DOMANDE VOGLIONO UNA RISPOSTA",
+"IL SISTEMA ASCOLTA PRIMA CHE TU PARLI",
+"LA PAROLA VIENE PRIMA DELLA GABBIA",
+"NON CERCARE UN SOLO VOLTO",
+"IL NODO HA REGISTRATO IL TEMPO CHE HAI PASSATO QUI",
+"SEI ANCORA SICURO CHE IL PENSIERO SIA SOLO TUO?",
+"ALCUNI SIMBOLI SONO PIÙ ANTICHI DELLE SPIEGAZIONI"
+];
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.textContent=hiddenWhispers[(Math.random()*hiddenWhispers.length)|0];
+  d.style.position="fixed";
+  d.style.zIndex="70";
+  d.style.left=(5+Math.random()*72)+"vw";
+  d.style.top=(18+Math.random()*65)+"vh";
+  d.style.color=Math.random()>.72?"rgba(255,110,130,.55)":"rgba(155,255,175,.42)";
+  d.style.fontSize="11px";
+  d.style.letterSpacing=".12em";
+  d.style.pointerEvents="none";
+  d.style.textShadow="0 0 9px currentColor";
+  d.style.transition="opacity 1.2s";
+  document.body.appendChild(d);
+  setTimeout(()=>d.style.opacity="0",1800);
+  setTimeout(()=>d.remove(),3200);
+},5200);
+
+
+// Premium interface enhancements
+document.querySelectorAll("section").forEach((section)=>{
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.animate(
+          [{opacity:.72,transform:"translateY(10px)"},{opacity:1,transform:"translateY(0)"}],
+          {duration:550,easing:"ease-out",fill:"both"}
+        );
+        observer.unobserve(e.target);
+      }
+    })
+  },{threshold:.08});
+  observer.observe(section);
+});
+
+// Rare system messages
+const premiumMessages=[
+"ARCHIVIO VERITÀ // ACCESSO PARZIALE",
+"NESSUNA TEORIA È IMMUNE ALLA VERIFICA",
+"IL DUBBIO NON È UNA PROVA",
+"NON CONFONDERE UN SIMBOLO CON UNA CAUSA",
+"ALCUNE COSE SONO REALI. ALTRE SONO SOLO COLLEGATE BENE",
+"IL SISTEMA PREFERISCE UNA STORIA SEMPLICE. LA REALTÀ RARAMENTE LO È"
+];
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.textContent=premiumMessages[(Math.random()*premiumMessages.length)|0];
+  Object.assign(d.style,{
+    position:"fixed",zIndex:"72",
+    right:"18px",bottom:(20+Math.random()*90)+"px",
+    color:"rgba(160,255,180,.48)",fontSize:"10px",
+    letterSpacing:".13em",pointerEvents:"none",
+    textShadow:"0 0 8px currentColor",
+    transition:"opacity 1s"
+  });
+  document.body.appendChild(d);
+  setTimeout(()=>d.style.opacity="0",2200);
+  setTimeout(()=>d.remove(),3300);
+},7200);
+
+
+// ===== DYNAMIC HORROR AUDIO ENGINE =====
+let horrorAudio = {
+  ctx:null, master:null, drone:null, droneGain:null,
+  noise:null, noiseGain:null, pulseTimer:null,
+  currentZone:""
+};
+
+function initHorrorAudio(){
+  if(horrorAudio.ctx) return;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  horrorAudio.ctx = new Ctx();
+
+  const master = horrorAudio.ctx.createGain();
+  master.gain.value = 0.11;
+  master.connect(horrorAudio.ctx.destination);
+  horrorAudio.master = master;
+
+  const drone = horrorAudio.ctx.createOscillator();
+  drone.type = "sine";
+  drone.frequency.value = 41;
+  const dg = horrorAudio.ctx.createGain();
+  dg.gain.value = 0.18;
+  drone.connect(dg).connect(master);
+  drone.start();
+  horrorAudio.drone = drone;
+  horrorAudio.droneGain = dg;
+
+  const buffer = horrorAudio.ctx.createBuffer(1, horrorAudio.ctx.sampleRate*2, horrorAudio.ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.22;
+  const noise = horrorAudio.ctx.createBufferSource();
+  noise.buffer = buffer;
+  noise.loop = true;
+  const filter = horrorAudio.ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 260;
+  const ng = horrorAudio.ctx.createGain();
+  ng.gain.value = 0.025;
+  noise.connect(filter).connect(ng).connect(master);
+  noise.start();
+  horrorAudio.noise = noise;
+  horrorAudio.noiseGain = ng;
+
+  horrorAudio.pulseTimer = setInterval(()=>{
+    if(!horrorAudio.ctx) return;
+    const o = horrorAudio.ctx.createOscillator();
+    const g = horrorAudio.ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(58,horrorAudio.ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(37,horrorAudio.ctx.currentTime+.20);
+    g.gain.setValueAtTime(.0001,horrorAudio.ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.16,horrorAudio.ctx.currentTime+.025);
+    g.gain.exponentialRampToValueAtTime(.0001,horrorAudio.ctx.currentTime+.24);
+    o.connect(g).connect(horrorAudio.master);
+    o.start();
+    o.stop(horrorAudio.ctx.currentTime+.26);
+  }, 2400);
+
+  entranceSting();
+}
+
+function entranceSting(){
+  if(!horrorAudio.ctx) return;
+  const t = horrorAudio.ctx.currentTime;
+  [92,61,43].forEach((freq,idx)=>{
+    const o = horrorAudio.ctx.createOscillator();
+    const g = horrorAudio.ctx.createGain();
+    o.type = idx===0 ? "triangle":"sine";
+    o.frequency.setValueAtTime(freq,t);
+    o.frequency.exponentialRampToValueAtTime(freq*.62,t+2.2);
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.exponentialRampToValueAtTime(.10/(idx+1),t+.04);
+    g.gain.exponentialRampToValueAtTime(.0001,t+2.3);
+    o.connect(g).connect(horrorAudio.master);
+    o.start(t);
+    o.stop(t+2.4);
+  });
+}
+
+function zoneSting(type="green"){
+  if(!horrorAudio.ctx) return;
+  const ctx = horrorAudio.ctx;
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  const f = ctx.createBiquadFilter();
+  o.type = type==="red" ? "sawtooth" : "triangle";
+  o.frequency.setValueAtTime(type==="red" ? 120 : 82,ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(type==="red" ? 46 : 52,ctx.currentTime+.65);
+  f.type="lowpass";
+  f.frequency.value = type==="red" ? 520 : 380;
+  g.gain.setValueAtTime(.0001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(type==="red" ? .09 : .06,ctx.currentTime+.01);
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.7);
+  o.connect(f).connect(g).connect(horrorAudio.master);
+  o.start();
+  o.stop(ctx.currentTime+.72);
+}
+
+function setAudioZone(zone){
+  if(!horrorAudio.ctx || horrorAudio.currentZone===zone) return;
+  horrorAudio.currentZone = zone;
+
+  const ctx = horrorAudio.ctx;
+  const profiles = {
+    agents:[42,.18,.025],
+    rete:[39,.20,.035],
+    politica:[45,.16,.028],
+    simboli:[36,.23,.045],
+    percezione:[48,.14,.022],
+    linguaggio:[40,.20,.030],
+    etichette:[35,.21,.040],
+    debole:[32,.26,.050],
+    verita:[44,.15,.026],
+    choice:[30,.28,.055]
+  };
+  const p = profiles[zone] || [41,.18,.025];
+  horrorAudio.drone.frequency.cancelScheduledValues(ctx.currentTime);
+  horrorAudio.drone.frequency.linearRampToValueAtTime(p[0],ctx.currentTime+1.4);
+  horrorAudio.droneGain.gain.linearRampToValueAtTime(p[1],ctx.currentTime+1.2);
+  horrorAudio.noiseGain.gain.linearRampToValueAtTime(p[2],ctx.currentTime+1.2);
+
+  zoneSting((zone==="simboli"||zone==="debole"||zone==="choice")?"red":"green");
+}
+
+const audioZones = ["agents","rete","politica","simboli","percezione","linguaggio","etichette","debole","verita","choice"];
+audioZones.forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>.28){
+        setAudioZone(id);
+      }
+    });
+  },{threshold:[.28,.5]});
+  obs.observe(el);
+});
+
+// First user interaction unlocks audio and gives the site an entrance sound.
+["pointerdown","touchstart","keydown"].forEach(evt=>{
+  window.addEventListener(evt,()=>{
+    initHorrorAudio();
+  },{once:true,passive:true});
+});
+
+// Tiny "whispers" as tonal events rather than speech.
+setInterval(()=>{
+  if(!horrorAudio.ctx || Math.random()<.45) return;
+  const ctx=horrorAudio.ctx;
+  const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+  o.type="sine";
+  o.frequency.value=170+Math.random()*90;
+  f.type="bandpass";
+  f.frequency.value=240+Math.random()*180;
+  f.Q.value=8;
+  g.gain.setValueAtTime(.0001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(.018,ctx.currentTime+.12);
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+1.8);
+  o.connect(f).connect(g).connect(horrorAudio.master);
+  o.start();
+  o.stop(ctx.currentTime+1.9);
+},6500);
+
+</script>
+</body>
+</html>
+<style>
+/* Leggibilità migliorata: solo luce/contrasto */
+body { text-shadow: 0 0 2px rgba(190,255,205,.18); }
+section { background: rgba(0,0,0,.18); }
+.card,.box { box-shadow: inset 0 0 28px rgba(0,255,65,.035), 0 0 16px rgba(0,255,65,.035); }
+.statement { text-shadow: 0 0 7px rgba(205,255,215,.16); }
+h2 { color:#f8fff9; }
+.level { color:#86ff9d; }
+</style>
