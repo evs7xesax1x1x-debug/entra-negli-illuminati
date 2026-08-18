@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sede della Verità</title>
+<meta name="theme-color" content="#000000">
+<style>
+:root{
+  --g:#57ff7d;
+  --g2:#20df4f;
+  --red:#ff2f4f;
+  --black:#000;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#000;
+  color:var(--g);
+  font-family:"Courier New",monospace;
+  overflow-x:hidden;
+}
+#matrix{
+  position:fixed; inset:0; width:100%; height:100%; z-index:-5; background:#000;
+}
+.dark{
+  position:fixed; inset:0; z-index:-4; pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(0,255,70,.10), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(120,0,0,.12), transparent 35%),
+    linear-gradient(rgba(0,0,0,.20),rgba(0,0,0,.86));
+}
+.scan{
+  position:fixed; inset:0; z-index:100; pointer-events:none;
+  opacity:.38;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 4px);
+}
+.vignette{
+  position:fixed; inset:0; z-index:99; pointer-events:none;
+  box-shadow:inset 0 0 170px 55px #000;
+}
+nav{
+  position:fixed; top:0; left:0; right:0; z-index:30;
+  display:flex; justify-content:space-between; align-items:center; gap:18px;
+  padding:15px 5vw;
+  border-bottom:1px solid rgba(87,255,125,.22);
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(12px);
+}
+.brand{color:var(--g);text-decoration:none;font-weight:bold;letter-spacing:.12em;text-shadow:0 0 12px var(--g)}
+.links{display:flex;gap:18px;flex-wrap:wrap}
+.links a{color:var(--g);text-decoration:none;font-size:.8rem;opacity:.82}
+.links a:hover{opacity:1;text-shadow:0 0 10px var(--g)}
+section{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:110px 7vw 70px;
+}
+.hero{text-align:center;max-width:1100px}
+.eye-wrap{
+  width:160px;height:140px;margin:0 auto 32px;position:relative;
+  filter:drop-shadow(0 0 20px rgba(87,255,125,.5));
+}
+.triangle{
+  width:100%;height:100%;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  border:2px solid var(--g);
+  background:linear-gradient(180deg,rgba(87,255,125,.015),rgba(87,255,125,.09));
+}
+.eye{
+  position:absolute;left:50%;top:59%;transform:translate(-50%,-50%);
+  width:68px;height:34px;border:2px solid var(--g);border-radius:50%/60%;
+  display:grid;place-items:center;font-size:24px;text-shadow:0 0 12px var(--g);
+}
+.glitch{
+  position:relative;margin:0;
+  font-size:clamp(2.7rem,8vw,7rem);
+  line-height:.92;text-transform:uppercase;letter-spacing:.065em;
+  text-shadow:0 0 7px var(--g),0 0 35px rgba(87,255,125,.38);
+  animation:flicker 3.7s infinite;
+}
+.glitch:before,.glitch:after{
+  content:attr(data-text);position:absolute;inset:0;pointer-events:none
+}
+.glitch:before{opacity:.43;transform:translate(4px,-2px);clip-path:inset(7% 0 68% 0);animation:g1 1.4s steps(2,end) infinite}
+.glitch:after{opacity:.30;transform:translate(-4px,2px);clip-path:inset(63% 0 8% 0);animation:g2 1.1s steps(2,end) infinite}
+.subtitle{
+  margin:30px auto 0;max-width:820px;color:#b9ffc7;line-height:1.9;font-size:clamp(1rem,2.3vw,1.28rem)
+}
+.btns{margin-top:38px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap}
+.btn{
+  border:1px solid var(--g);background:rgba(0,13,4,.8);color:var(--g);
+  font:inherit;letter-spacing:.12em;padding:15px 25px;cursor:pointer;text-decoration:none;
+  transition:.18s;box-shadow:inset 0 0 20px rgba(87,255,125,.07),0 0 18px rgba(87,255,125,.11)
+}
+.btn:hover{background:var(--g);color:#000;box-shadow:0 0 30px rgba(87,255,125,.6)}
+.content{width:min(1080px,100%)}
+.kicker{font-size:.8rem;letter-spacing:.24em;opacity:.68;margin-bottom:12px}
+h2{margin:0 0 28px;font-size:clamp(2rem,5vw,4rem);text-transform:uppercase;text-shadow:0 0 22px rgba(87,255,125,.3)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  min-height:230px;border:1px solid rgba(87,255,125,.4);
+  background:linear-gradient(180deg,rgba(0,12,4,.88),rgba(0,3,1,.92));
+  padding:25px;position:relative;overflow:hidden
+}
+.card:after{
+  content:"";position:absolute;inset:auto -40% -55% -40%;height:60%;
+  background:radial-gradient(circle,rgba(255,0,40,.09),transparent 60%)
+}
+.card h3{margin:0 0 12px;letter-spacing:.08em}
+.card p{margin:0;color:#a9ffba;line-height:1.75}
+.num{display:inline-block;font-size:.77rem;opacity:.52;margin-bottom:28px}
+.alert{
+  border:1px solid rgba(255,47,79,.55);
+  background:rgba(25,0,4,.62);
+  color:#ff7890;
+  padding:16px 18px;margin:28px 0;line-height:1.7;
+  box-shadow:0 0 24px rgba(255,47,79,.08)
+}
+.terminal{
+  border:1px solid rgba(87,255,125,.42);background:rgba(0,0,0,.9);
+  padding:25px;min-height:340px;box-shadow:0 0 35px rgba(87,255,125,.08)
+}
+.term-head{padding-bottom:13px;margin-bottom:18px;border-bottom:1px solid rgba(87,255,125,.18);font-size:.82rem;opacity:.7}
+.line{margin:9px 0;line-height:1.65;color:#99ffad}
+.line::before{content:"> ";color:var(--g)}
+.red{color:#ff5b76}
+.redacted{display:inline-block;background:var(--g);color:var(--g);padding:0 8px;user-select:none}
+.final{text-align:center;max-width:850px}
+.final p{line-height:1.9;color:#b6ffc4}
+.big{font-size:clamp(1.35rem,3vw,2.15rem);letter-spacing:.07em;margin-top:30px}
+.truth{
+  margin-top:30px;padding:20px;border-left:3px solid var(--g);
+  background:rgba(0,14,5,.62);text-align:left
+}
+.truth strong{color:#fff;text-shadow:0 0 7px var(--g)}
+.horror{
+  position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
+  background:#000;padding:24px
+}
+.horror.active{display:flex}
+.hbox{
+  width:min(920px,100%);
+  border:1px solid var(--red);padding:28px;background:#030000;
+  box-shadow:0 0 60px rgba(255,0,40,.16)
+}
+.hbox h3{
+  margin:0 0 15px;color:#ff607b;
+  font-size:clamp(1.7rem,5vw,4rem);
+  text-shadow:0 0 18px rgba(255,47,79,.55)
+}
+.progress{height:10px;border:1px solid rgba(255,47,79,.5);overflow:hidden;margin:24px 0}
+.progress span{display:block;height:100%;width:0;background:var(--red);animation:load 6s linear forwards}
+.log{line-height:1.9;color:#ff8ba0;min-height:230px}
+.fake-loc{
+  border:1px dashed rgba(255,47,79,.55);
+  padding:12px;margin:16px 0;color:#ff8197;background:rgba(40,0,7,.3)
+}
+.exit-note{
+  margin-top:18px;color:#8dff9e;font-size:.82rem;opacity:.75
+}
+.close{display:none;margin-top:24px}
+.close.show{display:inline-block}
+.jumpscare{
+  position:fixed;inset:0;z-index:250;display:none;place-items:center;background:#000;
+  color:#fff;text-align:center;padding:20px
+}
+.jumpscare.active{display:grid;animation:flash .22s 5}
+.jumpscare .face{
+  font-size:clamp(3rem,12vw,10rem);line-height:.8;
+  text-shadow:0 0 15px #fff,0 0 55px var(--red)
+}
+.jumpscare p{color:#ff5e78;font-size:clamp(1.1rem,3vw,2.3rem);letter-spacing:.1em}
+.whisper{
+  position:fixed;z-index:45;color:rgba(180,255,195,.33);
+  font-size:.72rem;pointer-events:none;animation:drift 8s linear forwards
+}
+footer{padding:28px;text-align:center;color:rgba(87,255,125,.45);font-size:.78rem;border-top:1px solid rgba(87,255,125,.12);background:#000}
+@keyframes load{to{width:100%}}
+@keyframes flicker{0%,16%,18%,21%,100%{opacity:1}17%,20%{opacity:.66}}
+@keyframes g1{0%,88%,100%{transform:translate(0)}90%{transform:translate(9px,-2px)}94%{transform:translate(-6px,2px)}}
+@keyframes g2{0%,82%,100%{transform:translate(0)}85%{transform:translate(-8px,1px)}89%{transform:translate(5px,-2px)}}
+@keyframes flash{0%,100%{filter:invert(0)}50%{filter:invert(1)}}
+@keyframes drift{from{transform:translateY(0);opacity:0}20%{opacity:.5}to{transform:translateY(-120px);opacity:0}}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.links{gap:10px}.links a{font-size:.68rem}nav{align-items:flex-start}}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="dark"></div>
+<div class="scan"></div>
+<div class="vignette"></div>
+
+<nav>
+  <a class="brand" href="#home">△ SEDE DELLA VERITÀ</a>
+  <div class="links">
+    <a href="#home">ENTRA</a>
+    <a href="#noi">NOI</a>
+    <a href="#archivi">ARCHIVI</a>
+    <a href="#protocollo">PROTOCOLLO</a>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero">
+    <div class="eye-wrap"><div class="triangle"></div><div class="eye">◉</div></div>
+    <h1 class="glitch" data-text="ENTRA NEGLI ILLUMINATI">ENTRA NEGLI ILLUMINATI</h1>
+    <p class="subtitle">
+      Non sei arrivato qui per caso. La maggior parte delle persone vede soltanto ciò che il sistema permette di vedere.
+      Questa è la sede della verità. Da qui in poi, ogni risposta apre una porta che non si richiude.
+    </p>
+    <div class="btns">
+      <a class="btn" href="#noi">VEDI LA VERITÀ</a>
+      <button class="btn" id="enterBtn">ENTRA</button>
+    </div>
+  </div>
+</section>
+
+<section id="noi">
+  <div class="content">
+    <div class="kicker">ARCHIVIO // LIVELLO NERO</div>
+    <h2>Noi controlliamo il quadro</h2>
+    <div class="grid">
+      <article class="card">
+        <span class="num">DOSSIER 001</span>
+        <h3>OSSERVAZIONE</h3>
+        <p>Nella leggenda del sito, ogni movimento produce un segnale. Ogni segnale finisce in un archivio. Le persone vedono coincidenze. Noi vediamo pattern.</p>
+      </article>
+      <article class="card">
+        <span class="num">DOSSIER 002</span>
+        <h3>PERCEZIONE</h3>
+        <p>Non serve controllare ogni persona. Basta controllare ciò che una persona crede possibile. Informazione, paura, desiderio: il resto lo fa la mente.</p>
+      </article>
+      <article class="card">
+        <span class="num">DOSSIER 003</span>
+        <h3>SIMULAZIONE</h3>
+        <p>La realtà visibile è soltanto l’interfaccia. Dietro c’è un sistema più vecchio di te, più grande di te e completamente indifferente alla tua presenza.</p>
+      </article>
+    </div>
+    <div class="alert">
+      ATTENZIONE // NARRATIVA FICTION: il sito simula una società segreta e non raccoglie né mostra la tua posizione reale.
+    </div>
+  </div>
+</section>
+
+<section id="archivi">
+  <div class="content">
+    <div class="kicker">TOP SECRET // ACCESSO PARZIALE</div>
+    <h2>Archivi riservati</h2>
+    <div class="terminal">
+      <div class="term-head">NODE_07 // SECURE TERMINAL // SESSIONE NON AUTORIZZATA</div>
+      <div class="line">Rete di osservazione: ONLINE.</div>
+      <div class="line">Archivio identità: <span class="redacted">CLASSIFICATO</span></div>
+      <div class="line">Protocollo di influenza: ATTIVO.</div>
+      <div class="line">Controllo percezione di massa: SIMULAZIONE NARRATIVA.</div>
+      <div class="line red">Tentativo di uscita rilevato.</div>
+      <div class="line">Risposta del sistema: NEGATA.</div>
+      <div class="line">Messaggio automatico: “Sei già dentro.”</div>
+      <div class="line red">AVVISO: LA SIMULAZIONE HA REGISTRATO LA TUA PRESENZA.</div>
+    </div>
+  </div>
+</section>
+
+<section id="protocollo">
+  <div class="final">
+    <div class="kicker">PROTOCOLLO // PUNTO DI NON RITORNO</div>
+    <h2>Una volta entrato</h2>
+    <p>
+      La storia finisce qui per chi resta fuori. Per chi entra, comincia un’altra versione.
+      Nel mondo visibile continuerà a esistere una copia di te: stessa voce, stessi ricordi, stessa routine.
+    </p>
+    <p class="big">
+      TU NON SARAI PIÙ NELLA SIMULAZIONE.<br>
+      MA LA SIMULAZIONE SAPRÀ CHE ESISTI.
+    </p>
+    <div class="truth">
+      <strong>SEDE DELLA VERITÀ:</strong><br><br>
+      Noi osserviamo. Noi archiviamo. Noi conosciamo il modo in cui il sistema costruisce la realtà.
+      Se premi il pulsante qui sotto, il sito simulerà l’attivazione del protocollo e fingerà che la tua uscita sia stata bloccata.
+    </div>
+    <button class="btn" id="joinBtn" style="margin-top:28px">ATTIVA IL PROTOCOLLO</button>
+  </div>
+</section>
+
+<footer>
+  FICTION HORROR INTERFACE // NESSUN TRACCIAMENTO REALE // NESSUNA GEOLOCALIZZAZIONE REALE
+</footer>
+
+<div class="horror" id="horror">
+  <div class="hbox">
+    <h3>NON DOVEVI PREMERE.</h3>
+    <div class="progress"><span></span></div>
+    <div class="log" id="log">
+      &gt; Collegamento al nodo nascosto...<br>
+      &gt; Verifica presenza...<br>
+      &gt; Creazione clone simulato...<br>
+      &gt; Chiusura porta di uscita...<br>
+      &gt; Stato: <span class="red">IRREVERSIBILE</span>
+    </div>
+    <div class="fake-loc" id="fakeLoc">
+      LOCALIZZAZIONE SIMULATA // SEGNALE AGGANCIATO // POSIZIONE REALE NON RACCOLTA
+    </div>
+    <div class="exit-note">
+      Effetto horror fittizio: puoi sempre chiudere la scheda o tornare indietro normalmente.
+    </div>
+    <button class="btn close" id="closeBtn">INTERROMPI SIMULAZIONE</button>
+  </div>
+</div>
+
+<div class="jumpscare" id="jumpscare">
+  <div>
+    <div class="face">◉</div>
+    <p>LA SIMULAZIONE TI HA VISTO.</p>
+  </div>
+</div>
+
+<script>
+const c=document.getElementById("matrix"),x=c.getContext("2d");
+const chars="01ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコサシスセソ";
+let drops=[],fs=18,w=0,h=0;
+function resize(){
+  const d=devicePixelRatio||1;
+  w=innerWidth; h=innerHeight;
+  c.width=w*d; c.height=h*d;
+  c.style.width=w+"px"; c.style.height=h+"px";
+  x.setTransform(d,0,0,d,0,0);
+  drops=Array(Math.ceil(w/fs)).fill(0).map(()=>Math.random()*-60);
+}
+function draw(){
+  x.fillStyle="rgba(0,0,0,.072)";
+  x.fillRect(0,0,w,h);
+  x.font=fs+"px monospace";
+  for(let i=0;i<drops.length;i++){
+    x.fillStyle=Math.random()>.976?"#e3ffe9":"#22de50";
+    x.fillText(chars[(Math.random()*chars.length)|0],i*fs,drops[i]*fs);
+    if(drops[i]*fs>h && Math.random()>.975) drops[i]=Math.random()*-35;
+    drops[i]+=.7+Math.random()*.42;
+  }
+  requestAnimationFrame(draw);
+}
+addEventListener("resize",resize);
+resize();draw();
+
+const whispers=[
+  "TI STIAMO GUARDANDO",
+  "NON ERA UN CASO",
+  "IL SISTEMA RICORDA",
+  "NON C'È NESSUNA PORTA",
+  "SEI GIÀ DENTRO",
+  "QUALCOSA HA RISPOSTO"
+];
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="whisper";
+  s.textContent=whispers[(Math.random()*whispers.length)|0];
+  s.style.left=(5+Math.random()*85)+"vw";
+  s.style.top=(35+Math.random()*55)+"vh";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},3600);
+
+const horror=document.getElementById("horror");
+const jump=document.getElementById("jumpscare");
+const closeBtn=document.getElementById("closeBtn");
+const log=document.getElementById("log");
+
+document.getElementById("enterBtn").onclick=()=>document.getElementById("noi").scrollIntoView({behavior:"smooth"});
+
+document.getElementById("joinBtn").onclick=()=>{
+  horror.classList.add("active");
+  closeBtn.classList.remove("show");
+  setTimeout(()=>{
+    log.innerHTML += "<br>&gt; Tentativo di uscita: <span class='red'>NEGATO</span>";
+  },2200);
+  setTimeout(()=>{
+    log.innerHTML += "<br>&gt; Messaggio: LA SIMULAZIONE STA VENENDO A PRENDERTI.";
+  },4100);
+  setTimeout(()=>{
+    jump.classList.add("active");
+    setTimeout(()=>jump.classList.remove("active"),1300);
+  },6200);
+  setTimeout(()=>{
+    log.innerHTML += "<br>&gt; Protocollo completato. Questa è solo una simulazione horror.";
+    closeBtn.classList.add("show");
+  },7600);
+};
+
+closeBtn.onclick=()=>horror.classList.remove("active");
+</script>
+</body>
+</html>
