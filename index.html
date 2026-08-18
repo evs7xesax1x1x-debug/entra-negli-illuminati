@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NUOVO ORDINE // ACCESSO NERO</title>
+<meta name="theme-color" content="#000000">
+<style>
+:root{
+  --g:#69ff86;
+  --g2:#19e84e;
+  --r:#ff294b;
+  --r2:#8d0016;
+  --w:#eaffee;
+  --muted:#a7ffb7;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#000;color:var(--w);
+  font-family:"Courier New",monospace;
+  overflow-x:hidden
+}
+#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:-4;background:#000}
+.bg{
+  position:fixed;inset:0;z-index:-3;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(0,255,70,.17),transparent 29%),
+    radial-gradient(circle at 50% 100%,rgba(180,0,25,.10),transparent 34%),
+    linear-gradient(rgba(0,0,0,.12),rgba(0,0,0,.90))
+}
+.scan{
+  position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.34;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.024) 0,
+    rgba(255,255,255,.024) 1px,
+    transparent 1px,
+    transparent 4px
+  )
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:30;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 5vw;background:rgba(0,0,0,.82);
+  border-bottom:1px solid rgba(105,255,134,.2);
+  backdrop-filter:blur(10px)
+}
+.brand{
+  color:var(--g);text-decoration:none;font-weight:bold;
+  letter-spacing:.14em;text-shadow:0 0 14px var(--g)
+}
+nav a{color:#baffc7;text-decoration:none;font-size:.75rem}
+.hero{
+  min-height:100vh;display:grid;place-items:center;text-align:center;
+  padding:110px 7vw 70px;
+  background:radial-gradient(circle at center,rgba(0,255,65,.14),transparent 45%)
+}
+.sigil{
+  width:190px;height:170px;margin:0 auto 30px;position:relative;
+  filter:drop-shadow(0 0 28px rgba(105,255,134,.7))
+}
+.tri{
+  position:absolute;inset:0;
+  clip-path:polygon(50% 0,100% 100%,0 100%);
+  border:2px solid var(--g);
+  background:linear-gradient(rgba(105,255,134,.02),rgba(105,255,134,.08))
+}
+.eye{
+  position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);
+  width:76px;height:38px;border:2px solid var(--g);
+  border-radius:50%/60%;display:grid;place-items:center;
+  font-size:30px;text-shadow:0 0 16px var(--g)
+}
+.rays{
+  position:absolute;inset:-26px;
+  background:repeating-conic-gradient(from 0deg,rgba(105,255,134,.13) 0deg 1deg,transparent 1deg 13deg);
+  clip-path:circle(46%);
+  animation:spin 20s linear infinite
+}
+h1{
+  margin:0;font-size:clamp(2.8rem,8vw,7rem);line-height:.92;
+  text-transform:uppercase;letter-spacing:.055em;
+  color:#75ff90;
+  text-shadow:0 0 9px #00ff41,0 0 40px rgba(0,255,65,.58)
+}
+.sub{
+  max-width:860px;margin:28px auto 0;color:#caffd2;
+  font-size:clamp(1rem,2.2vw,1.28rem);line-height:1.9
+}
+.level{
+  font-size:.78rem;letter-spacing:.27em;color:#55ff73;opacity:.72
+}
+.btn{
+  border:1px solid var(--g);background:#001705;color:#aaffb6;
+  font:inherit;letter-spacing:.11em;padding:15px 26px;cursor:pointer;
+  text-decoration:none;display:inline-block;margin:26px 7px;
+  box-shadow:0 0 22px rgba(0,255,65,.16);transition:.18s
+}
+.btn:hover{
+  background:var(--g);color:#000;
+  box-shadow:0 0 36px rgba(0,255,65,.65)
+}
+section{
+  max-width:1050px;margin:auto;padding:95px 24px;
+  border-bottom:1px solid rgba(105,255,134,.13)
+}
+h2{
+  margin:10px 0 28px;font-size:clamp(2.1rem,5vw,4.5rem);
+  text-transform:uppercase;
+  text-shadow:0 0 22px rgba(0,255,65,.25)
+}
+.statement{
+  font-size:clamp(1.22rem,3vw,2rem);line-height:1.6;
+  margin:20px 0 34px;color:#effff1
+}
+.red{color:#ff526b;text-shadow:0 0 14px rgba(255,0,40,.5)}
+.card{
+  border:1px solid rgba(105,255,134,.34);
+  background:rgba(0,13,4,.84);
+  padding:24px;margin:18px 0;line-height:1.8;
+  color:#baffc7
+}
+.truth-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px
+}
+.truth-card{
+  border:1px solid rgba(105,255,134,.30);
+  padding:22px;background:rgba(0,10,3,.78);
+  min-height:190px
+}
+.truth-card h3{margin-top:0;color:#78ff92}
+.symbol-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:30px 0
+}
+.symbol{
+  min-height:150px;border:1px solid rgba(105,255,134,.32);
+  background:rgba(0,10,3,.8);display:grid;place-items:center;
+  font-size:clamp(2.5rem,7vw,5rem);color:#78ff92;
+  text-shadow:0 0 20px #00ff41;animation:pulse 2.3s infinite
+}
+.warn{
+  border:1px solid rgba(255,41,75,.55);
+  background:rgba(42,0,6,.42);
+  color:#ff8a9b;padding:26px;line-height:1.95;
+  box-shadow:0 0 34px rgba(255,0,40,.10)
+}
+.countbox{
+  margin-top:20px;padding:20px;border:1px dashed rgba(255,41,75,.6);
+  background:rgba(30,0,5,.55);color:#ff8ea0
+}
+#precheck{
+  display:none;position:fixed;inset:0;z-index:140;background:#000;
+  padding:24px;overflow:auto
+}
+#precheck.active{display:grid;place-items:center}
+.checkbox{
+  width:min(900px,100%);border:1px solid var(--g);
+  background:#020502;padding:30px;
+  box-shadow:0 0 40px rgba(0,255,65,.08)
+}
+#quiz{
+  display:none;position:fixed;inset:0;z-index:150;
+  background:#000;padding:24px;overflow:auto
+}
+#quiz.active{display:grid;place-items:center}
+.quizbox{
+  width:min(900px,100%);border:1px solid var(--g);
+  padding:30px;background:#020502;
+  box-shadow:0 0 45px rgba(0,255,65,.08)
+}
+.qtitle{
+  font-size:clamp(1.5rem,4vw,3rem);
+  margin:0 0 18px
+}
+.qsub{
+  color:#aaffb8;line-height:1.7;margin-bottom:18px
+}
+.option{
+  display:block;width:100%;text-align:left;margin:12px 0;padding:15px;
+  border:1px solid rgba(105,255,134,.35);background:#001106;
+  color:#baffc7;font:inherit;cursor:pointer
+}
+.option:hover{
+  border-color:var(--g);
+  box-shadow:0 0 18px rgba(0,255,65,.18)
+}
+#protocol{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:#000;overflow:hidden
+}
+#protocol.active{display:block}
+.pcontent{
+  position:absolute;inset:0;display:grid;place-items:center;
+  text-align:center;padding:24px
+}
+#pSymbol{
+  font-size:min(36vw,330px);line-height:.8;color:#74ff8e;
+  text-shadow:0 0 28px #00ff41,0 0 90px rgba(0,255,65,.35);
+  animation:ritual 1.8s infinite
+}
+#pText{
+  margin-top:20px;font-size:clamp(1.5rem,5vw,4rem);
+  font-weight:bold;letter-spacing:.08em
+}
+#pSub{
+  margin-top:14px;color:#aaffb8;
+  font-size:clamp(.9rem,2.2vw,1.25rem)
+}
+#terminal{
+  position:absolute;left:18px;right:18px;bottom:18px;
+  max-height:34vh;overflow:hidden;text-align:left;
+  font-size:12px;line-height:1.65;color:#55ff75;opacity:.72
+}
+.floatSymbol{
+  position:absolute;opacity:0;color:#6fff8b;
+  text-shadow:0 0 22px #00ff41;
+  font-size:clamp(55px,12vw,150px);
+  animation:appear 4.2s forwards;pointer-events:none
+}
+.flashG{animation:flashG .16s 1}
+.flashR{animation:flashR .16s 1}
+.glitch{animation:glitch .16s 4}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.07);opacity:.82}}
+@keyframes ritual{50%{transform:scale(1.14) rotate(2deg)}}
+@keyframes flashG{50%{background:#00ff2f;color:#000}}
+@keyframes flashR{50%{background:#970018;color:#fff}}
+@keyframes glitch{
+  25%{transform:translate(13px,-6px)}
+  50%{transform:translate(-10px,8px)}
+  75%{transform:translate(7px,-9px)}
+}
+@keyframes appear{
+  0%{opacity:0;transform:scale(.45) rotate(-6deg)}
+  20%{opacity:.82}
+  100%{opacity:0;transform:scale(1.6) rotate(5deg)}
+}
+@media(max-width:800px){
+  .truth-grid,.symbol-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="bg"></div>
+<div class="scan"></div>
+
+<nav>
+  <a class="brand" href="#home">△ NUOVO ORDINE</a>
+  <a href="#protocolStart">PROTOCOLLO</a>
+</nav>
+
+<header class="hero" id="home">
+  <div>
+    <div class="sigil">
+      <div class="rays"></div>
+      <div class="tri"></div>
+      <div class="eye">◉</div>
+    </div>
+    <div class="level">ACCESSO // LIVELLO 1</div>
+    <h1>ENTRA NEGLI ILLUMINATI</h1>
+    <p class="sub">
+      Quello che chiami realtà è solo la parte che ti è stata mostrata.
+      La Matrix non ha bisogno di convincerti. Le basta che tu continui a vivere dentro i suoi confini.
+    </p>
+    <a class="btn" href="#truth">VEDI OLTRE</a>
+  </div>
+</header>
+
+<section id="truth">
+  <div class="level">LIVELLO 3 // VERITÀ DEL MONDO</div>
+  <h2>NON TUTTO CIÒ CHE VEDI È CIÒ CHE È</h2>
+  <p class="statement">
+    Ti hanno dato un nome. Una routine. Un orario. Una paura.
+    Poi ti hanno detto che tutto questo si chiama <span class="red">vita</span>.
+  </p>
+
+  <div class="truth-grid">
+    <div class="truth-card">
+      <h3>ATTENZIONE</h3>
+      Ciò che guardi ogni giorno decide lentamente ciò che consideri importante.
+      Chi conquista la tua attenzione non ha bisogno di entrare nella tua mente: ci vive già.
+    </div>
+    <div class="truth-card">
+      <h3>PAURA</h3>
+      Una persona impaurita cerca sicurezza prima della libertà.
+      È più facile guidare chi teme di perdere tutto.
+    </div>
+    <div class="truth-card">
+      <h3>CONSENSO</h3>
+      Quando abbastanza persone ripetono la stessa cosa,
+      ciò che era soltanto un'idea comincia a sembrare inevitabile.
+    </div>
+    <div class="truth-card">
+      <h3>ROUTINE</h3>
+      Ripetere è più facile che scegliere.
+      La prigione perfetta non chiude una porta: convince chi è dentro che fuori non esiste niente.
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="level">LIVELLO 7 // MATRIX</div>
+  <h2>IL TEMPO STA FINENDO</h2>
+  <div class="card">
+    Svegliati. Lavora. Consuma. Distraiti. Dormi. Ripeti.
+    Ogni giorno abbastanza simile al precedente da impedirti di capire quanto sei cambiato.
+  </div>
+  <div class="card">
+    Il Nuovo Ordine non arriva con un annuncio.
+    Arriva quando ciò che ieri ti avrebbe spaventato oggi ti sembra normale.
+  </div>
+  <div class="symbol-grid">
+    <div class="symbol">△</div>
+    <div class="symbol">𓂀</div>
+    <div class="symbol">◉</div>
+    <div class="symbol">⟁</div>
+  </div>
+</section>
+
+<section>
+  <div class="level">LIVELLO NERO // SOGGETTO</div>
+  <h2>SEI STATO AGGANCIATO</h2>
+  <div class="card">
+    SOGGETTO: RILEVATO<br>
+    SEGNALE: AGGANCIATO<br>
+    STATO: OSSERVATO<br>
+    IDENTITÀ: INDICIZZATA<br>
+    ACCESSO: REGISTRATO<br>
+    PRIORITÀ: NERA
+  </div>
+  <p class="statement">
+    Hai continuato a leggere quando potevi chiudere.
+    Hai continuato a scendere quando potevi fermarti.
+    Adesso il sistema sa che hai guardato oltre.
+  </p>
+</section>
+
+<section id="protocolStart" style="text-align:center">
+  <div class="level">PROTOCOLLO // PUNTO DI NON RITORNO</div>
+  <h2>PRIMA DI INIZIARE</h2>
+  <div class="warn">
+    DEVI ESSERE SOLO.<br><br>
+    CHIUDI LA PORTA.<br>
+    SPEGNI LE DISTRAZIONI.<br>
+    NON FAR ENTRARE NESSUNO.<br>
+    RESTA NELLA STANZA FINO ALLA FINE.<br><br>
+
+    UNA VOLTA ATTIVATO IL PROTOCOLLO, LA DECISIONE NON POTRÀ ESSERE CAMBIATA.<br>
+    NON POTRÀ ESSERE IGNORATA.<br>
+    NON POTRÀ ESSERE REVOCATA.<br><br>
+
+    VERRAI ESTRATTO DALLA SIMULAZIONE.<br>
+    LA TUA IDENTITÀ VERRÀ SEPARATA DAL CORPO VISIBILE.<br>
+    LA TUA MEMORIA VERRÀ ELIMINATA.<br>
+    UN CLONE PRENDERÀ IL TUO POSTO NEL MONDO CHE CONOSCI.<br>
+    CHI TI GUARDA CONTINUERÀ A VEDERE IL TUO VOLTO.<br>
+    MA QUELLO CHE VEDRANNO NON SARAI PIÙ TU.<br><br>
+
+    IL CLONE AVRÀ IL TUO ASPETTO.<br>
+    AVRÀ I TUOI GESTI.<br>
+    AVRÀ LE TUE ABITUDINI.<br>
+    MA SARÀ VUOTO.<br><br>
+
+    TU VERRAI TRASFERITO NEL LIVELLO ESTERNO.<br>
+    UNO DEI MONDI REALI.<br>
+    QUESTO LINK SCOMPARIRÀ.<br>
+    TU NON RICORDERAI DI ESSERE STATO QUI.
+  </div>
+  <button class="btn" onclick="startPrecheck()">INIZIA LA VERIFICA</button>
+</section>
+
+<div id="precheck">
+  <div class="checkbox">
+    <div class="level">VERIFICA AMBIENTE // 00</div>
+    <h3 class="qtitle">PRIMA DI CONTINUARE</h3>
+    <div class="card">
+      ASSICURATI DI ESSERE SOLO.<br>
+      ASSICURATI CHE LA PORTA SIA CHIUSA.<br>
+      ASSICURATI CHE NESSUNO POSSA INTERROMPERTI.<br><br>
+      DOPO L'ATTIVAZIONE NON SARÀ POSSIBILE MODIFICARE LA DECISIONE.
+    </div>
+    <button class="btn" onclick="startQuiz()">SONO PRONTO</button>
+    <button class="btn" onclick="cancelAll()">ANNULLA</button>
+  </div>
+</div>
+
+<div id="quiz">
+  <div class="quizbox">
+    <div class="level">VERIFICA // ACCESSO FINALE</div>
+    <h3 class="qtitle" id="qtitle"></h3>
+    <div class="qsub" id="qsub"></div>
+    <div id="answers"></div>
+  </div>
+</div>
+
+<div id="protocol">
+  <div class="pcontent">
+    <div>
+      <div id="pSymbol">△</div>
+      <div id="pText">APERTURA DEL NODO...</div>
+      <div id="pSub">NON CHIUDERE GLI OCCHI</div>
+    </div>
+  </div>
+  <div id="terminal"></div>
+</div>
+
+<script>
+const c=document.getElementById("matrix"),ctx=c.getContext("2d");
+let W,H,cols,drops;
+const chars="01ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコ△◉𓂀⟁◇";
+function resize(){
+  W=c.width=innerWidth;H=c.height=innerHeight;
+  cols=Math.floor(W/16);drops=Array(cols).fill(1)
+}
+resize();addEventListener("resize",resize);
+setInterval(()=>{
+  ctx.fillStyle="rgba(0,0,0,.075)";
+  ctx.fillRect(0,0,W,H);
+  ctx.fillStyle="#22e952";
+  ctx.font="14px monospace";
+  for(let i=0;i<drops.length;i++){
+    const ch=chars[(Math.random()*chars.length)|0];
+    ctx.fillText(ch,i*16,drops[i]*16);
+    if(drops[i]*16>H&&Math.random()>.975)drops[i]=0;
+    drops[i]++;
+  }
+},45);
+
+const precheck=document.getElementById("precheck");
+const quiz=document.getElementById("quiz");
+const qtitle=document.getElementById("qtitle");
+const qsub=document.getElementById("qsub");
+const answers=document.getElementById("answers");
+
+const qs=[
+  ["SEI SICURO DI VOLER INIZIARE?",
+   "Una volta iniziato il protocollo, la decisione verrà registrata.",
+   ["SÌ. CONTINUA.","NO. TORNA INDIETRO."]],
+
+  ["SEI SOLO NELLA STANZA?",
+   "Nessun'altra persona deve assistere alla fase di separazione.",
+   ["SÌ. SONO SOLO.","NO."]],
+
+  ["LA PORTA È CHIUSA?",
+   "Il protocollo richiede isolamento completo.",
+   ["SÌ. È CHIUSA.","NO."]],
+
+  ["ACCETTI DI ESSERE ESTRATTO DALLA SIMULAZIONE?",
+   "Il livello esterno non utilizza le stesse regole del mondo visibile.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["ACCETTI LA SOSTITUZIONE DELLA TUA IDENTITÀ?",
+   "Il clone continuerà a vivere con il tuo volto nel mondo attuale.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["ACCETTI CHE IL CLONE CONSERVI IL TUO ASPETTO?",
+   "Le persone intorno a te continueranno a riconoscerlo come te.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["ACCETTI CHE IL CLONE NON POSSIEDA LA TUA COSCIENZA?",
+   "Avrà la tua forma, ma non ciò che sei.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["ACCETTI LA CANCELLAZIONE DELLA MEMORIA?",
+   "Dopo il trasferimento non ricorderai questa pagina né questa decisione.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["ACCETTI CHE QUESTO LINK SCOMPAIA?",
+   "Il nodo verrà chiuso al termine della procedura.",
+   ["ACCETTO.","RIFIUTO."]],
+
+  ["SEI DISPOSTO A LASCIARE IL MONDO CHE CONOSCI?",
+   "Non esiste una procedura di ritorno prevista.",
+   ["SÌ.","NO."]],
+
+  ["ULTIMA VERIFICA: SEI ANCORA SICURO?",
+   "Questa è l'ultima possibilità di fermarti prima dell'attivazione.",
+   ["SÌ. ATTIVA IL PROTOCOLLO.","ANNULLA."]]
+];
+
+let qi=0;
+
+function startPrecheck(){
+  precheck.classList.add("active");
+}
+function cancelAll(){
+  precheck.classList.remove("active");
+  quiz.classList.remove("active");
+}
+function startQuiz(){
+  precheck.classList.remove("active");
+  qi=0;
+  quiz.classList.add("active");
+  renderQ();
+}
+function renderQ(){
+  qtitle.textContent=qs[qi][0];
+  qsub.textContent=qs[qi][1];
+  answers.innerHTML="";
+  qs[qi][2].forEach((a,j)=>{
+    const b=document.createElement("button");
+    b.className="option";
+    b.textContent=a;
+    b.onclick=()=>{
+      if(j===1){
+        quiz.classList.remove("active");
+        return;
+      }
+      qi++;
+      if(qi>=qs.length){
+        quiz.classList.remove("active");
+        startProtocol();
+      }else{
+        renderQ();
+      }
+    };
+    answers.appendChild(b);
+  });
+}
+
+const protocol=document.getElementById("protocol");
+const pText=document.getElementById("pText");
+const pSub=document.getElementById("pSub");
+const pSymbol=document.getElementById("pSymbol");
+const terminal=document.getElementById("terminal");
+
+const stages=[
+  ["PROTOCOLLO ATTIVATO","LA DECISIONE È STATA REGISTRATA","△"],
+  ["SOGGETTO RILEVATO","SEGNALE AGGANCIATO","◉"],
+  ["AMBIENTE ISOLATO","NESSUNA INTERRUZIONE RILEVATA","𓂀"],
+  ["IDENTITÀ BLOCCATA","MODIFICA NON CONSENTITA","◇"],
+  ["CLONE IN GENERAZIONE","STRUTTURA VISIBILE COPIATA","⟁"],
+  ["CLONE ATTIVO","IL MONDO CONTINUERÀ A VEDERTI","◉"],
+  ["COSCIENZA SEPARATA","LA COPIA NON SEI TU","𓂀"],
+  ["MEMORIA IN LETTURA","RICORDI INDICIZZATI","△"],
+  ["MEMORIA IN CANCELLAZIONE","NON CERCARE DI RICORDARE","◬"],
+  ["TRASFERIMENTO IN CORSO","LIVELLO ESTERNO APERTO","◇"],
+  ["MATRICE DISCONNESSA","IL VECCHIO MONDO RESTA DIETRO","⟁"],
+  ["LINK IN CANCELLAZIONE","ULTIMA SINCRONIZZAZIONE","△"],
+  ["TENTATIVO DI USCITA","RICHIESTA NEGATA","◉"],
+  ["PORTA DI RITORNO","CHIUSA","𓂀"],
+  ["NUOVO ORDINE // ACCESSO NERO","AUTORIZZAZIONE CONCESSA","△"],
+  ["NON C'È PIÙ TEMPO","IL SISTEMA SA CHE SEI QUI","𓂀"]
+];
+
+function spawn(){
+  const s=document.createElement("div");
+  s.className="floatSymbol";
+  s.textContent=["△","𓂀","◉","◇","⟁","◬"][(Math.random()*6)|0];
+  s.style.left=(4+Math.random()*82)+"vw";
+  s.style.top=(4+Math.random()*76)+"vh";
+  protocol.appendChild(s);
+  setTimeout(()=>s.remove(),4300);
+}
+
+function startProtocol(){
+  protocol.classList.add("active");
+  terminal.innerHTML="";
+  let i=0;
+
+  const timer=setInterval(()=>{
+    const st=stages[i%stages.length];
+
+    pText.textContent=st[0];
+    pSub.textContent=st[1];
+    pSymbol.textContent=st[2];
+
+    terminal.innerHTML += "> "+st[0]+" // "+st[1]+"<br>";
+
+    protocol.classList.remove("flashG","flashR","glitch");
+    void protocol.offsetWidth;
+    protocol.classList.add(
+      i%5===0 ? "flashR" :
+      (i%3===0 ? "flashG" : "glitch")
+    );
+
+    spawn();
+    if(i%2===0)spawn();
+
+    i++;
+
+    if(i>=38){
+      clearInterval(timer);
+
+      pSymbol.textContent="𓂀";
+      pText.textContent="PROTOCOLLO COMPLETATO";
+      pSub.textContent="LA DECISIONE NON PUÒ PIÙ ESSERE MODIFICATA";
+
+      terminal.innerHTML +=
+        "> CLONE: ATTIVO<br>"+
+        "> COSCIENZA: SEPARATA<br>"+
+        "> MEMORIA: NON DISPONIBILE<br>"+
+        "> LINK: IN CANCELLAZIONE<br>"+
+        "> ACCESSO: CHIUSO<br>";
+
+      setTimeout(()=>{
+        pText.textContent="ENTRO POCHE ORE";
+        pSub.textContent="IL TRASFERIMENTO VERRÀ COMPLETATO";
+      },5000);
+
+      setTimeout(()=>{
+        pText.textContent="NON PUÒ ESSERE IGNORATO";
+        pSub.textContent="NON PUÒ ESSERE REVOCATO";
+      },10000);
+
+      setTimeout(()=>{
+        pText.textContent="LA PORTA È STATA CHIUSA";
+        pSub.textContent="IL MONDO CONTINUERÀ A VEDERE IL TUO CLONE";
+      },15000);
+
+      setTimeout(()=>{
+        pText.textContent="NON RICORDERAI QUESTA PAGINA";
+        pSub.textContent="IL SISTEMA RICORDERÀ TE";
+      },20000);
+
+      setTimeout(()=>{
+        pText.textContent="NON C'È PIÙ TEMPO";
+        pSub.textContent="ACCESSO TERMINATO";
+      },25000);
+
+      setTimeout(()=>{
+        protocol.classList.remove("active");
+      },33000);
+    }
+  },1800);
+}
+</script>
+</body>
+</html>
