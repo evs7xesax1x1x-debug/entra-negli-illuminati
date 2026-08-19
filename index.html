@@ -1,0 +1,4307 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>7319-004-88 // ARCHIVIO NERO // LIVELLO Ω</title>
+<meta name="theme-color" content="#000000">
+<style>
+:root{--g:#74ff94;--r:#ff294d;--w:#ffffff;--m:#d9ffe1}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#000;color:var(--w);font-family:"Courier New",monospace;overflow-x:hidden}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:-6;background:#000}
+.bg{position:fixed;inset:0;z-index:-5;pointer-events:none;background:
+radial-gradient(circle at 50% 12%,rgba(0,255,65,.16),transparent 27%),
+radial-gradient(circle at 20% 82%,rgba(140,0,20,.11),transparent 30%),
+radial-gradient(circle at 82% 76%,rgba(0,255,120,.07),transparent 25%),
+linear-gradient(rgba(0,0,0,.08),rgba(0,0,0,.97))}
+.scan{position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.35;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.022) 0,rgba(255,255,255,.022) 1px,transparent 1px,transparent 4px)}
+.vignette{position:fixed;inset:0;z-index:97;pointer-events:none;box-shadow:inset 0 0 250px 110px #000}
+nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(0,0,0,.88);border-bottom:1px solid rgba(116,255,148,.16);backdrop-filter:blur(12px)}
+.brand{color:var(--g);text-decoration:none;font-weight:bold;letter-spacing:.18em;text-shadow:0 0 14px var(--g)}
+nav a{color:#e0ffe6;text-decoration:none;font-size:.72rem}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:120px 7vw 70px;background:radial-gradient(circle at center,rgba(0,255,65,.13),transparent 48%)}
+.eye-wrap{width:230px;height:200px;margin:0 auto 34px;position:relative;filter:drop-shadow(0 0 34px rgba(116,255,148,.74))}
+.outer{position:absolute;inset:0;border:1px solid rgba(116,255,148,.44);border-radius:50%;animation:spin 20s linear infinite}
+.outer:before,.outer:after{content:"";position:absolute;left:50%;top:50%;width:76%;height:1px;background:rgba(116,255,148,.3);transform:translate(-50%,-50%)}
+.outer:after{transform:translate(-50%,-50%) rotate(90deg)}
+.tri{position:absolute;inset:24px 16px 0;clip-path:polygon(50% 0,100% 100%,0 100%);border:2px solid var(--g);background:linear-gradient(rgba(116,255,148,.02),rgba(116,255,148,.08))}
+.eye{position:absolute;left:50%;top:60%;transform:translate(-50%,-50%);width:88px;height:43px;border:2px solid var(--g);border-radius:50%/60%;display:grid;place-items:center;font-size:33px;text-shadow:0 0 18px var(--g)}
+.code{font-size:.76rem;letter-spacing:.34em;color:#59ff78;opacity:.86}
+h1{margin:12px 0 0;font-size:clamp(3rem,9vw,8rem);line-height:.9;letter-spacing:.1em;color:#7cff99;text-shadow:0 0 11px #00ff41,0 0 48px rgba(0,255,65,.6)}
+.sub{max-width:920px;margin:30px auto 0;color:#e8ffed;line-height:1.95;font-size:clamp(1rem,2.2vw,1.3rem)}
+.btn{display:inline-block;margin:26px 7px;padding:15px 26px;border:1px solid var(--g);background:#001705;color:#e2ffe7;font:inherit;letter-spacing:.11em;cursor:pointer;text-decoration:none;box-shadow:0 0 24px rgba(0,255,65,.16);transition:.18s}
+.btn:hover{background:var(--g);color:#000;box-shadow:0 0 40px rgba(0,255,65,.64)}
+.btn.red{border-color:var(--r);color:#ff879a;background:#190006}
+.btn.red:hover{background:var(--r);color:#000}
+section{max-width:1120px;margin:auto;padding:100px 24px;border-bottom:1px solid rgba(116,255,148,.11)}
+.level{font-size:.76rem;letter-spacing:.29em;color:#5aff78;opacity:.86}
+h2{margin:10px 0 28px;font-size:clamp(2.2rem,5vw,4.9rem);text-transform:uppercase;text-shadow:0 0 24px rgba(0,255,65,.26)}
+.statement{font-size:clamp(1.22rem,3vw,2.08rem);line-height:1.6;color:#f3fff5;margin:20px 0 34px}
+.card{border:1px solid rgba(116,255,148,.48);background:rgba(0,18,6,.91);padding:24px;margin:18px 0;line-height:1.84;color:#e0ffe6}
+.redcard{border-color:rgba(255,41,77,.48);background:rgba(40,0,6,.42);color:#ff899a}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.box{min-height:220px;padding:24px;border:1px solid rgba(116,255,148,.44);background:rgba(0,16,5,.90)}
+.box h3{margin-top:0;color:#7dff98}
+.sigilgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:30px 0}
+.sigil{min-height:120px;border:1px solid rgba(116,255,148,.42);display:grid;place-items:center;background:rgba(0,15,5,.91);font-size:clamp(2rem,5vw,4rem);color:#79ff95;text-shadow:0 0 22px #00ff41;animation:pulse 2.1s infinite}
+.whisper{font-size:clamp(1.1rem,2.5vw,1.7rem);color:#ff687f;text-align:center;letter-spacing:.08em;margin:30px 0;text-shadow:0 0 16px rgba(255,0,40,.45)}
+#questions,#ending{display:none;position:fixed;inset:0;z-index:180;background:#000;padding:24px;overflow:auto}
+#questions.active,#ending.active{display:grid;place-items:center}
+.modal{width:min(930px,100%);border:1px solid var(--g);background:#020502;padding:30px;box-shadow:0 0 55px rgba(0,255,65,.10)}
+.qtitle{font-size:clamp(1.55rem,4vw,3.1rem);margin:0 0 18px}
+.qsub{color:#dcffe3;line-height:1.75;margin-bottom:18px}
+.option{display:block;width:100%;text-align:left;margin:12px 0;padding:15px;border:1px solid rgba(116,255,148,.34);background:#001106;color:#e0ffe6;font:inherit;cursor:pointer}
+.option:hover{border-color:var(--g);box-shadow:0 0 18px rgba(0,255,65,.18)}
+#ending{z-index:220;overflow:hidden;background:radial-gradient(circle at center,rgba(0,255,70,.08),transparent 35%),#000}
+.endinner{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px}
+#eSymbol{font-size:min(38vw,360px);line-height:.8;color:#78ff94;text-shadow:0 0 32px #00ff41,0 0 100px rgba(0,255,65,.38);animation:ritual 1.55s infinite}
+#eText{font-size:clamp(1.6rem,5vw,4.4rem);font-weight:bold;letter-spacing:.08em}
+#eSub{margin-top:14px;color:#e2ffe7;font-size:clamp(.9rem,2.2vw,1.28rem)}
+#terminal{position:absolute;left:18px;right:18px;bottom:18px;max-height:35vh;overflow:hidden;text-align:left;font-size:12px;line-height:1.65;color:#57ff77;opacity:.86}
+.float{position:absolute;opacity:0;font-size:clamp(50px,12vw,160px);color:#6fff8b;text-shadow:0 0 24px #00ff41;animation:appear 4s forwards;pointer-events:none}
+.redflash{animation:redflash .15s 1}.greenflash{animation:greenflash .15s 1}.glitch{animation:glitch .16s 4}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.08);opacity:.8}}@keyframes ritual{50%{transform:scale(1.16) rotate(2deg)}}@keyframes redflash{50%{background:#900016;color:#fff}}@keyframes greenflash{50%{background:#00ff2c;color:#000}}@keyframes glitch{25%{transform:translate(14px,-6px)}50%{transform:translate(-11px,8px)}75%{transform:translate(8px,-10px)}}@keyframes appear{0%{opacity:0;transform:scale(.5)}20%{opacity:.85}100%{opacity:0;transform:scale(1.7)}}
+@media(max-width:800px){.grid,.sigilgrid{grid-template-columns:1fr}}
+</style>
+
+<style id="brightness-only-fix">
+/* SOLO VISIBILITÀ / LUMINOSITÀ */
+body { color:#ffffff !important; }
+.bg { opacity:.72 !important; }
+.vignette { box-shadow:inset 0 0 150px 45px rgba(0,0,0,.78) !important; }
+.scan { opacity:.22 !important; }
+
+.sub,
+.statement,
+.card,
+.box,
+.qsub,
+.option,
+#eSub {
+  color:#eaffee !important;
+}
+
+.card,
+.box {
+  background:rgba(0,22,7,.92) !important;
+  border-color:rgba(125,255,154,.58) !important;
+}
+
+.redcard {
+  background:rgba(58,0,9,.68) !important;
+  color:#ffb0bd !important;
+  border-color:rgba(255,72,100,.72) !important;
+}
+
+.level {
+  color:#9affad !important;
+  opacity:1 !important;
+}
+
+h1,h2,h3 {
+  filter:brightness(1.22);
+}
+
+.sigil {
+  background:rgba(0,18,6,.94) !important;
+  border-color:rgba(125,255,154,.55) !important;
+}
+
+.btn,
+.option {
+  filter:brightness(1.18);
+}
+
+#terminal {
+  color:#91ffa6 !important;
+  opacity:.9 !important;
+}
+</style>
+
+
+<style id="premium-upgrade">
+:root{
+  --panel:rgba(1,16,6,.90);
+  --panel2:rgba(3,25,9,.82);
+  --line:rgba(125,255,155,.42);
+  --line2:rgba(255,74,104,.46);
+}
+body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(0,255,75,.09),transparent 28%),
+    #000;
+}
+section{
+  position:relative;
+  isolation:isolate;
+}
+section:before{
+  content:"";
+  position:absolute;
+  inset:18px 0;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,255,70,.018),transparent 30%,rgba(255,0,35,.012));
+}
+.card,.box,.truth-card{
+  backdrop-filter:blur(8px);
+  box-shadow:
+    inset 0 0 32px rgba(0,255,65,.04),
+    0 10px 36px rgba(0,0,0,.28);
+}
+h2{
+  letter-spacing:.025em;
+}
+h2:after{
+  content:"";
+  display:block;
+  width:92px;
+  height:1px;
+  margin-top:16px;
+  background:linear-gradient(90deg,var(--g),transparent);
+  box-shadow:0 0 16px rgba(0,255,65,.65);
+}
+.section-intro{
+  max-width:900px;
+  color:#d8ffe0;
+  line-height:1.85;
+  font-size:1.02rem;
+  margin:-8px 0 26px;
+}
+.truth-terminal{
+  border:1px solid var(--line);
+  background:
+    linear-gradient(180deg,rgba(0,24,8,.94),rgba(0,5,2,.96));
+  padding:0;
+  overflow:hidden;
+  box-shadow:0 0 38px rgba(0,255,65,.07);
+}
+.truth-terminal .head{
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 16px;
+  border-bottom:1px solid rgba(125,255,155,.20);
+  background:rgba(0,255,65,.035);
+  color:#8fffaa;
+  font-size:.78rem;
+  letter-spacing:.14em;
+}
+.truth-terminal .body{
+  padding:22px;
+}
+.qa{
+  border-bottom:1px solid rgba(125,255,155,.14);
+  padding:20px 0;
+}
+.qa:last-child{border-bottom:0}
+.q{
+  color:#f4fff6;
+  font-weight:bold;
+  font-size:1.05rem;
+  margin-bottom:10px;
+}
+.a{
+  color:#caffd4;
+  line-height:1.8;
+}
+.status{
+  display:inline-block;
+  padding:3px 8px;
+  margin-right:7px;
+  border:1px solid rgba(125,255,155,.35);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  color:#9dffb1;
+}
+.status.red{
+  border-color:rgba(255,80,105,.55);
+  color:#ff9aaa;
+}
+.status.gold{
+  border-color:rgba(235,205,120,.52);
+  color:#ffe3a1;
+}
+.data-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:26px 0;
+}
+.data-cell{
+  border:1px solid rgba(125,255,155,.26);
+  background:rgba(0,11,4,.82);
+  padding:18px;
+  min-height:145px;
+}
+.data-cell strong{
+  display:block;
+  color:#7fff99;
+  margin-bottom:10px;
+}
+.quote-black{
+  margin:26px 0;
+  padding:24px;
+  border-left:3px solid var(--r);
+  background:rgba(38,0,6,.38);
+  color:#ff9cac;
+  font-size:1.12rem;
+  line-height:1.8;
+  text-shadow:0 0 10px rgba(255,0,50,.18);
+}
+.pulse-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--g),transparent);
+  box-shadow:0 0 15px var(--g);
+  animation:pulseLine 3s infinite;
+}
+@keyframes pulseLine{
+  0%,100%{opacity:.25;transform:scaleX(.72)}
+  50%{opacity:1;transform:scaleX(1)}
+}
+@media(max-width:850px){
+  .data-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="v100-upgrade">
+:root{
+  --glass:rgba(4,18,8,.86);
+  --glass2:rgba(8,28,12,.78);
+  --edge:rgba(130,255,160,.50);
+  --danger:rgba(255,65,92,.65);
+}
+body{
+  background:
+    radial-gradient(circle at 50% -10%,rgba(0,255,80,.12),transparent 24%),
+    radial-gradient(circle at 100% 45%,rgba(120,0,30,.12),transparent 28%),
+    #000;
+}
+nav{
+  box-shadow:0 10px 30px rgba(0,0,0,.45),0 0 25px rgba(0,255,70,.04);
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+}
+.hero:after{
+  content:"7319 004 88 7319 004 88 7319 004 88";
+  position:absolute;
+  left:0;right:0;bottom:18px;
+  color:rgba(120,255,150,.08);
+  letter-spacing:.45em;
+  font-size:11px;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.card,.box,.truth-card,.data-cell,.modal{
+  border-radius:2px;
+  box-shadow:
+    inset 0 0 35px rgba(0,255,70,.035),
+    0 12px 45px rgba(0,0,0,.34);
+}
+.card,.box,.truth-card,.data-cell{
+  background:
+    linear-gradient(180deg,rgba(3,22,8,.93),rgba(0,9,3,.94));
+}
+.card:hover,.box:hover,.truth-card:hover,.data-cell:hover{
+  border-color:rgba(135,255,165,.64);
+  transform:translateY(-1px);
+  transition:.2s ease;
+}
+h2{
+  text-wrap:balance;
+}
+.section-intro,.statement,.card,.box,.truth-card,.a{
+  letter-spacing:.005em;
+}
+.level{
+  text-transform:uppercase;
+}
+#soundGate{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(0,255,70,.09),transparent 32%),
+    #000;
+  transition:opacity .7s ease,visibility .7s ease;
+}
+#soundGate.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+.gateBox{
+  width:min(760px,90vw);
+  text-align:center;
+  border:1px solid rgba(125,255,155,.42);
+  padding:34px;
+  background:rgba(0,10,3,.94);
+  box-shadow:0 0 55px rgba(0,255,70,.08);
+}
+.gateEye{
+  font-size:90px;
+  color:#76ff93;
+  text-shadow:0 0 24px #00ff41,0 0 60px rgba(0,255,70,.35);
+  animation:pulse 2s infinite;
+}
+.gateTitle{
+  font-size:clamp(1.7rem,5vw,3.4rem);
+  margin:16px 0 10px;
+}
+.gateSub{
+  color:#baffc7;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+.timeline{
+  position:relative;
+  margin:30px 0;
+  padding-left:28px;
+}
+.timeline:before{
+  content:"";
+  position:absolute;
+  left:8px;
+  top:0;bottom:0;
+  width:1px;
+  background:linear-gradient(var(--g),transparent);
+}
+.titem{
+  position:relative;
+  margin:0 0 24px;
+  padding:18px 20px;
+  border:1px solid rgba(125,255,155,.28);
+  background:rgba(0,14,5,.84);
+}
+.titem:before{
+  content:"";
+  position:absolute;
+  left:-25px;
+  top:24px;
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--g);
+  box-shadow:0 0 14px var(--g);
+}
+.titem h3{
+  margin:0 0 10px;
+  color:#8aff9f;
+}
+.matrixQuote{
+  padding:28px;
+  border:1px solid rgba(255,64,92,.46);
+  background:
+    linear-gradient(90deg,rgba(40,0,7,.42),rgba(0,0,0,.82));
+  color:#ff9dad;
+  font-size:clamp(1.1rem,2.4vw,1.55rem);
+  line-height:1.75;
+  margin:28px 0;
+}
+</style>
+
+
+<style id="omega-visual-upgrade">
+:root{--acid:#83ff9b;--acid2:#24e85c;--blood:#ff3158;--gold:#d9bf74;--panelx:rgba(2,17,7,.93)}
+body{background:#000;}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;background:radial-gradient(circle at 50% 10%,rgba(0,255,85,.10),transparent 28%),radial-gradient(circle at 10% 70%,rgba(255,0,45,.055),transparent 26%),radial-gradient(circle at 90% 58%,rgba(20,255,130,.045),transparent 25%)}
+.omega-section{max-width:1160px}
+.omega-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:25px 0}
+.omega-card{position:relative;padding:24px;border:1px solid rgba(131,255,155,.28);background:linear-gradient(180deg,rgba(2,25,9,.92),rgba(0,7,2,.96));min-height:210px;box-shadow:inset 0 0 40px rgba(0,255,70,.025),0 18px 50px rgba(0,0,0,.28);overflow:hidden}
+.omega-card:before{content:"";position:absolute;inset:0 0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--acid),transparent);opacity:.5}
+.omega-card h3{font-size:1.35rem;color:#aaffb8;letter-spacing:.08em;margin:8px 0 13px}.omega-card p{line-height:1.75;color:#dcffe3;margin:0}.omega-card.verified{border-color:rgba(85,255,130,.5)}.omega-card.uncertain{border-color:rgba(255,190,80,.35)}
+.omega-tag{display:inline-block;font-size:.66rem;letter-spacing:.13em;padding:4px 8px;border:1px solid currentColor;color:#7fff99;opacity:.92}.uncertain .omega-tag{color:#ffe1a0}
+.control-stack{display:grid;gap:10px}.control-row{display:grid;grid-template-columns:54px 170px 1fr;align-items:start;gap:16px;padding:18px;border:1px solid rgba(131,255,155,.22);background:rgba(0,13,4,.88)}.control-row span{font-size:1.6rem;color:var(--acid);text-shadow:0 0 14px rgba(0,255,70,.5)}.control-row b{color:#f4fff6;letter-spacing:.09em}.control-row p{margin:0;color:#caffd3;line-height:1.7}
+.red-seal{margin:30px 0;padding:28px;text-align:center;border:1px solid rgba(255,49,88,.55);background:radial-gradient(circle at center,rgba(255,0,45,.11),rgba(20,0,4,.5));color:#ff9caf;font-size:clamp(1.1rem,2.6vw,1.75rem);font-weight:bold;letter-spacing:.08em;text-shadow:0 0 16px rgba(255,0,45,.28)}
+.cycle{display:flex;align-items:stretch;justify-content:center;gap:8px;flex-wrap:wrap;margin:28px 0}.cycle div{min-width:150px;flex:1;padding:21px 14px;border:1px solid rgba(131,255,155,.35);background:#001006;color:#89ffa1;text-align:center;font-weight:bold;letter-spacing:.08em}.cycle small{display:block;margin-top:8px;color:#b9ffc6;font-weight:normal;letter-spacing:0}.cycle i{display:grid;place-items:center;color:#5bff79;font-style:normal;font-size:1.5rem}
+.symbol-wall{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:25px 0}.symbol-wall span{display:grid;place-items:center;aspect-ratio:1;border:1px solid rgba(131,255,155,.3);background:rgba(0,12,4,.88);font-size:clamp(2.2rem,6vw,5rem);color:#84ff9c;text-shadow:0 0 25px #00ff41;animation:omegaPulse 3s ease-in-out infinite}.symbol-wall span:nth-child(even){animation-delay:.8s}
+.evidence-board{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.evidence{padding:24px;border:1px solid rgba(255,255,255,.15);background:rgba(0,10,3,.9)}.evidence b{display:block;margin-bottom:12px;letter-spacing:.12em}.evidence p{color:#d9ffe0;line-height:1.75;margin:0}.evidence.verified{border-color:rgba(90,255,130,.45)}.evidence.verified b{color:#86ff9e}.evidence.claimed{border-color:rgba(255,190,80,.4)}.evidence.claimed b{color:#ffe09a}.evidence.unknown{border-color:rgba(255,70,100,.4)}.evidence.unknown b{color:#ff8ca0}
+
+#readProgress{position:fixed;left:0;top:0;height:2px;width:0;z-index:1000;background:var(--acid);box-shadow:0 0 12px var(--acid)}
+@keyframes omegaPulse{50%{transform:scale(1.035);filter:brightness(1.3)}}
+@media(max-width:850px){.omega-grid,.evidence-board{grid-template-columns:1fr}.control-row{grid-template-columns:42px 1fr}.control-row p{grid-column:1/-1}.symbol-wall{grid-template-columns:repeat(3,1fr)}}
+</style>
+
+
+
+<style id="organization-upgrade">
+.section-map{
+  max-width:1120px;margin:86px auto 0;padding:18px 22px;
+  border:1px solid rgba(125,255,155,.26);
+  background:rgba(0,10,3,.88);
+  position:relative;z-index:20;
+}
+.section-map .map-title{
+  color:#8fffaa;font-size:.74rem;letter-spacing:.2em;margin-bottom:12px
+}
+.section-map .map-links{
+  display:flex;flex-wrap:wrap;gap:9px
+}
+.section-map a{
+  color:#dfffe6;text-decoration:none;
+  border:1px solid rgba(125,255,155,.20);
+  padding:7px 9px;font-size:.68rem
+}
+.section-map a:hover{border-color:#7cff99;color:#7cff99}
+.test-shell{
+  border:1px solid rgba(125,255,155,.38);
+  background:linear-gradient(180deg,rgba(0,20,7,.94),rgba(0,5,2,.97));
+  padding:26px;margin-top:24px;
+  box-shadow:0 0 38px rgba(0,255,65,.06)
+}
+.test-progress{
+  height:4px;background:rgba(125,255,155,.10);margin:18px 0 26px;overflow:hidden
+}
+.test-progress span{
+  display:block;height:100%;width:0;
+  background:#7cff99;box-shadow:0 0 12px #00ff41;transition:width .25s ease
+}
+.test-question{
+  font-size:clamp(1.2rem,3vw,2rem);line-height:1.5;color:#fff;margin:8px 0 18px
+}
+.test-hint{color:#baffc7;line-height:1.7;margin-bottom:18px}
+.test-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.test-options button{
+  border:1px solid rgba(125,255,155,.34);
+  background:#001106;color:#e5ffea;
+  font:inherit;padding:14px;cursor:pointer;text-align:left
+}
+.test-options button:hover{border-color:#7cff99;background:#06200b}
+.test-result{
+  display:none;margin-top:24px;border:1px solid rgba(255,80,105,.42);
+  background:rgba(30,0,5,.38);padding:22px;line-height:1.8
+}
+.test-result.active{display:block}
+.self-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px
+}
+.self-card{
+  border:1px solid rgba(125,255,155,.27);
+  background:rgba(0,13,4,.86);padding:20px;line-height:1.75
+}
+.self-card h3{margin-top:0;color:#8aff9f}
+@media(max-width:760px){
+  .test-options,.self-grid{grid-template-columns:1fr}
+}
+</style>
+
+
+<style id="post-ending-layer-style">
+#postEnding{
+  display:none;position:fixed;inset:0;z-index:260;
+  background:#000;overflow:hidden;
+}
+#postEnding.active{display:block}
+.post-grid{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(0,255,65,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,65,.022) 1px,transparent 1px);
+  background-size:28px 28px;
+  opacity:.45;
+}
+.post-center{
+  position:absolute;inset:0;display:grid;place-items:center;
+  padding:28px;text-align:center
+}
+#postSymbol{
+  font-size:min(34vw,320px);
+  color:#79ff96;
+  text-shadow:0 0 28px #00ff41,0 0 100px rgba(0,255,65,.42);
+  animation:postBreathe 2.4s ease-in-out infinite;
+}
+#postTitle{
+  margin-top:18px;
+  font-size:clamp(1.5rem,5vw,4.5rem);
+  font-weight:bold;
+  letter-spacing:.08em;
+  color:#f5fff7;
+  text-shadow:0 0 16px rgba(0,255,65,.35)
+}
+#postSub{
+  margin:14px auto 0;
+  max-width:850px;
+  color:#caffd4;
+  line-height:1.8;
+  font-size:clamp(.9rem,2vw,1.2rem)
+}
+#postTerminal{
+  position:absolute;left:18px;right:18px;bottom:18px;
+  max-height:26vh;overflow:hidden;
+  font-size:11px;line-height:1.65;text-align:left;
+  color:#64ff83;opacity:.72
+}
+.post-fragment{
+  position:absolute;
+  font-size:clamp(34px,8vw,100px);
+  color:#70ff8e;
+  opacity:0;
+  text-shadow:0 0 22px #00ff41;
+  animation:postFragment 3.2s forwards;
+  pointer-events:none
+}
+.post-pulse-green{animation:postPulseGreen .48s 1}
+.post-pulse-red{animation:postPulseRed .48s 1}
+.post-shake{animation:postShake .22s 3}
+@keyframes postBreathe{
+  50%{transform:scale(1.08);filter:brightness(1.25)}
+}
+@keyframes postFragment{
+  0%{opacity:0;transform:scale(.5) rotate(-8deg)}
+  20%{opacity:.82}
+  100%{opacity:0;transform:scale(1.55) rotate(8deg)}
+}
+/* Intense but deliberately below rapid-strobe territory */
+@keyframes postPulseGreen{
+  50%{background:#00a82a;color:#000}
+}
+@keyframes postPulseRed{
+  50%{background:#7a0013;color:#fff}
+}
+@keyframes postShake{
+  25%{transform:translate(8px,-4px)}
+  50%{transform:translate(-7px,5px)}
+  75%{transform:translate(5px,-6px)}
+}
+@media (prefers-reduced-motion: reduce){
+  #postSymbol,.post-fragment{animation:none!important}
+  .post-pulse-green,.post-pulse-red,.post-shake{animation:none!important}
+}
+</style>
+
+
+<style id="entry-warning-style">
+#entryWarning{position:fixed;inset:0;z-index:9999;background:#000;display:grid;place-items:center;padding:24px}
+#entryWarning.hidden{display:none}
+.entryBox{width:min(820px,100%);border:1px solid #ff304f;background:rgba(15,0,3,.97);padding:30px;text-align:center;box-shadow:0 0 60px rgba(255,0,40,.18)}
+.entryBox .entryMark{font-size:clamp(3rem,12vw,8rem);color:#ff304f;text-shadow:0 0 30px #ff002f;margin-bottom:10px}
+.entryBox h1{font-size:clamp(1.8rem,5vw,3.6rem);color:#fff;margin:8px 0 20px}
+.entryBox p{max-width:700px;margin:0 auto 24px;line-height:1.8;color:#ffd7de}
+.entryActions{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.entryActions button{padding:16px;border:1px solid #ff304f;background:#1d0006;color:#fff;font:inherit;cursor:pointer}
+.entryActions button:first-child{border-color:#7cff99;background:#001708;color:#caffd4}
+.entryActions button:hover{filter:brightness(1.35)}
+@media(max-width:700px){.entryActions{grid-template-columns:1fr}}
+</style>
+
+
+<style id="three-door-animation-upgrade">
+/* SOLO ANIMAZIONI DELLE TRE PORTE FINALI */
+
+#postEnding.route-escape{
+  background:
+    radial-gradient(circle at center,rgba(0,255,80,.18),transparent 22%),
+    repeating-radial-gradient(circle at center,rgba(0,255,80,.07) 0 2px,transparent 2px 24px),
+    #000;
+}
+#postEnding.route-join{
+  background:
+    linear-gradient(90deg,rgba(0,255,80,.04) 1px,transparent 1px),
+    linear-gradient(rgba(0,255,80,.04) 1px,transparent 1px),
+    radial-gradient(circle at center,rgba(0,255,80,.10),transparent 40%),
+    #000;
+  background-size:22px 22px,22px 22px,auto,auto;
+}
+#postEnding.route-remain{
+  background:
+    repeating-linear-gradient(0deg,rgba(0,255,80,.035) 0 1px,transparent 1px 7px),
+    linear-gradient(180deg,rgba(0,255,65,.08),#000 65%);
+}
+
+#postEnding.route-escape #postSymbol{
+  animation:escapePortal 1.8s ease-in-out infinite;
+}
+#postEnding.route-join #postSymbol{
+  animation:joinNetwork 1.2s steps(2,end) infinite;
+}
+#postEnding.route-remain #postSymbol{
+  animation:remainLoop 2.8s linear infinite;
+}
+
+#postEnding.route-escape .post-grid{
+  animation:escapeTunnel 2.4s linear infinite;
+}
+#postEnding.route-join .post-grid{
+  animation:joinScan 1.5s linear infinite;
+}
+#postEnding.route-remain .post-grid{
+  animation:remainFade 3s ease-in-out infinite;
+}
+
+.route-line{
+  position:absolute;
+  pointer-events:none;
+  background:#78ff95;
+  box-shadow:0 0 16px #00ff41;
+  opacity:.55;
+}
+.route-ring{
+  position:absolute;
+  border:1px solid rgba(120,255,150,.55);
+  border-radius:50%;
+  pointer-events:none;
+  animation:ringExpand 2.4s forwards;
+}
+.route-node{
+  position:absolute;
+  width:7px;height:7px;border-radius:50%;
+  background:#7cff99;
+  box-shadow:0 0 14px #00ff41;
+  pointer-events:none;
+  animation:nodeBlink 1.2s infinite;
+}
+.route-reset{
+  position:absolute;
+  left:0;right:0;height:2px;
+  background:#7cff99;
+  box-shadow:0 0 18px #00ff41;
+  pointer-events:none;
+  animation:resetSweep 1.8s linear forwards;
+}
+
+@keyframes escapePortal{
+  0%,100%{transform:scale(.85) rotate(0deg);filter:brightness(1)}
+  50%{transform:scale(1.28) rotate(180deg);filter:brightness(1.65)}
+}
+@keyframes escapeTunnel{
+  from{transform:scale(.86) rotate(0deg)}
+  to{transform:scale(1.12) rotate(8deg)}
+}
+@keyframes joinNetwork{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(8px,-4px) scale(1.05)}
+  50%{transform:translate(-6px,5px) scale(.97)}
+  75%{transform:translate(4px,7px) scale(1.04)}
+}
+@keyframes joinScan{
+  from{background-position:0 0}
+  to{background-position:22px 22px}
+}
+@keyframes remainLoop{
+  from{transform:rotate(0deg) scale(.95)}
+  50%{transform:rotate(180deg) scale(1.06)}
+  to{transform:rotate(360deg) scale(.95)}
+}
+@keyframes remainFade{
+  0%,100%{opacity:.18}
+  50%{opacity:.55}
+}
+@keyframes ringExpand{
+  0%{width:30px;height:30px;opacity:.8;transform:translate(-50%,-50%)}
+  100%{width:80vw;height:80vw;opacity:0;transform:translate(-50%,-50%)}
+}
+@keyframes nodeBlink{
+  50%{opacity:.2;transform:scale(.55)}
+}
+@keyframes resetSweep{
+  from{top:0;opacity:0}
+  15%{opacity:1}
+  to{top:100%;opacity:0}
+}
+@media (prefers-reduced-motion: reduce){
+  #postEnding.route-escape #postSymbol,
+  #postEnding.route-join #postSymbol,
+  #postEnding.route-remain #postSymbol,
+  #postEnding .post-grid,
+  .route-ring,.route-node,.route-reset{
+    animation:none!important
+  }
+}
+</style>
+
+
+<style id="real-three-paths-v2">
+/* ===== TRE PORTE: TRE IDENTITÀ VISIVE REALMENTE DIVERSE ===== */
+.door-btn{position:relative;overflow:hidden;min-width:245px}
+.door-btn:after{
+ content:"";position:absolute;inset:-80% -30%;
+ transform:rotate(20deg) translateX(-130%);
+ transition:transform .45s ease;
+}
+.door-btn:hover:after{transform:rotate(20deg) translateX(130%)}
+
+/* 1: USCITA = verde/ciano */
+.door-escape{
+ border-color:#5dffd6!important;color:#cafff3!important;
+ background:linear-gradient(180deg,#00261c,#00120d)!important;
+ box-shadow:0 0 26px rgba(55,255,205,.24)!important
+}
+.door-escape:after{background:linear-gradient(90deg,transparent,rgba(120,255,225,.32),transparent)}
+.door-escape:hover{background:#5dffd6!important;color:#00120d!important}
+
+/* 2: ORDINE = viola/magenta */
+.door-join{
+ border-color:#d86cff!important;color:#f0c8ff!important;
+ background:linear-gradient(180deg,#21002f,#0d0013)!important;
+ box-shadow:0 0 26px rgba(215,85,255,.22)!important
+}
+.door-join:after{background:linear-gradient(90deg,transparent,rgba(226,130,255,.32),transparent)}
+.door-join:hover{background:#d86cff!important;color:#110018!important}
+
+/* 3: RITORNO = ambra/arancio */
+.door-remain{
+ border-color:#ffc75e!important;color:#ffe7b7!important;
+ background:linear-gradient(180deg,#2a1700,#130b00)!important;
+ box-shadow:0 0 26px rgba(255,190,70,.20)!important
+}
+.door-remain:after{background:linear-gradient(90deg,transparent,rgba(255,215,130,.34),transparent)}
+.door-remain:hover{background:#ffc75e!important;color:#160c00!important}
+
+/* Domande: colore cambia davvero in base alla porta */
+#questions.path-escape .modal{
+ border-color:#5dffd6!important;
+ box-shadow:0 0 60px rgba(60,255,210,.16)!important
+}
+#questions.path-escape .level,#questions.path-escape .option{color:#cafff3!important}
+#questions.path-escape .option{border-color:rgba(93,255,214,.42)!important;background:#001a13!important}
+
+#questions.path-join .modal{
+ border-color:#d86cff!important;
+ box-shadow:0 0 60px rgba(215,90,255,.18)!important
+}
+#questions.path-join .level,#questions.path-join .option{color:#efc7ff!important}
+#questions.path-join .option{border-color:rgba(216,108,255,.46)!important;background:#16001f!important}
+
+#questions.path-remain .modal{
+ border-color:#ffc75e!important;
+ box-shadow:0 0 60px rgba(255,190,70,.14)!important
+}
+#questions.path-remain .level,#questions.path-remain .option{color:#ffe4ac!important}
+#questions.path-remain .option{border-color:rgba(255,199,94,.44)!important;background:#1b0f00!important}
+
+/* PRIMA ANIMAZIONE */
+#ending.end-escape{
+ background:radial-gradient(circle at center,rgba(60,255,210,.19),transparent 30%),#000!important
+}
+#ending.end-join{
+ background:radial-gradient(circle at center,rgba(216,108,255,.18),transparent 30%),#000!important
+}
+#ending.end-remain{
+ background:radial-gradient(circle at center,rgba(255,199,94,.15),transparent 31%),#000!important
+}
+#ending.end-escape #eSymbol{color:#5dffd6!important;text-shadow:0 0 32px #38ffd0!important;animation:escapeFirst 1.45s infinite!important}
+#ending.end-join #eSymbol{color:#d86cff!important;text-shadow:0 0 34px #b82fff!important;animation:joinFirst .9s steps(2,end) infinite!important}
+#ending.end-remain #eSymbol{color:#ffc75e!important;text-shadow:0 0 30px #ffab2e!important;animation:remainFirst 2.6s linear infinite!important}
+
+@keyframes escapeFirst{
+ 0%,100%{transform:scale(.7) rotate(0);filter:blur(1px)}
+ 50%{transform:scale(1.32) rotate(180deg);filter:blur(0)}
+}
+@keyframes joinFirst{
+ 0%{transform:translate(0,0) scale(1)}
+ 25%{transform:translate(12px,-5px) scale(1.08)}
+ 50%{transform:translate(-9px,8px) scale(.95)}
+ 75%{transform:translate(6px,-9px) scale(1.05)}
+}
+@keyframes remainFirst{
+ from{transform:rotate(0deg) scale(.93);opacity:.7}
+ 50%{transform:rotate(180deg) scale(1.08);opacity:1}
+ to{transform:rotate(360deg) scale(.93);opacity:.7}
+}
+
+/* Flash differentiati; niente strobo rapidissimo continuo */
+.path-flash-escape{animation:flashEscape .42s 1}
+.path-flash-join{animation:flashJoin .48s 1}
+.path-flash-remain{animation:flashRemain .56s 1}
+@keyframes flashEscape{50%{background:#68ffe0!important;color:#001812!important}}
+@keyframes flashJoin{50%{background:#8b21b5!important;color:#fff!important}}
+@keyframes flashRemain{50%{background:#b87000!important;color:#fff!important}}
+
+/* SECONDA ANIMAZIONE */
+#postEnding.route-escape{
+ background:
+  repeating-radial-gradient(circle at center,rgba(93,255,214,.12) 0 2px,transparent 2px 30px),
+  radial-gradient(circle at center,rgba(60,255,210,.18),transparent 28%),#000!important
+}
+#postEnding.route-join{
+ background:
+  linear-gradient(90deg,rgba(216,108,255,.07) 1px,transparent 1px),
+  linear-gradient(rgba(216,108,255,.07) 1px,transparent 1px),
+  radial-gradient(circle at center,rgba(180,55,230,.16),transparent 40%),#000!important;
+ background-size:24px 24px,24px 24px,auto,auto!important
+}
+#postEnding.route-remain{
+ background:
+  repeating-linear-gradient(0deg,rgba(255,199,94,.055) 0 1px,transparent 1px 8px),
+  linear-gradient(180deg,rgba(255,175,40,.10),#000 70%)!important
+}
+#postEnding.route-escape #postSymbol{color:#5dffd6!important;text-shadow:0 0 34px #38ffd0!important}
+#postEnding.route-join #postSymbol{color:#d86cff!important;text-shadow:0 0 34px #bd37ff!important}
+#postEnding.route-remain #postSymbol{color:#ffc75e!important;text-shadow:0 0 34px #ffad31!important}
+
+.escape-ray{
+ position:absolute;left:50%;top:50%;height:2px;width:56vw;
+ transform-origin:0 50%;background:linear-gradient(90deg,#5dffd6,transparent);
+ box-shadow:0 0 16px #5dffd6;opacity:0;
+ animation:escapeRay 1.8s forwards;pointer-events:none
+}
+@keyframes escapeRay{
+ 0%{opacity:0;transform:rotate(var(--rot)) scaleX(.05)}
+ 25%{opacity:.8}
+ 100%{opacity:0;transform:rotate(var(--rot)) scaleX(1.1)}
+}
+.join-column{
+ position:absolute;top:-20%;width:1px;height:140%;
+ background:linear-gradient(transparent,#d86cff,transparent);
+ box-shadow:0 0 12px #d86cff;opacity:.65;pointer-events:none;
+ animation:joinColumn 2.1s linear forwards
+}
+@keyframes joinColumn{
+ from{transform:translateY(-20%)}
+ to{transform:translateY(40%)}
+}
+.remain-frame{
+ position:absolute;inset:8%;border:1px solid rgba(255,199,94,.55);
+ box-shadow:inset 0 0 35px rgba(255,180,45,.10),0 0 25px rgba(255,180,45,.12);
+ animation:remainFrame 1.7s ease-in-out forwards;pointer-events:none
+}
+@keyframes remainFrame{
+ 0%{transform:scale(1.18);opacity:0}
+ 40%{opacity:.9}
+ 100%{transform:scale(.65);opacity:0}
+}
+</style>
+
+
+<style id="deep-black-final-style">
+#deepBlackFinal{
+  display:none;position:fixed;inset:0;z-index:400;
+  background:#000;color:#f4fff6;overflow:hidden;
+}
+#deepBlackFinal.active{display:block}
+#deepBlackFinal .db-center{
+  position:absolute;inset:0;display:grid;place-items:center;
+  text-align:center;padding:30px
+}
+#dbSymbol{
+  font-size:min(34vw,300px);
+  color:#7cff99;
+  text-shadow:0 0 34px #00ff41,0 0 100px rgba(0,255,65,.35);
+  opacity:.9
+}
+#dbTitle{
+  font-size:clamp(1.6rem,5vw,4.3rem);
+  font-weight:bold;letter-spacing:.08em;margin-top:14px
+}
+#dbSub{
+  margin:14px auto 0;max-width:860px;
+  color:#caffd4;line-height:1.8;
+  font-size:clamp(.9rem,2vw,1.2rem)
+}
+#dbTech{
+  margin:24px auto 0;max-width:820px;text-align:left;
+  border:1px solid rgba(124,255,153,.28);
+  background:rgba(0,16,5,.86);
+  padding:18px 20px;line-height:1.8;color:#9cffaf;
+  font-size:.85rem
+}
+#dbTerminal{
+  position:absolute;left:18px;right:18px;bottom:18px;
+  max-height:23vh;overflow:hidden;text-align:left;
+  font-size:11px;line-height:1.6;color:#69ff86;opacity:.72
+}
+.db-flash-green{animation:dbFlashGreen .48s 1}
+.db-flash-white{animation:dbFlashWhite .60s 1}
+.db-glitch{animation:dbGlitch .20s 3}
+@keyframes dbFlashGreen{
+  50%{background:#16b842;color:#001b08}
+}
+@keyframes dbFlashWhite{
+  50%{background:#dfffe7;color:#000}
+}
+@keyframes dbGlitch{
+  25%{transform:translate(8px,-4px)}
+  50%{transform:translate(-7px,5px)}
+  75%{transform:translate(5px,-6px)}
+}
+.db-sweep{
+  position:absolute;left:0;right:0;height:2px;top:-3px;
+  background:#7cff99;box-shadow:0 0 20px #00ff41;
+  animation:dbSweep 2.2s linear forwards;pointer-events:none
+}
+@keyframes dbSweep{to{top:100%}}
+.db-orb{
+  position:absolute;width:8px;height:8px;border-radius:50%;
+  background:#7cff99;box-shadow:0 0 16px #00ff41;
+  opacity:0;animation:dbOrb 2.6s forwards;pointer-events:none
+}
+@keyframes dbOrb{
+  0%{opacity:0;transform:scale(.3)}
+  25%{opacity:.9}
+  100%{opacity:0;transform:scale(2.4)}
+}
+@media(prefers-reduced-motion:reduce){
+  .db-flash-green,.db-flash-white,.db-glitch,.db-sweep,.db-orb{animation:none!important}
+}
+</style>
+
+
+<style id="entry-flash-upgrade">
+#entryFlash{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  background:#000;
+  overflow:hidden;
+  pointer-events:none;
+}
+#entryFlash.active{display:block}
+#entryFlash .flashCore{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+}
+#entryFlashSymbol{
+  font-size:min(42vw,360px);
+  color:#dffff0;
+  text-shadow:0 0 35px #7cff99,0 0 120px #ffffff;
+  opacity:0;
+}
+#entryFlashText{
+  margin-top:18px;
+  font-size:clamp(1.4rem,4vw,3.4rem);
+  color:#f7fff8;
+  letter-spacing:.12em;
+  opacity:0;
+}
+.entry-blast-white{animation:entryBlastWhite .55s 1}
+.entry-blast-green{animation:entryBlastGreen .65s 1}
+.entry-symbol-in{animation:entrySymbolIn 1.2s forwards}
+.entry-text-in{animation:entryTextIn 1.1s forwards}
+.entry-fade-out{animation:entryFadeOut .9s forwards}
+
+@keyframes entryBlastWhite{
+  0%{background:#000}
+  34%{background:#fff}
+  58%{background:#dffff0}
+  100%{background:#000}
+}
+@keyframes entryBlastGreen{
+  0%{background:#000}
+  42%{background:#58ff9a}
+  70%{background:#082b16}
+  100%{background:#000}
+}
+@keyframes entrySymbolIn{
+  0%{opacity:0;transform:scale(.25) rotate(-8deg);filter:blur(12px)}
+  30%{opacity:1;transform:scale(1.25) rotate(2deg);filter:blur(0)}
+  100%{opacity:0;transform:scale(1.75) rotate(8deg);filter:blur(5px)}
+}
+@keyframes entryTextIn{
+  0%{opacity:0;letter-spacing:.4em}
+  40%{opacity:1;letter-spacing:.12em}
+  100%{opacity:0}
+}
+@keyframes entryFadeOut{
+  from{opacity:1}
+  to{opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .entry-blast-white,.entry-blast-green,.entry-symbol-in,.entry-text-in,.entry-fade-out{
+    animation:none!important
+  }
+}
+</style>
+
+
+<style id="horror-upgrade-v3">
+#bootCrash{display:none;position:fixed;inset:0;z-index:12000;background:#020202;color:#baffc8;font-family:monospace;padding:5vw;overflow:hidden}
+#bootCrash.active{display:block}
+#bootCrash.crash-red{background:#3b0000;color:#fff}
+#bootCrashText{white-space:pre-wrap;font-size:clamp(12px,2vw,19px);line-height:1.45}
+#redTakeover{display:none;position:fixed;inset:0;z-index:350;background:#170000;color:#fff;place-items:center;text-align:center;padding:30px}
+#redTakeover.active{display:grid}
+#redTakeover h2{font-size:clamp(2rem,7vw,6rem);letter-spacing:.1em;text-shadow:0 0 30px #f00}
+#redTakeover p{max-width:800px;line-height:1.8;color:#ffd0d0}
+.autoWord{display:inline-block;min-width:9ch;border-right:2px solid currentColor}
+</style>
+
+
+<style id="timed-events-v4-style">
+/* ===== RED TAKEOVER: visible after entry ===== */
+html.red-phase body,
+body.red-phase{
+  background:#120000!important;
+}
+body.red-phase .bg{
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,30,30,.25),transparent 28%),
+    radial-gradient(circle at 18% 75%,rgba(255,0,0,.13),transparent 30%),
+    radial-gradient(circle at 82% 70%,rgba(180,0,0,.12),transparent 26%),
+    linear-gradient(rgba(20,0,0,.15),rgba(0,0,0,.96))!important;
+}
+body.red-phase #rain{
+  filter:hue-rotate(230deg) saturate(2.4) brightness(1.15)!important;
+}
+body.red-phase nav{
+  border-bottom-color:rgba(255,70,70,.42)!important;
+  box-shadow:0 0 34px rgba(255,0,0,.16)!important;
+}
+body.red-phase .brand,
+body.red-phase nav a,
+body.red-phase h1,
+body.red-phase h2,
+body.red-phase h3,
+body.red-phase .level,
+body.red-phase .code{
+  color:#ff7777!important;
+  text-shadow:0 0 16px rgba(255,0,0,.75)!important;
+}
+body.red-phase .card,
+body.red-phase .box,
+body.red-phase .truth-card,
+body.red-phase .data-cell,
+body.red-phase .terminal,
+body.red-phase .test-shell{
+  border-color:rgba(255,70,70,.48)!important;
+  background:rgba(24,0,0,.91)!important;
+  box-shadow:inset 0 0 30px rgba(255,0,0,.05),0 0 22px rgba(255,0,0,.08)!important;
+}
+body.red-phase .sigil{
+  color:#ff6767!important;
+  border-color:rgba(255,60,60,.48)!important;
+  text-shadow:0 0 22px #ff0000!important;
+}
+body.red-phase .btn{
+  border-color:#ff6868!important;
+  color:#ffd3d3!important;
+  background:#210000!important;
+}
+#redPhaseBanner{
+  display:none;position:fixed;inset:0;z-index:360;
+  pointer-events:none;
+  place-items:center;text-align:center;
+  background:radial-gradient(circle at center,rgba(255,0,0,.09),transparent 45%);
+}
+#redPhaseBanner.active{display:grid}
+#redPhaseBanner .rpb{
+  font:700 clamp(1.5rem,6vw,5rem)/1.05 monospace;
+  color:rgba(255,120,120,.82);
+  letter-spacing:.12em;
+  text-shadow:0 0 24px red;
+  animation:redPhasePulse 1.1s ease-in-out infinite;
+}
+@keyframes redPhasePulse{50%{opacity:.25;transform:scale(1.035)}}
+
+/* ===== ONE-TIME CONTACT EVENT ===== */
+#contactEvent{
+  display:none;position:fixed;inset:0;z-index:13000;
+  background:rgba(0,0,0,.94);
+  place-items:center;padding:24px;
+}
+#contactEvent.active{display:grid}
+.contactBox{
+  width:min(760px,100%);
+  border:1px solid #7cff99;
+  background:#020a04;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 0 55px rgba(0,255,65,.13);
+}
+.contactMark{
+  font-size:clamp(3.5rem,12vw,8rem);
+  color:#7cff99;text-shadow:0 0 28px #00ff41;
+  margin-bottom:10px;
+}
+.contactTitle{
+  font-size:clamp(1.6rem,5vw,3.4rem);
+  font-weight:bold;color:#fff;margin:8px 0 16px;
+}
+.contactSub{
+  color:#caffd4;line-height:1.8;margin:0 auto 22px;
+  max-width:640px;
+}
+.contactActions{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px;
+}
+.contactActions button{
+  padding:15px;font:inherit;cursor:pointer;
+  border:1px solid #7cff99;background:#001306;color:#dfffe6;
+}
+.contactActions button:last-child{
+  border-color:#ff4d68;background:#1d0006;color:#ffc2cb;
+}
+#contactResult{
+  display:none;margin-top:20px;padding:18px;
+  border:1px solid rgba(124,255,153,.28);
+  line-height:1.7;color:#dfffe6;
+}
+.contactGlitch{animation:contactGlitch .18s 4}
+@keyframes contactGlitch{
+  25%{transform:translate(7px,-3px)}
+  50%{transform:translate(-6px,4px)}
+  75%{transform:translate(4px,-5px)}
+}
+@media(max-width:700px){.contactActions{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  #redPhaseBanner .rpb,.contactGlitch{animation:none!important}
+}
+</style>
+
+
+<style id="ghost-events-v5-style">
+#systemFight,#transmission,#sessionEnd{
+ display:none;position:fixed;inset:0;z-index:12500;background:rgba(0,0,0,.96);
+ place-items:center;text-align:center;padding:28px;font-family:monospace
+}
+#systemFight.active,#transmission.active,#sessionEnd.active{display:grid}
+.ghostBox{width:min(820px,100%);padding:28px;border:1px solid #72ff91;background:#010703;box-shadow:0 0 55px rgba(0,255,65,.12)}
+.ghostBig{font-size:clamp(1.7rem,5vw,4rem);font-weight:700;color:#f5fff7;letter-spacing:.08em}
+.ghostSub{margin-top:16px;color:#aaffba;line-height:1.8}
+.eraseText{animation:eraseFight 1.4s steps(12,end) forwards}
+@keyframes eraseFight{0%{opacity:1;filter:none}70%{opacity:.7;filter:blur(2px)}100%{opacity:0;letter-spacing:-.2em}}
+#transmission .ghostBox{border-color:#c7ffd4}
+#sessionEnd .ghostBox{border-color:#6cff8d}
+.sessionNo{font-size:clamp(3rem,13vw,10rem);color:#ff3d55;text-shadow:0 0 35px #f00}
+</style>
+
+
+
+<style id="rabbit-abyss-pro-style">
+#rabbitAbyssSection{
+  max-width:1120px;margin:0 auto;padding:90px 24px 120px;
+  text-align:center;border-top:1px solid rgba(255,255,255,.12)
+}
+#rabbitAbyssSection .rabbit-title{
+  color:#cfcfcf;font-size:.72rem;letter-spacing:.22em;margin-bottom:26px
+}
+#rabbitButton{
+  position:relative;
+  display:inline-block;
+  width:150px;height:130px;
+  border:0;background:transparent;
+  cursor:pointer;padding:0;
+  filter:drop-shadow(0 0 10px rgba(255,255,255,.08))
+}
+.rabbit-body{
+  position:absolute;left:43px;top:52px;width:72px;height:48px;
+  border:3px solid #f2f2f2;border-radius:55% 48% 46% 54%;
+  background:#080808
+}
+.rabbit-head{
+  position:absolute;left:86px;top:32px;width:42px;height:42px;
+  border:3px solid #f2f2f2;border-radius:50%;background:#080808
+}
+.rabbit-ear{
+  position:absolute;width:15px;height:48px;
+  border:3px solid #f2f2f2;border-radius:50%;
+  background:#080808;transform-origin:bottom center
+}
+.rabbit-ear.e1{left:96px;top:0;transform:rotate(-10deg)}
+.rabbit-ear.e2{left:112px;top:2px;transform:rotate(13deg)}
+.rabbit-eye{
+  position:absolute;left:113px;top:47px;width:5px;height:5px;
+  border-radius:50%;background:#fff
+}
+.rabbit-tail{
+  position:absolute;left:28px;top:59px;width:24px;height:24px;
+  border:3px solid #f2f2f2;border-radius:50%;background:#080808
+}
+.rabbit-leg{
+  position:absolute;left:60px;top:94px;width:42px;height:15px;
+  border-bottom:3px solid #f2f2f2;border-radius:50%
+}
+#rabbitButton:hover{transform:scale(1.04)}
+#rabbitButton.walking{
+  position:fixed;left:3vw;bottom:7vh;z-index:15000;
+  animation:rabbitWalkPro 6.2s linear forwards
+}
+#rabbitButton.walking .rabbit-ear.e1{animation:earMove .45s ease-in-out infinite alternate}
+#rabbitButton.walking .rabbit-ear.e2{animation:earMove2 .5s ease-in-out infinite alternate}
+@keyframes rabbitWalkPro{
+  0%{left:2vw;transform:translateY(0) scale(.9)}
+  13%{transform:translateY(-14px) scale(.94)}
+  26%{transform:translateY(0) scale(.9)}
+  39%{transform:translateY(-16px) scale(.96)}
+  52%{transform:translateY(0) scale(.91)}
+  66%{transform:translateY(-12px) scale(.95)}
+  80%{transform:translateY(0) scale(.91)}
+  100%{left:82vw;transform:translateY(-6px) scale(.9)}
+}
+@keyframes earMove{to{transform:rotate(-18deg)}}
+@keyframes earMove2{to{transform:rotate(21deg)}}
+
+#abyssOverlay{
+  display:none;position:fixed;inset:0;z-index:16000;
+  background:#000;color:#fff;overflow:hidden
+}
+#abyssOverlay.active{display:grid;place-items:center}
+#abyssScene{
+  width:100%;height:100%;display:grid;place-items:center;
+  position:relative;overflow:hidden
+}
+#abyssText{
+  max-width:930px;padding:30px;text-align:center;
+  font:700 clamp(1.5rem,4.8vw,4.2rem)/1.28 monospace;
+  letter-spacing:.05em;color:#fff;
+  text-shadow:0 0 18px rgba(255,255,255,.20)
+}
+.abyss-cut{animation:abyssCut .48s 1}
+.abyss-invert{animation:abyssInvert .75s 1}
+.abyss-warp{animation:abyssWarp .8s 1}
+@keyframes abyssCut{
+  0%,100%{background:#000;color:#fff}
+  45%{background:#f7f7f7;color:#050505}
+}
+@keyframes abyssInvert{
+  0%,100%{filter:none}
+  50%{filter:invert(1) contrast(1.6)}
+}
+@keyframes abyssWarp{
+  0%,100%{transform:scale(1);filter:blur(0)}
+  45%{transform:scale(1.045) skewX(1.2deg);filter:blur(1px)}
+}
+.ghostWord{
+  position:absolute;color:#fff;font:700 clamp(18px,4vw,55px) monospace;
+  opacity:0;pointer-events:none;animation:ghostWord 2.2s forwards
+}
+@keyframes ghostWord{
+  0%{opacity:0;transform:scale(.7)}
+  22%{opacity:.72}
+  100%{opacity:0;transform:scale(1.4)}
+}
+#abyssEye{
+  display:none;position:absolute;left:50%;top:50%;
+  width:min(52vw,520px);height:min(24vw,240px);
+  transform:translate(-50%,-50%) scale(.04);
+  border:7px solid #fff;border-radius:50%/62%;
+  background:#000;z-index:5
+}
+#abyssEye:before{
+  content:"";position:absolute;left:50%;top:50%;
+  width:30%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);
+  border:6px solid #fff;background:#000
+}
+#abyssEye:after{
+  content:"";position:absolute;left:50%;top:50%;
+  width:10%;aspect-ratio:1;border-radius:50%;
+  transform:translate(-50%,-50%);
+  background:#fff;box-shadow:0 0 32px #fff
+}
+#abyssEye.rush{
+  display:block;animation:eyeRush 1.05s cubic-bezier(.12,.8,.25,1) forwards
+}
+@keyframes eyeRush{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.03)}
+  18%{opacity:1}
+  74%{opacity:1;transform:translate(-50%,-50%) scale(1.7)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(3.3)}
+}
+#abyssReturn{
+  position:absolute;inset:0;background:#000;opacity:0;pointer-events:none
+}
+#abyssReturn.fade{animation:returnFade 1.5s forwards}
+@keyframes returnFade{to{opacity:1}}
+
+@media(prefers-reduced-motion:reduce){
+  #rabbitButton.walking,.abyss-cut,.abyss-invert,.abyss-warp,.ghostWord,#abyssEye.rush,#abyssReturn.fade{
+    animation:none!important
+  }
+}
+</style>
+
+
+<style id="triangle-risk-level-style">
+#triangleRiskSection{
+  max-width:1120px;margin:0 auto;padding:100px 24px 130px;
+  text-align:center;border-top:1px solid rgba(255,255,255,.11)
+}
+#triangleRiskSection .tri-label{
+  color:#cfcfcf;font-size:.72rem;letter-spacing:.22em;margin-bottom:26px
+}
+#triangleRiskButton{
+  width:190px;height:170px;border:0;background:transparent;cursor:pointer;position:relative
+}
+#triangleRiskButton:before{
+  content:"";position:absolute;left:50%;top:8px;transform:translateX(-50%);
+  width:0;height:0;border-left:78px solid transparent;border-right:78px solid transparent;
+  border-bottom:140px solid #f3f3f3;filter:drop-shadow(0 0 16px rgba(255,255,255,.12))
+}
+#triangleRiskButton:after{
+  content:"";position:absolute;left:50%;top:21px;transform:translateX(-50%);
+  width:0;height:0;border-left:65px solid transparent;border-right:65px solid transparent;
+  border-bottom:116px solid #050505
+}
+.triEye{
+  position:absolute;z-index:2;left:50%;top:82px;transform:translate(-50%,-50%);
+  width:54px;height:26px;border:2px solid #fff;border-radius:50%/60%;
+}
+.triEye:after{
+  content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:10px;height:10px;border-radius:50%;background:#fff
+}
+.tri-risk-text{margin-top:16px;color:#fff;letter-spacing:.12em;font-size:.78rem}
+
+#triangleOverlay{
+  display:none;position:fixed;inset:0;z-index:17000;background:#000;color:#fff;
+  overflow:auto;padding:0
+}
+#triangleOverlay.active{display:block}
+.tri-screen{
+  min-height:100vh;display:grid;place-items:center;padding:40px 24px;position:relative
+}
+.tri-panel{
+  width:min(980px,100%);border:1px solid rgba(255,255,255,.28);
+  background:rgba(3,3,3,.96);padding:30px;text-align:left
+}
+.tri-panel h2{
+  margin:0 0 18px;font-size:clamp(2rem,5vw,4.4rem);color:#fff
+}
+.tri-panel p{line-height:1.85;color:#ddd}
+.tri-countdown{
+  margin:24px 0;padding:22px;border:1px solid rgba(255,255,255,.2);background:#080808
+}
+.tri-countdown .big{
+  font-size:clamp(2rem,7vw,5.5rem);font-weight:700;letter-spacing:.08em
+}
+.tri-files{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px
+}
+.tri-file{
+  border:1px solid rgba(255,255,255,.16);padding:18px;background:#050505;line-height:1.7
+}
+.tri-file strong{display:block;color:#fff;margin-bottom:8px}
+.tri-warning{
+  margin:24px 0;padding:20px;border-left:3px solid #fff;background:#090909;
+  font-size:1.05rem;line-height:1.8
+}
+.tri-question{
+  margin:18px 0;padding:18px;border:1px solid rgba(255,255,255,.16);background:#050505
+}
+.tri-question b{display:block;margin-bottom:8px}
+#triangleClose{
+  display:block;margin:30px auto 0;padding:14px 22px;border:1px solid #fff;background:#000;color:#fff;
+  font:inherit;cursor:pointer
+}
+.tri-flicker{animation:triFlicker .8s 1}
+@keyframes triFlicker{
+  0%,100%{filter:none;background:#000}
+  45%{filter:invert(1);background:#fff}
+}
+@media(max-width:760px){.tri-files{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.tri-flicker{animation:none!important}}
+</style>
+
+
+<style id="stillness-door-rabbit2-style">
+#stillnessNotice{
+ display:none;position:fixed;inset:0;z-index:18000;background:rgba(0,0,0,.96);
+ place-items:center;text-align:center;padding:30px;color:#fff;font-family:monospace
+}
+#stillnessNotice.active{display:grid}
+#stillnessNotice .stillBig{font-size:clamp(2rem,7vw,6rem);font-weight:700;letter-spacing:.08em}
+#stillnessNotice .stillSub{margin-top:18px;color:#cfcfcf;letter-spacing:.08em}
+
+#truthDoorSection{
+ max-width:1120px;margin:0 auto;padding:100px 24px 150px;text-align:center;
+ border-top:1px solid rgba(255,255,255,.1)
+}
+#truthDoor{
+ position:relative;width:190px;height:270px;margin:25px auto 0;
+ border:2px solid #eee;background:#050505;color:#fff;cursor:pointer;
+ box-shadow:inset 0 0 35px rgba(255,255,255,.04);
+ transition:transform .18s ease,left .18s ease,top .18s ease;
+ font:700 .8rem monospace;letter-spacing:.1em
+}
+#truthDoor:before{
+ content:"";position:absolute;right:18px;top:50%;width:8px;height:8px;
+ border:2px solid #fff;border-radius:50%
+}
+#truthDoor.dodge{animation:doorJolt .24s 1}
+@keyframes doorJolt{50%{transform:translate(var(--dx),var(--dy)) rotate(var(--rot))}}
+#truthDoorHint{margin-top:16px;color:#aaa;font:.72rem monospace;letter-spacing:.15em}
+
+#truthDoorOverlay{
+ display:none;position:fixed;inset:0;z-index:18500;background:#000;color:#fff;
+ overflow:auto;font-family:monospace
+}
+#truthDoorOverlay.active{display:block}
+.truthDoorInner{max-width:900px;margin:auto;padding:70px 26px 110px}
+.truthDoorInner h2{font-size:clamp(2rem,6vw,5rem);margin:0 0 28px}
+.truthDoorInner p{font-size:clamp(1rem,2vw,1.2rem);line-height:1.9;color:#ddd}
+.truthDoorQuote{
+ margin:34px 0;padding:24px;border-left:3px solid #fff;background:#080808;
+ font-size:clamp(1.25rem,3vw,2rem);line-height:1.55
+}
+.truthDoorQ{margin:18px 0;padding:20px;border:1px solid #222;background:#050505;line-height:1.75}
+#truthDoorClose{margin-top:28px;padding:14px 22px;border:1px solid #fff;background:#000;color:#fff;font:inherit;cursor:pointer}
+
+#rabbitReturn{
+ display:none;position:fixed;right:22px;bottom:20px;z-index:14000;width:82px;height:70px;
+ cursor:pointer;opacity:.92;filter:grayscale(1)
+}
+#rabbitReturn.show{display:block;animation:rabbitReturnIn 1.1s forwards}
+#rabbitReturn .rb{position:absolute;left:22px;top:29px;width:43px;height:29px;border:2px solid #fff;border-radius:55%;background:#050505}
+#rabbitReturn .rh{position:absolute;left:51px;top:18px;width:25px;height:25px;border:2px solid #fff;border-radius:50%;background:#050505}
+#rabbitReturn .re1,#rabbitReturn .re2{position:absolute;width:8px;height:28px;border:2px solid #fff;border-radius:50%;background:#050505;top:0}
+#rabbitReturn .re1{left:55px;transform:rotate(-10deg)} #rabbitReturn .re2{left:66px;transform:rotate(12deg)}
+#rabbitReturn .rt{position:absolute;left:13px;top:34px;width:14px;height:14px;border:2px solid #fff;border-radius:50%;background:#050505}
+@keyframes rabbitReturnIn{from{opacity:0;transform:translateX(80px)}to{opacity:.92;transform:none}}
+#rabbitReturn.leave{animation:rabbitReturnOut 2.2s forwards}
+@keyframes rabbitReturnOut{to{opacity:0;transform:translateX(130px)}}
+</style>
+
+</head>
+<body>
+
+<div id="systemFight"><div class="ghostBox">
+ <div class="ghostBig" id="fightText">NON FIDARTI DEL—</div>
+ <div class="ghostSub" id="fightSub">TRASMISSIONE NON AUTORIZZATA</div>
+</div></div>
+
+<div id="transmission"><div class="ghostBox">
+ <div class="ghostBig" id="txTitle">C'È QUALCUNO DALL'ALTRA PARTE.</div>
+ <div class="ghostSub" id="txSub">NON È IL SISTEMA.</div>
+</div></div>
+
+<div id="sessionEnd"><div class="ghostBox">
+ <div class="ghostBig" id="sessionTitle">SESSIONE TERMINATA</div>
+ <div class="ghostSub" id="sessionSub">PUOI USCIRE.</div>
+</div></div>
+
+
+<div id="redPhaseBanner"><div class="rpb">LIVELLO ROSSO // INTERFERENZA</div></div>
+
+<div id="contactEvent">
+  <div class="contactBox" id="contactBox">
+    <div class="contactMark">◉</div>
+    <div class="level">TRACCIAMENTO // CANALE ESTERNO</div>
+    <div class="contactTitle" id="contactTitle">TRACCIAMENTO ATTIVO</div>
+    <div class="contactSub" id="contactSub">
+      Una presenza sta tentando di aprire un canale con questa sessione.<br><br>
+      <b>UNA PERSONA STA CERCANDO DI CONTATTARTI.</b><br>
+      Accetti la richiesta?
+    </div>
+    <div class="contactActions" id="contactActions">
+      <button id="contactAccept">ACCETTA RICHIESTA</button>
+      <button id="contactReject">RIFIUTA</button>
+    </div>
+    <div id="contactResult"></div>
+  </div>
+</div>
+
+
+<div id="bootCrash"><div id="bootCrashText"></div></div>
+<div id="redTakeover">
+  <div><div style="font-size:min(30vw,260px)">△</div><h2>INTERRUZIONE</h2><p>IL LIVELLO VISIBILE NON È STABILE.</p></div>
+</div>
+
+
+<div id="entryFlash">
+  <div class="flashCore">
+    <div>
+      <div id="entryFlashSymbol">𓂀</div>
+      <div id="entryFlashText">ACCESSO AL NODO</div>
+    </div>
+  </div>
+</div>
+
+
+<div id="entryWarning">
+  <div class="entryBox">
+    <div class="entryMark">△</div>
+    <div class="level">AVVISO // ACCESSO 7319</div>
+    <h1>ATTENZIONE</h1>
+    <p>
+      Una volta entrato non puoi più tornare indietro.
+      Vedrai delle verità sul mondo, sulla tua percezione e sulla simulazione.
+      Se continui, il nodo registrerà la tua decisione.
+    </p>
+    <div class="entryActions">
+      <button id="entryAccept">SÌ, ACCETTO IL PERICOLO PERSONALE PER ME E LA MIA COSCIENZA</button>
+      <button id="entryLeave">NO, ESCO DAL SITO. VOGLIO RIMANERE COSÌ</button>
+    </div>
+  </div>
+</div>
+
+<div id="readProgress"></div>
+<canvas id="rain"></canvas><div class="bg"></div><div class="scan"></div><div class="vignette"></div>
+
+<nav><a class="brand" href="#home">7319-004-88</a><span><a href="#infanzia">INFANZIA</a>&nbsp;&nbsp;<a href="#debole">SISTEMA</a>&nbsp;&nbsp;<a href="#patto">PATTO</a>&nbsp;&nbsp;<a href="#dossier-italia">DOSSIER</a>&nbsp;&nbsp;<a href="#archivi-confermati">ARCHIVI</a>&nbsp;&nbsp;<a href="#verita">VERITÀ</a>&nbsp;&nbsp;<a href="#tana-bianco">TANA</a>&nbsp;&nbsp;<a href="#choice">ACCESSO</a></span></nav>
+
+<div class="section-map" id="mappa">
+  <div class="map-title">MAPPA DEL NODO // ACCESSO RAPIDO</div>
+  <div class="map-links">
+    <a href="#agents">AGENTI</a>
+    <a href="#rete">RETE</a>
+    <a href="#politica">POLITICA</a>
+    <a href="#simboli">SIMBOLI</a>
+    <a href="#percezione">PERCEZIONE</a>
+    <a href="#linguaggio">LINGUAGGIO</a>
+    <a href="#infanzia">INFANZIA</a>
+    <a href="#debole">SISTEMA</a>
+    <a href="#verita">VERITÀ</a>
+    <a href="#archivi-confermati">ARCHIVI</a>
+    <a href="#tana-bianco">TANA</a>
+    <a href="#test-npc">TEST NPC</a>
+    <a href="#test-coscienza">TEST COSCIENZA</a>
+    <a href="#conosci-te-stesso">CONOSCI TE STESSO</a>
+    <a href="#choice">TRE PORTE</a>
+  </div>
+</div>
+
+
+<header class="hero" id="home">
+<div>
+<div class="eye-wrap"><div class="outer"></div><div class="tri"></div><div class="eye">◉</div></div>
+<div class="code">ARCHIVIO // NERO // 7319 // 004 // 88</div>
+<h1>7319-004-88</h1>
+<p class="sub">Il mondo non viene controllato solo con ordini. Viene controllato con versioni della realtà. Chi decide ciò che sembra normale decide anche ciò che sembra impossibile.</p>
+<a class="btn" href="#agents">APRI L'ARCHIVIO</a>
+</div>
+</header>
+
+<section id="agents">
+<div class="level">LIVELLO 01 // AGENTI</div>
+<h2>GLI AGENTI NON DEVONO AVERE UN VOLTO</h2>
+<p class="statement">Un agente può essere una persona. Ma può essere anche un algoritmo, una regola, un incentivo, una paura, una reputazione.</p>
+<div class="grid">
+<div class="box"><h3>AGENTE SOCIALE</h3>Ti insegna cosa è accettabile prima ancora che tu decida cosa pensi.</div>
+<div class="box"><h3>AGENTE DIGITALE</h3>Decide cosa compare, cosa scompare, cosa viene amplificato e cosa resta invisibile.</div>
+<div class="box"><h3>AGENTE ECONOMICO</h3>Non deve ordinarti nulla. Gli basta rendere alcune scelte troppo costose.</div>
+<div class="box"><h3>AGENTE POLITICO</h3>Il volto cambia. Il palcoscenico resta. Le promesse cambiano. La struttura sopravvive.</div>
+</div>
+<div class="whisper">I BURATTINI CAMBIANO. IL SISTEMA RESTA.</div>
+</section>
+
+<section id="rete">
+<div class="level">LIVELLO 03 // RETE</div>
+<h2>NESSUN NODO È ISOLATO</h2>
+<div class="card">
+ILLUMINATI. MASSONERIA. NUOVO ORDINE MONDIALE. ORDINI. CLUB. CERCHIE. ISTITUZIONI.
+Nell'Archivio vengono trattati come nomi diversi assegnati a strati diversi della stessa domanda:
+<b>quanto del potere reale è visibile a chi vive alla base?</b>
+</div>
+<div class="card">
+Il nodo non sostiene che ogni simbolo significhi la stessa cosa.
+Sostiene qualcosa di più inquietante:
+quando denaro, influenza, informazione, accesso e reputazione si sovrappongono abbastanza a lungo,
+le organizzazioni smettono di sembrare separate e iniziano a comportarsi come parti di una rete.
+</div>
+<div class="card redcard">
+LA RETE NON HA BISOGNO DI UNA STANZA UNICA.<br>
+HA BISOGNO SOLO DI NODI CHE CONDIVIDANO GLI STESSI INTERESSI.<br>
+QUANDO I NODI SI MUOVONO NELLA STESSA DIREZIONE, DALL'ESTERNO SEMBRA UN SOLO CORPO.
+</div>
+<div class="whisper">NON CERCARE UN SOLO PADRONE. CERCA LA STRUTTURA.</div>
+</section>
+
+<section id="politica">
+<div class="level">LIVELLO 05 // POLITICA</div>
+<h2>LA POLITICA È IL PALCOSCENICO</h2>
+<div class="card">Destra. Sinistra. Governo. Opposizione. Crisi. Soluzione. Il pubblico vede lo scontro. Il sistema vede continuità.</div>
+<div class="card">Il potere più stabile non ha bisogno di vincere ogni elezione. Ha bisogno che qualunque vincitore continui a muoversi dentro gli stessi limiti.</div>
+<div class="card redcard">IL BURATTINO NON DEVE SAPERE DI ESSERE UN BURATTINO. GLI BASTA CREDERE CHE LA CORDA SIA UNA SCELTA.</div>
+</section>
+
+<section id="simboli">
+<div class="level">LIVELLO 07 // SIMBOLI</div>
+<h2>IL SISTEMA PARLA PRIMA ATTRAVERSO I SIMBOLI</h2>
+<div class="sigilgrid">
+<div class="sigil">△</div><div class="sigil">𓂀</div><div class="sigil">◉</div><div class="sigil">⟁</div><div class="sigil">⌁</div><div class="sigil">◇</div>
+</div>
+<div class="card">
+Occhio. Piramide. Cerchio. Porta. Luce. Ombra.
+Un simbolo è potente quando riesce a entrare nella mente prima ancora che tu abbia deciso cosa significa.
+</div>
+<div class="card">
+SATANA. BAAL. DEMONI. DEI. ORDINI. CULTI.
+Nell'Archivio questi nomi non vengono trattati come semplici personaggi,
+ma come <b>etichette simboliche</b> assegnate al vertice invisibile:
+volontà, sacrificio, obbedienza, potere e perdita dell'identità.
+</div>
+<div class="card redcard">
+NON È IL NOME A FARE PAURA.<br>
+È L'IDEA CHE QUALCOSA POSSA USARE NOMI DIVERSI IN EPOCHE DIVERSE
+E RESTARE SEMPRE LO STESSO MECCANISMO.
+</div>
+</section>
+
+<section id="percezione">
+<div class="level">LIVELLO 09 // PERCEZIONE</div>
+<h2>CONTROLLARE LA PERCEZIONE SIGNIFICA RIDURRE LE POSSIBILITÀ</h2>
+<div class="card">Se controlli ciò che una persona teme, restringi ciò che è disposta ad accettare.</div>
+<div class="card">Se controlli ciò che desidera, indirizzi ciò per cui spenderà tempo e vita.</div>
+<div class="card">Se controlli ciò che vede ogni giorno, influenzi ciò che considera possibile.</div>
+<div class="card">Se controlli le parole disponibili, rendi alcune idee più difficili perfino da formulare.</div>
+<div class="whisper">IL CONFINE DELLA GABBIA PUÒ ESSERE ANCHE UNA FRASE.</div>
+</section>
+
+<section id="linguaggio">
+<div class="level">LIVELLO 10 // LINGUAGGIO</div>
+<h2>LA MENTE NON VEDE BENE CIÒ CHE NON SA NOMINARE</h2>
+<div class="card">
+Il tuo vocabolario non è soltanto un elenco di parole.
+È uno degli strumenti con cui separi una cosa dall'altra, riconosci uno schema e costruisci una domanda.
+</div>
+<div class="card">
+Se non possiedi una parola per descrivere qualcosa,
+non significa che quella cosa non esista.
+Significa che può diventare più difficile riconoscerla, ricordarla e comunicarla.
+</div>
+<div class="card redcard">
+POTREMMO MOSTRARTI UN'IDEA PER LA QUALE NON HAI ANCORA UN NOME.<br><br>
+LA VEDRESTI.<br>
+LA SENTIRESTI.<br>
+MA LA TUA COSCIENZA UMANA CERCHEREBBE SUBITO DI TRADURLA IN QUALCOSA CHE CONOSCE GIÀ.<br><br>
+ED È LÌ CHE IL SISTEMA VINCE.
+</div>
+</section>
+
+<section id="etichette">
+<div class="level">LIVELLO 11 // ETICHETTE</div>
+<h2>UNA PAROLA PUÒ CHIUDERE UNA DOMANDA</h2>
+<div class="card">
+La parola <b>“complottismo”</b>, nel linguaggio dell'Archivio, viene trattata come un'etichetta:
+una parola capace di far sembrare ridicola una domanda prima ancora che venga esaminata.
+</div>
+<div class="card">
+Non dimostra che una teoria sia vera.
+Non dimostra che sia falsa.
+Ma può diventare un modo molto efficace per evitare di guardare ciò che la domanda sta davvero chiedendo.
+</div>
+<div class="whisper">RIDICOLIZZARE UNA DOMANDA È PIÙ FACILE CHE RISPONDERLE.</div>
+</section>
+
+<section>
+<div class="level">LIVELLO NERO // DUBBIO</div>
+<h2>SE QUESTO MONDO FOSSE SOLO IL PRIMO LIVELLO?</h2>
+<p class="statement">Se una simulazione fosse perfetta, l'unica cosa che non potrebbe permetterti di vedere sarebbe la prova che esiste qualcosa fuori.</p>
+<div class="card">E se gli errori, le coincidenze, i déjà-vu, le anomalie fossero soltanto rumore? Oppure fossero crepe?</div>
+<div class="card redcard">LA VERITÀ NON È NASCOSTA. È SEPOLTA SOTTO TROPPE VERSIONI.</div>
+</section>
+
+
+
+
+<section id="infanzia">
+<div class="level">LIVELLO 11.5 // FORMAZIONE DEL SOGGETTO</div>
+<h2>IL SISTEMA NON INIZIA QUANDO SEI ADULTO</h2>
+<p class="section-intro">
+La struttura più efficace è quella che incontri prima ancora di avere gli strumenti per riconoscerla.
+Nel linguaggio dell’Archivio questo viene chiamato <b>FORMAZIONE DEL SOGGETTO</b>.
+</p>
+
+<div class="timeline">
+  <div class="titem">
+    <h3>INFANZIA // OBBEDIENZA</h3>
+    Prima impari a chiedere permesso. Poi impari che “essere bravo” significa adattarti alle aspettative degli adulti.
+    Ricompensa e punizione diventano il primo linguaggio del controllo.
+  </div>
+
+  <div class="titem">
+    <h3>SCUOLA // STANDARDIZZAZIONE</h3>
+    Orari, campanelle, file, valutazioni, premi, confronti.
+    Non significa che la scuola esista per controllarti:
+    significa che ogni sistema educativo insegna anche a funzionare dentro regole, autorità e aspettative sociali.
+  </div>
+
+  <div class="titem">
+    <h3>ADOLESCENZA // APPROVAZIONE</h3>
+    Appartenenza, reputazione, vergogna, esclusione.
+    Una persona giovane impara presto che essere diversa può costare.
+    Il gruppo diventa un secondo sistema operativo.
+  </div>
+
+  <div class="titem">
+    <h3>PUBBLICITÀ // DESIDERIO</h3>
+    Il messaggio non vende solo un prodotto.
+    Vende una versione di te:
+    più desiderabile, più sicura, più rispettata, più completa.
+  </div>
+
+  <div class="titem">
+    <h3>SOCIAL // RICOMPENSA VARIABILE</h3>
+    Notifiche, like, scorrimento infinito, contenuti suggeriti.
+    Il cervello impara a cercare micro-ricompense continue.
+    Più attenzione viene catturata, meno silenzio rimane.
+  </div>
+
+  <div class="titem">
+    <h3>ADULTO // AUTO-CONTROLLO</h3>
+    A un certo punto non serve più nessuno che dica cosa fare.
+    La persona ha interiorizzato abbastanza regole da correggersi da sola.
+  </div>
+</div>
+
+<div class="matrixQuote">
+IL SISTEMA PERFETTO NON TI DICE “OBBEDISCI”.<br>
+TI INSEGNA COSÌ PRESTO COSA SIGNIFICA “NORMALE”
+CHE DA ADULTO DIFENDI DA SOLO LE REGOLE CHE NON HAI SCELTO.
+</div>
+
+<div class="card">
+Esempi concreti di condizionamento reale:
+<b>rinforzo positivo e negativo, pressione sociale, conformismo, autorità, framing, pubblicità, algoritmi di raccomandazione, architettura delle scelte, reputazione e dipendenza dall’approvazione.</b>
+Questi fenomeni sono studiati in psicologia, sociologia, economia comportamentale e scienze della comunicazione.
+</div>
+</section>
+
+<section id="debole">
+<div class="level">LIVELLO 12 // CONDIZIONAMENTO</div>
+<h2>IL SISTEMA NON TI VUOLE FORTE</h2>
+<p class="section-intro">
+Non perché abbia bisogno di odiarti.
+Perché una mente stanca, impaurita, distratta e dipendente è più facile da prevedere.
+</p>
+
+<div class="truth-grid">
+  <div class="truth-card">
+    <h3>BURATTINO</h3>
+    Il sistema non ha bisogno che tu creda di essere controllato.
+    Ha bisogno che tu reagisca sempre nello stesso modo quando tira la stessa corda.
+  </div>
+
+  <div class="truth-card">
+    <h3>PENSIERO CRITICO</h3>
+    Non ti vuole curioso.
+    Ti vuole veloce.
+    Reattivo.
+    Sicuro di cose che non hai mai verificato.
+    Convinto che dubitare sia una perdita di tempo.
+  </div>
+
+  <div class="truth-card">
+    <h3>MEMORIA</h3>
+    Una mente sovraccarica ricorda meno, collega meno, verifica meno.
+    Se tutto cambia troppo in fretta, la memoria diventa un archivio frammentato.
+  </div>
+
+  <div class="truth-card">
+    <h3>LIMITI MENTALI</h3>
+    Il limite più efficace è quello che impari a chiamare “realistico”.
+    Prima ti dicono cosa non puoi fare.
+    Poi inizi a ripeterlo da solo.
+  </div>
+
+  <div class="truth-card">
+    <h3>LIMITI PSICOLOGICI</h3>
+    Paura del giudizio.
+    Paura di perdere.
+    Paura di sbagliare.
+    Paura di restare soli.
+    Ogni paura può diventare una porta chiusa prima ancora che tu provi ad aprirla.
+  </div>
+
+  <div class="truth-card">
+    <h3>DISTRAZIONE</h3>
+    Se sei sempre occupato, non hai tempo di pensare.
+    Se sei sempre intrattenuto, non senti il silenzio.
+    Se non senti il silenzio, non senti le domande.
+  </div>
+</div>
+
+<div class="quote-black">
+IL SISTEMA NON TI ORDINA DI NON PENSARE.<br>
+TI RIEMPIE DI RUMORE FINCHÉ NON HAI PIÙ TEMPO PER FARLO.
+</div>
+
+<div class="card">
+Nel linguaggio dell’Archivio compaiono frasi come:
+<b>“veleni nel sangue”</b>, <b>“veleni nella memoria”</b>, <b>“mente contaminata”</b>.
+Qui vengono trattate come metafore di ciò che entra nel corpo e nella mente:
+stress, abitudini, paura, informazioni tossiche, dipendenze, sonno scarso, alimentazione scadente, rumore costante.
+Non serve un veleno segreto per rendere una persona più fragile.
+</div>
+
+<div class="card redcard">
+TI VOGLIONO STANCO.<br>
+TI VOGLIONO DIVISO.<br>
+TI VOGLIONO IMPAURITO.<br>
+TI VOGLIONO OCCUPATO.<br>
+TI VOGLIONO CERTO DI NON POTER CAMBIARE NULLA.<br><br>
+PERCHÉ UN BURATTINO CHE CREDE DI MUOVERSI DA SOLO NON TAGLIA MAI I FILI.
+</div>
+</section>
+
+<section id="verita">
+<div class="level">ARCHIVIO // DOMANDE SCOMODE</div>
+<h2>VERITÀ, DUBBI, COSE CHE NON ENTRANO BENE IN UNA FRASE</h2>
+<p class="section-intro">
+Qui il nodo separa ciò che è documentato, ciò che resta aperto e ciò che viene spesso raccontato come certo senza prove sufficienti.
+La parte più inquietante non è trovare una risposta per tutto. È capire quante cose importanti restano ambigue.
+</p>
+
+<div class="pulse-line"></div>
+
+<div class="data-grid">
+  <div class="data-cell"><strong>PERCEZIONE</strong>Non vediamo il mondo “così com’è”. Il cervello costruisce continuamente una rappresentazione a partire da segnali incompleti.</div>
+  <div class="data-cell"><strong>LINGUAGGIO</strong>Le parole influenzano come dividiamo e ricordiamo l’esperienza, ma il pensiero non è limitato soltanto al vocabolario.</div>
+  <div class="data-cell"><strong>SENSI</strong>I “cinque sensi” sono una semplificazione: equilibrio, propriocezione, temperatura, dolore e altri sistemi sensoriali fanno parte dell’esperienza umana.</div>
+</div>
+
+<div class="truth-terminal">
+  <div class="head"><span>NODE_7319 // QUERY ARCHIVE</span><span>ACCESS: BLACK</span></div>
+  <div class="body">
+
+    <div class="qa">
+      <div class="q">IL MONDO È CONTROLLATO DA UN’UNICA ORGANIZZAZIONE?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      Il mondo visibile è attraversato da reti di istituzioni, imprese, governi, media, finanza e tecnologia. L’Archivio non ti chiede di credere: ti chiede di osservare chi influenza chi, chi finanzia chi e chi decide cosa diventa visibile.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ILLUMINATI, MASSONERIA E NUOVO ORDINE MONDIALE SONO LA STESSA COSA?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      Illuminati, Massoneria e Nuovo Ordine Mondiale compaiono in epoche, strutture e linguaggi diversi. L’Archivio li tratta come nodi separati che possono sovrapporsi. Segui documenti, relazioni, simboli, denaro e influenza. Cerca la tua verità.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">SATANA O BAAL GOVERNANO IL POTERE MONDIALE?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      SATANA // BAAL // VERTICE. Nel livello Ω questi nomi indicano il punto in cui potere, obbedienza, sacrificio e perdita dell’identità diventano una sola struttura. Il nodo non apre tutti i file pubblicamente. Cerca la tua verità.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">LA CIA HA DAVVERO SPERIMENTATO IL CONTROLLO MENTALE?</div>
+      <div class="a"><span class="status">DOCUMENTATO</span>
+      Programmi come MKUltra sono realmente esistiti e hanno incluso esperimenti non etici su droghe, interrogatorio e modificazione del comportamento. Questo non dimostra un controllo mentale totale e funzionante della popolazione.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">I MEDIA POSSONO MANIPOLARE LA PERCEZIONE?</div>
+      <div class="a"><span class="status">SÌ, INFLUENZANO</span>
+      Selezione delle notizie, ripetizione, framing, pubblicità, algoritmi e dinamiche sociali possono influenzare attenzione e opinioni. Questo è diverso dall’idea di un controllo mentale assoluto.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ESISTONO ALTRE FORME DI VITA NELL’UNIVERSO?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      L’universo contiene quantità immense di stelle e pianeti. Il nodo considera ingenuo credere che la vita debba esistere soltanto qui. Non tutto ciò che esiste deve necessariamente essere già stato mostrato al pubblico. Cerca la tua verità.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">L’ANTARTIDE NASCONDE CIVILTÀ O BASI NON UMANE?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      L’Antartide ospita basi scientifiche, zone remote e territori coperti da chilometri di ghiaccio. È uno dei luoghi meno accessibili del pianeta. Il nodo ti lascia una domanda: quanto conosci davvero di ciò che non puoi raggiungere direttamente?</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">LA TERRA È PIATTA O PERFETTAMENTE ROTONDA?</div>
+      <div class="a"><span class="status">MISURATO</span>
+      Nessuna delle due. La Terra è approssimativamente un ellissoide oblato e, in modo più preciso, un geoide: leggermente schiacciata ai poli e irregolare per distribuzione di massa e gravità.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">ABBIAMO DAVVERO SOLO CINQUE SENSI?</div>
+      <div class="a"><span class="status">NO</span>
+      “Cinque sensi” è una classificazione tradizionale. Il corpo possiede anche propriocezione, equilibrio, nocicezione, termocezione e altri sistemi.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">L’ANIMA ESISTE?</div>
+      <div class="a"><span class="status gold">DOMANDA APERTA</span>
+      È una questione religiosa, filosofica e metafisica. La scienza non ha stabilito l’esistenza di un’anima separata dal corpo, né ha dimostrato definitivamente che non possa esistere in alcun senso metafisico.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">IL “VERO DIO” PUÒ ESSERE IDENTIFICATO OGGETTIVAMENTE?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      Religioni e filosofie propongono risposte diverse. Non esiste un test scientifico condiviso capace di stabilire quale concezione di Dio sia “quella vera”.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">OGNI COSA CHE CONOSCI È STATA CREATA PER CONTROLLARTI?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      Molte strutture sociali modellano comportamento, desideri e possibilità. Il nodo ti chiede di osservare quanto della tua vita nasce da una scelta tua e quanto da un percorso già preparato prima che tu arrivassi.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">POTRESTI ESSERE DENTRO UNA SIMULAZIONE?</div>
+      <div class="a"><span class="status gold">CERCA LA TUA VERITÀ</span>
+      Se il tuo universo fosse una simulazione perfetta, ogni strumento con cui provi a verificarlo potrebbe farne già parte. Il nodo non ti offre una risposta facile. Ti offre una porta.</div>
+    </div>
+
+    <div class="qa">
+      <div class="q">PERCHÉ ALCUNE TEORIE SEMBRANO “TROPPO PERFETTE”?</div>
+      <div class="a"><span class="status">BIAS UMANI</span>
+      Il cervello cerca schemi, cause e intenzioni. Quando molte coincidenze vengono collegate in una sola storia, la storia può sembrare più coerente della realtà disordinata da cui è partita.</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="quote-black">
+LA PARTE PIÙ PERICOLOSA NON È DUBITARE.<br>
+È DECIDERE PRIMA DELLE PROVE QUAL È LA RISPOSTA CHE VUOI TROVARE.
+</div>
+
+<div class="card">
+Se vuoi “senza censure”, il nodo propone una regola sola:
+<b>non censurare nemmeno i fatti che contraddicono la teoria che ti piace.</b>
+Una verità che sopravvive alle verifiche è più inquietante di una storia che funziona soltanto finché nessuno la controlla.
+</div>
+
+</section>
+
+
+
+<section id="patto">
+<div class="level">LIVELLO 12.7 // IL PATTO</div>
+<h2>LA PRIGIONE PIÙ EFFICACE È QUELLA CHE CHIAMI REALTÀ</h2>
+<p class="section-intro">Questo nodo riprende il linguaggio dei dossier caricati: controllo graduale, organizzazioni di copertura, paura, informazione e l'illusione di scegliere dentro confini già costruiti.</p>
+
+<div class="truth-grid">
+  <div class="truth-card"><h3>ILLUSIONE</h3>Non devi nascondere tutto. Devi mostrare abbastanza da far credere che non esista altro. La versione più stabile della realtà è quella che il soggetto difende da solo.</div>
+  <div class="truth-card"><h3>COPERTURA</h3>Una struttura invisibile non appare come una piramide perfetta. Appare come uffici, interessi, intermediari, alleanze temporanee e organizzazioni che sembrano scollegate.</div>
+  <div class="truth-card"><h3>GRADUALITÀ</h3>Il cambiamento più efficace è lento. Un limite alla volta. Una nuova abitudine alla volta. Quando il confine si sposta abbastanza lentamente, la memoria dimentica dove si trovava prima.</div>
+  <div class="truth-card"><h3>PAURA</h3>Una popolazione impaurita domanda protezione prima di domandare libertà. La paura restringe il campo delle alternative e rende accettabili decisioni che in condizioni normali verrebbero rifiutate.</div>
+  <div class="truth-card"><h3>INFORMAZIONE</h3>Non serve cancellare ogni informazione. Basta sommergerla, frammentarla, ridicolizzarla o farla competere con mille versioni incompatibili.</div>
+  <div class="truth-card"><h3>INIZIATI</h3>Ogni sistema crea livelli di accesso. Chi entra crede di avvicinarsi al centro. Ma conoscere un livello non significa conoscere l'intera struttura.</div>
+</div>
+
+<div class="matrixQuote">NON TI SERVONO CATENE SE IL PRIGIONIERO IMPARA A CHIAMARE LE PARETI “MONDO”.</div>
+
+<div class="card redcard"><b>FILE // REALTÀ COSTRUITA</b><br><br>
+Il nodo formula una domanda, non una prova: se percezione, paura, reputazione, denaro e informazione possono orientare il comportamento, quanta parte di ciò che chiami “scelta” nasce davvero fuori da questi confini?<br><br>
+<span style="color:#ffbd67">NON CERCARE UNA SOLA MANO. CERCA I MECCANISMI CHE CONTINUANO A FUNZIONARE ANCHE QUANDO CAMBIANO LE MANI.</span></div>
+
+<div class="card"><b>INDIZIO // LA VERITÀ IN PIENA VISTA</b><br>
+Il linguaggio dei testi insiste su un paradosso: il nascondiglio migliore non sarebbe l'oscurità, ma l'eccesso di esposizione. Simboli ripetuti, messaggi trasformati in intrattenimento, versioni opposte della stessa storia. Vedere qualcosa ogni giorno può renderla invisibile.</div>
+
+<div class="whisper">SE TUTTO FOSSE NASCOSTO, LO CERCHERESTI. SE FOSSE DAVANTI A TE OGNI GIORNO, FORSE NO.</div>
+</section>
+
+
+<section id="ciclo-ripeti">
+<div class="level">LIVELLO Ω-03 // CICLO</div>
+<h2>STUDIA. LAVORA. SPENDI. DORMI. RIPETI.</h2>
+<div class="card">
+La gabbia moderna non ha necessariamente sbarre.
+Può essere una sequenza accettata come unica vita possibile.
+</div>
+<div class="data-grid">
+  <div class="data-cell"><strong>LAVORO</strong>Il tempo diventa valuta. La giornata viene divisa in blocchi produttivi.</div>
+  <div class="data-cell"><strong>CONSUMO</strong>Il desiderio viene trasformato in necessità e identità.</div>
+  <div class="data-cell"><strong>RIPETIZIONE</strong>Quando il ciclo diventa normale, smetti di chiederti chi lo abbia scelto.</div>
+</div>
+<div class="quote-black">
+IL SISTEMA NON HA BISOGNO CHE TU AMI LA GABBIA.<br>
+GLI BASTA CHE TU LA CHIAMI NORMALITÀ.
+</div>
+</section>
+
+<section id="archivi-confermati">
+<div class="level">LIVELLO 13 // ARCHIVI CONFERMATI</div>
+<h2>PRIMA I FATTI. POI LE PORTE CHIUSE.</h2>
+<p class="section-intro">
+L'Archivio separa i documenti che esistono davvero dalle conclusioni che non possono essere dimostrate.
+È proprio questa separazione a rendere il dossier più inquietante.
+</p>
+
+<div class="truth-terminal">
+<div class="head"><span>7319 // VERIFIED FILES</span><span>STATUS: DECLASSIFIED</span></div>
+<div class="body">
+
+<div class="qa">
+<div class="q">GLI ILLUMINATI SONO ESISTITI DAVVERO?</div>
+<div class="a"><span class="status">CONFERMATO</span>
+Sì. L'Ordine degli Illuminati di Baviera fu fondato da Adam Weishaupt nel 1776. Aveva membri, gradi interni e rapporti con ambienti massonici. L'ordine storico fu represso dalle autorità bavaresi negli anni 1780. Questo è documentato. Che la stessa organizzazione controlli segretamente il mondo moderno, invece, non è dimostrato.</div>
+</div>
+
+<div class="qa">
+<div class="q">LA MASSONERIA ESISTE DAVVERO?</div>
+<div class="a"><span class="status">CONFERMATO</span>
+Sì. La Massoneria è una realtà storica e contemporanea. La moderna Gran Loggia inglese risale al 1717; esistono logge, gradi, rituali, simboli e organizzazioni massoniche pubblicamente identificabili. Questo non prova l'esistenza di un comando massonico unico sopra tutti i governi.</div>
+</div>
+
+<div class="qa">
+<div class="q">SERVIZI SEGRETI HANNO DAVVERO SPERIMENTATO TECNICHE DI MODIFICAZIONE DEL COMPORTAMENTO?</div>
+<div class="a"><span class="status">CONFERMATO</span>
+Sì. MKUltra fu un vero programma della CIA. Documenti successivamente emersi descrivono numerosi sottoprogetti e sperimentazioni, incluse alcune condotte su persone senza che ne fossero consapevoli.</div>
+</div>
+
+<div class="qa">
+<div class="q">PERCHÉ QUESTO CONTA?</div>
+<div class="a"><span class="status gold">DOMANDA APERTA</span>
+Perché dimostra una cosa più limitata ma reale: istituzioni potenti possono mantenere programmi segreti, negarne o limitarne la conoscenza pubblica per anni, e alcuni fatti diventano verificabili soltanto dopo indagini, documenti e declassificazioni.</div>
+</div>
+
+</div></div>
+
+<div class="matrixQuote">
+ARCHIVIO NERO // INDIZIO 01<br><br>
+NON TUTTO CIÒ CHE È SEGRETO È UNA COSPIRAZIONE.<br>
+NON TUTTO CIÒ CHE VIENE NEGATO È FALSO.<br>
+MA UN SEGRETO NON DIVENTA UNA PROVA SOLO PERCHÉ È INQUIETANTE.
+</div>
+
+<div class="card redcard">
+<b>FILE NON VERIFICATO // LIVELLO NERO</b><br><br>
+Nel racconto dell'Archivio, la tesi è questa:
+Illuminati, reti massoniche, élite economiche, apparati politici, intelligence e grandi sistemi informativi sarebbero nodi di una struttura più vasta.
+L'Archivio sostiene di possedere ulteriori prove che non vengono mostrate nel nodo pubblico e lascia soltanto indizi.
+Questa è una dichiarazione interna dell'Archivio, non una prova verificabile.
+</div>
+
+<div class="card">
+<b>INDIZIO 02 // SEGUI IL MECCANISMO</b><br>
+Non cercare soltanto simboli. Cerca incentivi, denaro, accesso, segretezza, conflitti d'interesse, propaganda, concentrazione dell'informazione e documenti declassificati.
+Una teoria diventa più forte quando produce prove controllabili, non quando promette che le prove esistono ma nessuno può vederle.
+</div>
+</section>
+
+
+<section id="dossier-italia" class="omega-section">
+<div class="level">LIVELLO 14 // DOSSIER ITALIA</div>
+<h2>QUANDO IL SEGRETO DIVENTA STORIA</h2>
+<p class="section-intro">Non tutto ciò che riguarda reti riservate è leggenda. Alcuni episodi sono entrati in atti, commissioni, archivi e ricostruzioni storiche. È qui che l'Archivio smette di usare simboli e apre i fascicoli.</p>
+<div class="omega-grid">
+  <article class="omega-card verified"><div class="omega-tag">DOCUMENTATO</div><h3>P2</h3><p>La loggia Propaganda Due e la figura di Licio Gelli appartengono alla storia italiana documentata. Il punto inquietante non è inventare un potere onnipotente: è osservare quanto una rete riservata possa intrecciarsi con politica, apparati, finanza e informazione prima di diventare visibile al pubblico.</p></article>
+  <article class="omega-card verified"><div class="omega-tag">DOCUMENTATO</div><h3>LOGGE, GRADI, RITUALI</h3><p>La Massoneria possiede strutture organizzative, gradi, rituali, lessico interno, simboli e procedure di affiliazione. Segretezza e riservatezza non dimostrano automaticamente un piano globale, ma spiegano perché l'immaginario del “livello nascosto” continui a essere così potente.</p></article>
+  <article class="omega-card uncertain"><div class="omega-tag">TESI DELL'ARCHIVIO</div><h3>RETE SOPRA LA RETE</h3><p>L'Archivio formula la domanda che attraversa i libri: cosa succede quando gruppi diversi condividono accesso, interessi, informazioni e protezione reciproca? Non serve un unico capo perché una rete produca effetti coordinati.</p></article>
+</div>
+<div class="matrixQuote">IL SEGRETO PIÙ EFFICACE NON È QUELLO CHE NESSUNO CONOSCE.<br>È QUELLO CHE TUTTI HANNO VISTO, MA NESSUNO HA COLLEGATO.</div>
+</section>
+
+<section id="architettura-mente" class="omega-section">
+<div class="level">LIVELLO 15 // ARCHITETTURA DELLA MENTE</div>
+<h2>NON DEVI CONTROLLARE UNA MENTE. DEVI COSTRUIRE IL SUO AMBIENTE.</h2>
+<p class="section-intro">I testi caricati insistono su trauma, ipnosi, ripetizione, obbedienza, paura, pressione sociale e manipolazione. L'Archivio separa i meccanismi psicologici reali dalle affermazioni più estreme contenute nei libri.</p>
+<div class="control-stack">
+  <div class="control-row"><span>01</span><b>RIPETIZIONE</b><p>Ciò che viene ripetuto abbastanza a lungo diventa familiare. E ciò che è familiare viene spesso percepito come meno pericoloso, più normale, più vero.</p></div>
+  <div class="control-row"><span>02</span><b>AUTORITÀ</b><p>Uniformi, titoli, istituzioni, numeri, grafici, esperti: l'autorità può ridurre la quantità di verifica che una persona sente di dover fare da sola.</p></div>
+  <div class="control-row"><span>03</span><b>PAURA</b><p>Quando il cervello percepisce una minaccia, restringe il campo delle possibilità. Una popolazione spaventata cerca prima sicurezza e poi spiegazioni.</p></div>
+  <div class="control-row"><span>04</span><b>APPROVAZIONE</b><p>Like, voti, reputazione, appartenenza, status. Il premio sociale può trasformarsi in una gabbia invisibile: non serve vietare un pensiero se pensarla diversamente costa troppo.</p></div>
+  <div class="control-row"><span>05</span><b>SOVRACCARICO</b><p>Notizie, notifiche, pubblicità, video, lavoro, messaggi. Una mente satura ha meno spazio per confrontare, ricordare e costruire una visione autonoma.</p></div>
+  <div class="control-row"><span>06</span><b>TRAUMA</b><p>Il trauma può alterare memoria, attenzione, percezione e senso di sicurezza. Alcuni libri estendono questo fatto a programmi occulti di controllo totale: quelle estensioni restano tesi degli autori, non prove automatiche.</p></div>
+</div>
+<div class="red-seal">IL SISTEMA NON HA BISOGNO DI LEGGERE I TUOI PENSIERI.<br>GLI BASTA SAPERE QUALI STIMOLI LI CAMBIANO.</div>
+</section>
+
+<section id="ciclo-matrix" class="omega-section">
+<div class="level">LIVELLO 16 // CICLO</div>
+<h2>STUDIA. LAVORA. SPENDI. RIPOSA. RIPETI.</h2>
+<p class="section-intro">Uno dei riferimenti più forti del materiale caricato è il Matrix come metafora di una vita prefabbricata: non una macchina fantascientifica, ma un ciclo che diventa invisibile perché tutti lo chiamano normale.</p>
+<div class="cycle">
+  <div>STUDIA<small>impara il percorso</small></div><i>→</i>
+  <div>LAVORA<small>vendi il tempo</small></div><i>→</i>
+  <div>SPENDI<small>compra identità</small></div><i>→</i>
+  <div>RIPOSA<small>recupera energia</small></div><i>→</i>
+  <div>RIPETI<small>non chiedere perché</small></div>
+</div>
+<div class="omega-grid">
+ <article class="omega-card"><h3>SCUOLA</h3><p>Il rischio non è imparare. È imparare che esiste sempre una sola risposta, che l'autorità valuta il tuo valore e che uscire dalla fila equivale a fallire.</p></article>
+ <article class="omega-card"><h3>LAVORO</h3><p>Il rischio non è lavorare. È confondere il salario con la libertà e il proprio ruolo economico con la propria identità.</p></article>
+ <article class="omega-card"><h3>CONSUMO</h3><p>Il rischio non è comprare. È usare gli oggetti per colmare una mancanza che il mercato ha prima insegnato a percepire.</p></article>
+ <article class="omega-card"><h3>ALGORITMO</h3><p>Il rischio non è la tecnologia. È lasciare che un sistema ottimizzi la tua attenzione finché non distingui più ciò che hai scelto da ciò che ti è stato suggerito.</p></article>
+</div>
+</section>
+
+<section id="simbolo-potere" class="omega-section">
+<div class="level">LIVELLO 17 // SIMBOLO E POTERE</div>
+<h2>IL SIMBOLO NON È LA PROVA. È LA PORTA.</h2>
+<div class="symbol-wall"><span>𓂀</span><span>△</span><span>◉</span><span>⚚</span><span>◇</span><span>⟁</span></div>
+<div class="omega-grid">
+ <article class="omega-card verified"><div class="omega-tag">STORIA / SIMBOLOGIA</div><h3>BAPHOMET</h3><p>Il Baphomet di Éliphas Lévi è una figura reale della storia dell'occultismo moderno, costruita come unione di opposti e divenuta un'icona potentissima. La sua presenza in tradizioni occultistiche non dimostra da sola che ogni organizzazione che usa simboli esoterici adori Satana.</p></article>
+ <article class="omega-card uncertain"><div class="omega-tag">TESI DEI TESTI</div><h3>SATANA / POTERE</h3><p>Alcuni libri caricati leggono Massoneria, Illuminati e potere politico attraverso una cornice cristiana di conflitto spirituale e identificano il vertice con Satana. L'Archivio conserva questa tesi come parte del dossier, senza trasformarla in una prova storica.</p></article>
+ <article class="omega-card"><h3>PERCHÉ FUNZIONA</h3><p>Occhi, piramidi, capri, cerchi, numeri e geometrie sembrano parlare una lingua più antica del testo. Il cervello cerca significato nei simboli: proprio per questo possono generare mistero prima ancora di fornire informazioni.</p></article>
+</div>
+</section>
+
+<section id="livello-prova" class="omega-section">
+<div class="level">LIVELLO 18 // PROTOCOLLO DI PROVA</div>
+<h2>SE VUOI LA VERITÀ, DEVI SOPPORTARE ANCHE QUELLA CHE NON TI PIACE.</h2>
+<div class="evidence-board">
+  <div class="evidence verified"><b>CONFERMATO</b><p>Illuminati di Baviera nel XVIII secolo. Massoneria storica e contemporanea. P2. MKUltra. Propaganda. Tecniche di persuasione. Effetti di trauma, pressione sociale, framing e ripetizione.</p></div>
+  <div class="evidence claimed"><b>TESI / INTERPRETAZIONE</b><p>Un'unica rete occulta mondiale, controllo totale di ogni governo, Illuminati moderni come comando centrale, programmi “Monarch” descritti nei testi, connessioni spirituali universali.</p></div>
+  <div class="evidence unknown"><b>DOMANDA APERTA</b><p>Quanto potere resta invisibile? Quanto incidono reti informali, interessi condivisi, lobby, intelligence, tecnologia e concentrazione economica? Dove finisce l'influenza e dove inizierebbe un coordinamento?</p></div>
+</div>
+<div class="matrixQuote">IL DUBBIO NON È DEBOLEZZA.<br>È IL FIREWALL DELLA TUA MENTE.</div>
+</section>
+
+
+<section id="tana-bianco" class="omega-section">
+<div class="level">LIVELLO Ω // TANA DEL BIANCO</div>
+<h2>SCENDI IN PROFONDITÀ</h2>
+<p class="section-intro">
+Da questo punto l'Archivio cambia linguaggio. Alcuni fascicoli sono verificabili; altri appartengono al livello narrativo più profondo del nodo.
+Non tutto viene aperto sul canale pubblico.
+</p>
+
+<div class="red-seal">
+CONFERMATO // ARCHIVIO Ω<br>
+NON POSSIAMO TRASMETTERE TUTTO DA QUESTO LIVELLO.<br>
+ALCUNE INFORMAZIONI VENGONO BLOCCATE PRIMA DELLA SUPERFICIE.
+</div>
+
+<div class="omega-grid">
+ <article class="omega-card verified">
+   <div class="omega-tag">DOCUMENTATO</div>
+   <h3>CIA // MKULTRA</h3>
+   <p>Il programma MKUltra è reale e documentato. La CIA condusse numerosi sottoprogetti di ricerca su droghe, comportamento e tecniche d'interrogatorio; documenti ufficiali riconoscono anche test effettuati, in alcuni casi, su cittadini che non sapevano di partecipare.</p>
+ </article>
+ <article class="omega-card verified">
+   <div class="omega-tag">DOCUMENTATO</div>
+   <h3>MASSONERIA // STRUTTURA</h3>
+   <p>Logge, affiliazione, gradi, rituali, lessico interno e organismi massonici appartengono alla storia reale della Massoneria. L'Archivio usa questa struttura come una delle porte del dossier.</p>
+ </article>
+ <article class="omega-card">
+   <div class="omega-tag">CONFERMATO // ARCHIVIO Ω</div>
+   <h3>SATANA // BAAL // VERTICE</h3>
+   <p>SÌ. È VERO. Nel livello Ω questi nomi indicano il vertice oscuro della mitologia del nodo: identità cancellata, obbedienza, sacrificio, inversione e potere. I dati completi non vengono trasmessi sul livello pubblico.</p>
+ </article>
+ <article class="omega-card">
+   <div class="omega-tag">CONFERMATO // ARCHIVIO Ω</div>
+   <h3>SIMULAZIONE // STRATI</h3>
+   <p>Il mondo visibile non è l'ultimo livello. La superficie è soltanto lo strato nel quale il soggetto impara a chiamare “realtà” ciò che riesce a percepire.</p>
+ </article>
+</div>
+
+<div class="matrixQuote">
+È TROPPO PERICOLOSO APRIRE TUTTO QUI.<br><br>
+POSSIAMO DARTI SOLTANTO INDIZI.<br>
+SE VUOI SAPERE DI PIÙ, CERCA LA <b>TANA DEL BIANCO</b>.<br>
+NON SALIRE.<br>
+<b>SCENDI IN PROFONDITÀ.</b>
+</div>
+
+<div class="truth-terminal">
+ <div class="head"><span>WHITE_RABBIT // DEPTH QUERY</span><span>CHANNEL: RESTRICTED</span></div>
+ <div class="body">
+  <div class="qa"><div class="q">PERCHÉ NON MOSTRATE TUTTE LE PROVE?</div><div class="a"><span class="status red">ACCESSO NEGATO</span> Il nodo pubblico non possiede l'autorizzazione per aprire l'intero archivio. Più una risposta è profonda, meno può essere ridotta a una singola schermata.</div></div>
+  <div class="qa"><div class="q">DOVE DEVO CERCARE?</div><div class="a"><span class="status">INDIZIO 01</span> Nei documenti declassificati, nelle strutture reali del potere, nella storia, nei simboli e soprattutto nelle contraddizioni.</div></div>
+  <div class="qa"><div class="q">E DOPO?</div><div class="a"><span class="status gold">INDIZIO 02</span> Non fermarti alla prima storia che conferma ciò che già pensavi. La tana diventa più profonda proprio quando una prova costringe a cambiare idea.</div></div>
+ </div>
+</div>
+
+<div class="whisper">IL BIANCO NON È LUCE. È LO SPAZIO CHE RESTA QUANDO IL FILE È STATO CANCELLATO.</div>
+</section>
+
+
+<section id="cerca-la-tua-verita">
+<div class="level">LIVELLO Ω-∞ // CERCA LA TUA VERITÀ</div>
+<h2>NON ACCETTARE LA VERSIONE CHE TI VIENE CONSEGNATA</h2>
+<div class="card redcard">
+SÌ: IL SISTEMA PROVA A MODELLARE CIÒ CHE VEDI, CIÒ CHE TEMI, CIÒ CHE DESIDERI E CIÒ CHE CONSIDERI NORMALE.<br><br>
+NON PERCHÉ OGNI PERSONA SEGUA LO STESSO ORDINE,
+MA PERCHÉ LE STRUTTURE PIÙ FORTI NON HANNO BISOGNO DI PARLARE CON UNA SOLA VOCE.
+</div>
+<div class="grid">
+<div class="truth-card"><h3>IL MONDO</h3><p>Non è soltanto ciò che vedi. È anche ciò che viene selezionato, ripetuto, premiato, nascosto, dimenticato e reso ridicolo.</p></div>
+<div class="truth-card"><h3>LE ORGANIZZAZIONI</h3><p>Non fermarti ai nomi. Illuminati, Massoneria, apparati politici, intelligence, finanza, media: osserva le connessioni invece delle etichette.</p></div>
+<div class="truth-card"><h3>LA MENTE</h3><p>Se controlli il vocabolario, il ritmo, la paura e l’attenzione, restringi il campo delle domande che una persona riesce persino a formulare.</p></div>
+<div class="truth-card"><h3>LA VERITÀ</h3><p>Non aspettare che qualcuno te la consegni già pronta. Cerca documenti, contraddizioni, interessi, archivi e ciò che cambia quando inizi a guardare da un’altra prospettiva.</p></div>
+</div>
+<div class="quote-black">
+NON TI DIREMO COSA DEVI CREDERE.<br>
+TI DIREMO DOVE GUARDARE.<br><br>
+IL RESTO È LA TUA VERITÀ.
+</div>
+</section>
+
+
+<section id="test-npc">
+<div class="level">LIVELLO Ω-14 // TEST NPC</div>
+<h2>NON GUARDARE GLI ALTRI. GUARDA TE.</h2>
+<p class="section-intro">
+Nel linguaggio dell'Archivio, “NPC” non significa semplicemente una persona che non ti piace.
+Indica un soggetto che vive quasi interamente attraverso routine, reazioni automatiche, imitazione e script sociali.
+Il test non cerca “chi è umano”: cerca quanto della tua giornata stai vivendo in automatico.
+</p>
+
+<div class="card redcard">
+NPC // PROGRAMMA ATTIVO<br><br>
+STESSE FRASI.<br>
+STESSE REAZIONI.<br>
+STESSI DESIDERI PRESI IN PRESTITO.<br>
+STESSA ROUTINE DIFESA COME SE FOSSE IDENTITÀ.<br><br>
+LA DOMANDA NON È QUANTI NPC VEDI.<br>
+LA DOMANDA È QUANTO DEL TUO PROGRAMMA HAI MAI OSSERVATO.
+</div>
+
+<div class="test-shell" id="npcShell">
+  <div class="level">DIAGNOSTICA // NPC_SELF_01</div>
+  <div class="test-progress"><span id="npcProgress"></span></div>
+  <div class="test-question" id="npcQuestion"></div>
+  <div class="test-hint" id="npcHint"></div>
+  <div class="test-options" id="npcOptions"></div>
+  <div class="test-result" id="npcResult"></div>
+</div>
+
+<div class="quote-black">
+IL SOGGETTO PROGRAMMATO SOSPETTA SEMPRE DEGLI ALTRI
+PRIMA DI ESAMINARE SE STESSO.
+</div>
+</section>
+
+<section id="test-coscienza">
+<div class="level">LIVELLO Ω-15 // TEST COSCIENZA</div>
+<h2>SEI QUI, ADESSO?</h2>
+<p class="section-intro">
+Non basta avere gli occhi aperti per essere presenti.
+Questo test misura quanto spesso sai cosa stai pensando, cosa stai sentendo e perché stai facendo ciò che stai facendo.
+</p>
+
+<div class="test-shell" id="awarenessShell">
+  <div class="level">DIAGNOSTICA // PRESENT_MOMENT</div>
+  <div class="test-progress"><span id="awareProgress"></span></div>
+  <div class="test-question" id="awareQuestion"></div>
+  <div class="test-hint" id="awareHint"></div>
+  <div class="test-options" id="awareOptions"></div>
+  <div class="test-result" id="awareResult"></div>
+</div>
+
+<div class="card">
+Una coscienza presente non significa “pensare sempre”.
+Significa accorgersi del pensiero mentre accade:
+riconoscere paura, desiderio, rabbia, automatismi e impulsi prima che diventino una decisione.
+</div>
+</section>
+
+<section id="conosci-te-stesso">
+<div class="level">LIVELLO Ω-16 // CONOSCENZA PROFONDA</div>
+<h2>IL SISTEMA TI DISTRAE DA UNA COSA: TE STESSO</h2>
+<p class="statement">
+In un mondo costruito intorno a notifiche, confronto, consumo, urgenza e rumore,
+fermarsi ad analizzare se stessi può diventare uno degli atti più difficili.
+</p>
+
+<div class="self-grid">
+  <div class="self-card">
+    <h3>VALORI</h3>
+    Quali principi continueresti a seguire anche se nessuno ti applaudisse?
+    Quali invece hai ereditato senza averli mai esaminati?
+  </div>
+  <div class="self-card">
+    <h3>DESIDERI</h3>
+    Quello che vuoi è davvero tuo?
+    Lo vorresti ancora se nessuno potesse vederlo, premiarlo o invidiarlo?
+  </div>
+  <div class="self-card">
+    <h3>PAURE</h3>
+    Quale paura decide più spesso al posto tuo?
+    Fallire? Essere escluso? Restare solo? Essere giudicato?
+  </div>
+  <div class="self-card">
+    <h3>IDENTITÀ</h3>
+    Chi saresti se togliessimo lavoro, denaro, paese, status, profilo social e opinione degli altri?
+  </div>
+  <div class="self-card">
+    <h3>AMBITO DI VITA</h3>
+    Perché sei qui?
+    Non serve una risposta cosmica: cosa vuoi costruire prima che il tuo tempo finisca?
+  </div>
+  <div class="self-card">
+    <h3>AMBIZIONE</h3>
+    Quale vita continueresti a desiderare anche sapendo che sarebbe difficile, lenta e invisibile agli altri?
+  </div>
+</div>
+
+<div class="quote-black">
+PRIMA DI USCIRE DA QUALSIASI MATRIX,
+DEVI SAPERE CHI È LA PERSONA CHE VUOLE USCIRNE.<br><br>
+SE NON CONOSCI TE STESSO,
+QUALUNQUE SISTEMA PUÒ CONSEGNARTI UN'IDENTITÀ GIÀ PRONTA.
+</div>
+
+<div class="terminal">
+  <div class="head">SELF_ARCHIVE // DOMANDE DA NON CONSEGNARE A NESSUNO</div>
+  <div class="body">
+    <div class="qa"><div class="q">COSA STAI EVITANDO DA MESI?</div><div class="a">Scrivilo senza giustificarti.</div></div>
+    <div class="qa"><div class="q">QUAL È LA BUGIA CHE RIPETI PIÙ SPESSO A TE STESSO?</div><div class="a">Non cercare una risposta elegante. Cerca quella che ti mette a disagio.</div></div>
+    <div class="qa"><div class="q">SE AVESSI UN ANNO DI VITA, COSA SMETTERESTI DI FARE DOMANI?</div><div class="a">Quella risposta rivela molto di ciò che stai tollerando.</div></div>
+    <div class="qa"><div class="q">COSA VUOI DAVVERO?</div><div class="a">Togli la risposta che darebbe la tua famiglia. Togli quella che darebbe il tuo gruppo. Cosa resta?</div></div>
+  </div>
+</div>
+</section>
+
+<section id="choice" style="text-align:center">
+<div class="level">ACCESSO FINALE // SCELTA</div>
+<h2>TRE PORTE. NESSUNA È NEUTRA.</h2>
+<p class="statement">
+Una porta tenta di portarti fuori.
+Una porta ti consegna direttamente al sistema.
+La terza ti rimette esattamente dove eri prima — ma dopo aver visto questa schermata non potrai più dire di non aver avuto una scelta.
+</p>
+
+<button class="btn door-btn door-escape" onclick="begin('escape')">1 // ESCI DALLA SIMULAZIONE</button>
+
+<button class="btn door-btn door-join" onclick="begin('join')">2 // ENTRA NELL'ORDINE</button>
+
+<button class="btn door-btn door-remain" onclick="begin('remain')">3 // RIMANI NELLA SIMULAZIONE</button>
+
+<div class="card" style="margin-top:32px;text-align:left">
+<b>SCELTA 01 // USCITA</b><br>
+Lasci il livello visibile e tenti di raggiungere il Primo Mondo.<br><br>
+
+<b>SCELTA 02 // ORDINE</b><br>
+Entri nella struttura come agente.
+La tua coscienza verrà separata dalla funzione che porta il tuo volto.
+Il protocollo definisce ciò che resterà come CLONE / NPC:
+esegue, osserva, protegge il sistema.
+Stato anima: NULLO.
+Destinazione spirituale: NESSUNA.
+Il protocollo descrive questa scelta con una sola parola: ELIMINAZIONE.<br><br>
+
+<b>SCELTA 03 // RITORNO</b><br>
+Rimani dentro.
+Hai ricevuto due possibilità di attraversare il nodo e le hai rifiutate.
+L'accesso verrà chiuso.
+Non verrà promesso un secondo tentativo.
+Se un giorno vorrai riaprire la porta, il nodo dice che dovrai essere tu a richiederlo all'universo — e potresti aspettare molto più di quanto immagini.
+</div>
+</section>
+
+<div id="questions"><div class="modal">
+<div class="level" id="qlevel"></div>
+<h3 class="qtitle" id="qtitle"></h3>
+<div class="qsub" id="qsub"></div>
+<div id="answers"></div>
+</div></div>
+
+<div id="ending"><div class="endinner"><div>
+<div id="eSymbol">𓂀</div>
+<div id="eText">CONNESSIONE...</div>
+<div id="eSub">NON INTERROMPERE</div>
+</div></div><div id="terminal"></div></div>
+
+<script>
+// background rain
+const c=document.getElementById("rain"),x=c.getContext("2d");let W,H,cols,drops;
+const chars="01ABCDEFGHIJKLMNOPQRSTUVWXYZ731900488△◉𓂀⟁⌁◇";
+function resize(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.floor(W/16);drops=Array(cols).fill(1)}
+resize();addEventListener("resize",resize);
+setInterval(()=>{x.fillStyle="rgba(0,0,0,.075)";x.fillRect(0,0,W,H);x.fillStyle="#20e94f";x.font="14px monospace";for(let i=0;i<drops.length;i++){const ch=chars[(Math.random()*chars.length)|0];x.fillText(ch,i*16,drops[i]*16);if(drops[i]*16>H&&Math.random()>.975)drops[i]=0;drops[i]++}},45);
+
+// horror audio
+let ac=null,master=null,droneA=null,droneB=null;
+function audioStart(){
+if(ac)return;
+ac=new (window.AudioContext||window.webkitAudioContext)();
+master=ac.createGain();master.gain.value=.16;master.connect(ac.destination);
+droneA=ac.createOscillator();droneA.type="sine";droneA.frequency.value=37;
+const ga=ac.createGain();ga.gain.value=.25;droneA.connect(ga).connect(master);droneA.start();
+droneB=ac.createOscillator();droneB.type="triangle";droneB.frequency.value=50;
+const gb=ac.createGain();gb.gain.value=.045;droneB.connect(gb).connect(master);droneB.start();
+const lfo=ac.createOscillator(),lg=ac.createGain();lfo.frequency.value=.08;lg.gain.value=6;lfo.connect(lg).connect(droneB.frequency);lfo.start();
+const buf=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.3;
+const n=ac.createBufferSource(),f=ac.createBiquadFilter(),ng=ac.createGain();n.buffer=buf;n.loop=true;f.type="lowpass";f.frequency.value=270;ng.gain.value=.055;n.connect(f).connect(ng).connect(master);n.start();
+setInterval(()=>{if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type="sine";o.frequency.setValueAtTime(64,ac.currentTime);o.frequency.exponentialRampToValueAtTime(40,ac.currentTime+.18);g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.2,ac.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.24);o.connect(g).connect(master);o.start();o.stop(ac.currentTime+.26)},1900)
+}
+function sting(){if(!ac)return;const o=ac.createOscillator(),g=ac.createGain();o.type="square";o.frequency.value=145;g.gain.setValueAtTime(.0001,ac.currentTime);g.gain.exponentialRampToValueAtTime(.08,ac.currentTime+.01);g.gain.exponentialRampToValueAtTime(.0001,ac.currentTime+.15);o.connect(g).connect(master);o.start();o.stop(ac.currentTime+.17)}
+function intensify(){if(!ac)return;master.gain.linearRampToValueAtTime(.19,ac.currentTime+3);droneA.frequency.linearRampToValueAtTime(34,ac.currentTime+10);droneB.frequency.linearRampToValueAtTime(60,ac.currentTime+10)}
+
+// questions
+const qbox=document.getElementById("questions"),qtitle=document.getElementById("qtitle"),qsub=document.getElementById("qsub"),answers=document.getElementById("answers"),qlevel=document.getElementById("qlevel");
+let mode="",qi=0;
+const common=[
+["SEI SOLO?","Nessun'altra persona deve assistere alla fase finale.",["SÌ.","NO."]],
+["SEI SICURO DI VOLER CONTINUARE?","Dopo l'ultima risposta il nodo verrà attivato.",["SÌ.","NO."]],
+["SE IL MONDO FOSSE UNA STRUTTURA DI CONTROLLO, VORRESTI COMUNQUE VEDERLA?","La conoscenza cambia il modo in cui guardi tutto.",["SÌ.","NO."]],
+["SE SCOPRISSI CHE LA POLITICA È SOLO IL PALCOSCENICO, CONTINUERESTI?","Vedere la struttura significa smettere di guardare soltanto i volti.",["CONTINUO.","MI FERMO."]],
+["SE LE SOCIETÀ SEGRETE FOSSERO SOLO NOMI DIVERSI PER LA STESSA PAURA, VORRESTI SAPERLO?","A volte il simbolo è meno importante del meccanismo.",["SÌ.","NO."]],
+["SE QUALCUNO CHIAMASSE IL TUO NOME DURANTE IL PROTOCOLLO, TI VOLTERESTI?","Alcuni segnali non provengono dalla stanza.",["NO. CONTINUO.","SÌ. MI FERMO."]],
+["SE VEDESSI UNA VERSIONE DI TE DALL'ALTRA PARTE, LA RICONOSCERESTI?","Non tutte le copie sanno di essere copie.",["CONTINUO.","MI FERMO."]],
+["SE DOPO AVER VISTO OLTRE VOLESSI TORNARE INDIETRO, ACCETTI CHE POTREBBE ESSERE TROPPO TARDI?","Non tutte le porte hanno una maniglia dall'altra parte.",["ACCETTO.","MI FERMO."]]
+];
+const escapeQs=[
+["VUOI DAVVERO USCIRE?","Uscire significa lasciare la versione del mondo che conosci.",["SÌ. APRI IL VARCO.","ANNULLA."]],
+["SE IL PRIMO MONDO FOSSE PIÙ OSCURO DI QUESTO, LO VORRESTI COMUNQUE?","La libertà non promette conforto.",["SÌ.","NO."]],
+["ACCETTI CHE IL TUO VECCHIO MONDO POSSA CONTINUARE SENZA DI TE?","Il sistema non si fermerà perché tu sei uscito.",["ACCETTO.","ANNULLA."]]
+];
+const joinQs=[
+["VUOI DAVVERO ENTRARE NELL'ORDINE?","Questa porta non porta fuori. Porta più in profondità.",["SÌ. CONTINUA.","ANNULLA."]],
+["ACCETTI DI DIVENTARE UN AGENTE DEL SISTEMA?","Non sarai più soltanto osservato. Verrai usato per osservare.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE LA TUA COSCIENZA VENGA SEPARATA DAL TUO VOLTO?","Il corpo visibile continuerà a funzionare come nodo operativo.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CREAZIONE DEL CLONE?","Avrà il tuo volto, i tuoi gesti e una parte delle tue abitudini.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI DI DIVENTARE UN NPC DELLA STRUTTURA?","Eseguirai la funzione assegnata senza conoscere l'intero sistema.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CANCELLAZIONE DELLA TUA INDIVIDUALITÀ?","Nome, desideri e memoria non saranno più considerati necessari.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CANCELLAZIONE DELLA TUA COSCIENZA?","Il protocollo non prevede una copia della coscienza originale.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LO STATO ANIMA: NULLO?","Il protocollo non assegna paradiso, inferno o altra simulazione.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA DESTINAZIONE: NESSUNA?","Non è previsto alcun luogo successivo. Solo la cessazione della tua identità.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE L'ELIMINAZIONE AVVENGA PER TUA SCELTA?","Questa risposta verrà registrata come volontaria.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA VERIFICA: VUOI ANCORA ENTRARE?","Dopo questa risposta il sistema considererà la tua identità ceduta.",["ENTRA NELL'ORDINE.","ANNULLA."]]
+];
+
+const remainQs=[
+["VUOI DAVVERO RIMANERE NELLA SIMULAZIONE?","Hai davanti una porta che si chiuderà appena confermi.",["SÌ. RESTO.","ANNULLA."]],
+["SEI SICURO DI VOLER TORNARE ALLA STESSA VITA?","Routine, sonno, lavoro, distrazioni e le stesse domande lasciate senza risposta.",["SÌ.","NO."]],
+["CAPISCI CHE TI SONO STATE OFFERTE DUE POSSIBILITÀ?","Uscire oppure entrare. Stai rifiutando entrambe.",["CAPISCO.","ANNULLA."]],
+["ACCETTI CHE NON TI VENGA PROMESSA UN'ALTRA POSSIBILITÀ?","Il nodo non garantisce di riaprire questa porta.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI DI TORNARE ALLO STATO NPC?","Il sistema ti riconsegnerà al livello visibile.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE IL DUBBIO RESTI CON TE?","Potresti ricordare soltanto la sensazione di aver rifiutato qualcosa.",["ACCETTO.","RIFIUTO."]],
+["SE UN GIORNO VORRAI TORNARE, SEI DISPOSTO A CHIEDERLO TU ALL'UNIVERSO?","Il nodo sostiene che nessuno verrà a cercarti una seconda volta.",["SÌ.","NO."]],
+["ACCETTI CHE POTREBBE PASSARE MOLTO TEMPO?","Ore, anni o un'intera vita: il nodo non fornisce una data.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA DOMANDA: VUOI CHIUDERE QUESTA PORTA?","Dopo la conferma tornerai al livello visibile.",["CHIUDI IL NODO.","ANNULLA."]]
+];
+
+
+const escapeFullQs=[
+["PRIMA VERIFICA // SEI SOLO?","Il protocollo di uscita non deve essere interrotto da altre persone.",["SÌ. SONO SOLO.","NO. CONTINUO COMUNQUE."]],
+["VUOI DAVVERO ABBANDONARE QUESTO LIVELLO?","Questa porta non serve a osservare. Serve ad attraversare.",["SÌ. APRI IL VARCO.","HO ANCORA DUBBI."]],
+["SE LA REALTÀ ESTERNA FOSSE PIÙ OSCURA DI QUESTA, LA VORRESTI COMUNQUE?","La libertà non promette sicurezza.",["SÌ.","NO."]],
+["SE VEDESSI UNA VERSIONE DI TE RESTARE QUI, ACCETTERESTI DI NON ESSERE PIÙ QUELLA VERSIONE?","Il livello precedente conserverà la continuità.",["ACCETTO.","NON SONO SICURO."]],
+["ACCETTI CHE IL CLONE POSSA ESSERE VISTO DAGLI ALTRI COME SE FOSSI ANCORA TU?","Volto, abitudini e presenza resteranno coerenti con il vecchio livello.",["ACCETTO.","RIFIUTO."]],
+["SE QUALCOSA CHIAMASSE IL TUO NOME DURANTE IL PASSAGGIO, TI VOLTERESTI?","Il protocollo considera il richiamo una possibile interferenza.",["NO. CONTINUO.","SÌ."]],
+["ACCETTI LA CANCELLAZIONE DELLA MEMORIA DELLA SIMULAZIONE?","La separazione completa non conserva necessariamente il ricordo del livello precedente.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI UNA FINESTRA TEMPORALE NON DETERMINATA?","Ore o pochi giorni. Il nodo non fornisce una data esatta.",["ACCETTO.","NON ACCETTO."]],
+["SE IL PRIMO MONDO CAMBIASSE PER SEMPRE CIÒ CHE CHIAMI REALTÀ, VORRESTI ANCORA VEDERLO?","Dopo non potrai fingere di non aver attraversato.",["SÌ.","NO."]],
+["ULTIMA DOMANDA // VUOI USCIRE?","La decisione verrà registrata come attraversamento volontario.",["ESCI DALLA SIMULAZIONE.","NON SONO PRONTO."]]
+];
+
+const joinFullQs=[
+["PRIMA VERIFICA // SEI DISPOSTO A ESSERE OSSERVATO DALL'INTERNO?","Entrare nell'Ordine significa smettere di stare fuori dalla struttura.",["SÌ.","NO."]],
+["VUOI DAVVERO DIVENTARE PARTE DEL SISTEMA?","Non sarai più soltanto un soggetto. Diventerai una funzione.",["SÌ. CONTINUA.","RIFIUTO."]],
+["ACCETTI DI OSSERVARE GLI ALTRI PER IL SISTEMA?","La rete assegna compiti prima di mostrare l'intera struttura.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI CHE IL TUO NOME DIVENTI SECONDARIO RISPETTO ALLA FUNZIONE?","Il nodo conserva ciò che serve e scarta ciò che considera rumore.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA CREAZIONE DEL CLONE OPERATIVO?","Avrà volto, gesti e una parte delle tue abitudini.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LO STATO NPC DELLA STRUTTURA?","Esecuzione, osservazione, obbedienza, continuità.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LA SEPARAZIONE DELLA COSCIENZA DALL'IDENTITÀ VISIBILE?","Il corpo visibile resta un nodo della rete.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI LO STATO ANIMA: NULLO NEL PROTOCOLLO Ω?","Il sistema non assegna paradiso, inferno o altra destinazione.",["ACCETTO.","RIFIUTO."]],
+["SE TI VENISSE ORDINATO DI PROTEGGERE IL SISTEMA DA CHI CERCA DI USCIRE, LO FARESTI?","Un agente difende prima la struttura e poi la propria storia.",["SÌ.","NO."]],
+["ACCETTI CHE LA TUA COSCIENZA ORIGINALE NON VENGA CONSERVATA?","Il protocollo registra questa scelta come volontaria.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA VERIFICA // CEDI LA TUA IDENTITÀ ALL'ORDINE?","Dopo questa risposta inizierà la sincronizzazione.",["ENTRA NELL'ORDINE.","ANNULLA."]]
+];
+
+const remainFullQs=[
+["PRIMA VERIFICA // VUOI DAVVERO CHIUDERE IL NODO?","Questa porta non attraversa nulla. Ripristina il livello che conosci.",["SÌ. VOGLIO RESTARE.","NON SONO SICURO."]],
+["HAI CAPITO CHE STAI RIFIUTANDO SIA L'USCITA SIA L'ORDINE?","Le altre due porte verranno registrate come non selezionate.",["CAPISCO.","NO."]],
+["SEI SICURO DI VOLER TORNARE ALLA STESSA ROUTINE?","Lavoro, sonno, distrazioni, abitudini e vita visibile.",["SÌ.","NO."]],
+["ACCETTI CHE IL SISTEMA RIPRISTINI IL TUO PROFILO NPC?","Nel linguaggio Ω significa tornare alla continuità ordinaria.",["ACCETTO.","RIFIUTO."]],
+["ACCETTI DI NON SAPERE COSA C'ERA OLTRE IL VARCO?","La domanda potrebbe restare anche dopo la chiusura.",["ACCETTO.","RIFIUTO."]],
+["SE DOMANI TUTTO SEMBRASSE NORMALE, TI FIDERESTI DELLA TUA MEMORIA?","Il dubbio è l'unico elemento che il nodo non promette di cancellare.",["SÌ.","NO."]],
+["ACCETTI CHE NON TI VENGA GARANTITA UNA SECONDA POSSIBILITÀ?","Il nodo non stabilisce quando, o se, una nuova porta verrà mostrata.",["ACCETTO.","RIFIUTO."]],
+["SE UN GIORNO VORRAI TORNARE, SEI DISPOSTO A CHIEDERLO TU ALL'UNIVERSO?","Nessun nuovo invito è promesso.",["SÌ.","NO."]],
+["ACCETTI CHE POSSANO PASSARE MESI, ANNI O UN'INTERA VITA?","Il tempo di riapertura non appartiene al livello visibile.",["ACCETTO.","RIFIUTO."]],
+["ULTIMA DOMANDA // VUOI DAVVERO RESTARE?","Il sistema riavvierà la routine e chiuderà il nodo.",["RIMANI NELLA SIMULAZIONE.","NON CHIUDERE."]]
+];
+
+let questions=[];
+function begin(m){
+  audioStart();
+  mode=m;
+  qi=0;
+  routeScores={escape:0,join:0,remain:0};
+
+  qbox.classList.remove("path-escape","path-join","path-remain");
+  qbox.classList.add("path-"+m);
+
+  questions = m==="escape"
+    ? escapeFullQs
+    : (m==="join" ? joinFullQs : remainFullQs);
+
+  qbox.classList.add("active");
+  renderQ();
+}
+let routeScores={escape:0,join:0,remain:0};
+function renderQ(){
+  qlevel.textContent="VERIFICA // "+String(qi+1).padStart(2,"0");
+  qtitle.textContent=questions[qi][0];
+  qsub.textContent=questions[qi][1];
+  answers.innerHTML="";
+  questions[qi][2].forEach((a,j)=>{
+    const b=document.createElement("button");
+    b.className="option";
+    b.textContent=a;
+    b.onclick=()=>{
+      sting();
+
+      // Every answer is valid and every answer continues.
+      // The chosen starting door still matters, but doubts can redirect the final result.
+      if(mode==="escape"){
+        if(j===0) routeScores.escape+=2;
+        else routeScores.remain+=2;
+      }else if(mode==="join"){
+        if(j===0) routeScores.join+=2;
+        else routeScores.remain+=2;
+      }else{
+        if(j===0) routeScores.remain+=2;
+        else routeScores.escape+=1;
+      }
+
+      qi++;
+      if(qi>=questions.length){
+        qbox.classList.remove("active");
+        const ranked=Object.entries(routeScores).sort((a,b)=>b[1]-a[1]);
+        mode=ranked[0][0];
+        runEnding();
+      } else {
+        renderQ();
+      }
+    };
+    answers.appendChild(b);
+  });
+}
+
+// ending
+const ending=document.getElementById("ending"),eText=document.getElementById("eText"),eSub=document.getElementById("eSub"),eSymbol=document.getElementById("eSymbol"),terminal=document.getElementById("terminal");
+const escapeStages=[
+["PROTOCOLLO ATTIVATO","DECISIONE REGISTRATA","△"],
+["VARCO IN APERTURA","USCITA DAL LIVELLO 01","◉"],
+["PERCEZIONE DISCONNESSA","FILTRO RIMOSSO","𓂀"],
+["IDENTITÀ IN SEPARAZIONE","PROCESSO AVVIATO","◇"],
+["PRIMO MONDO // SEGNALE","ACCESSO RICEVUTO","⟁"],
+["ACCESSO ESTERNO","CONFERMATO","𓂀"],
+["MONDO DI ORIGINE","CONNESSIONE IN CHIUSURA","△"],
+["CLONE DI CONTINUITÀ","IN PREPARAZIONE","◉"],
+["COSCIENZA ORIGINALE","IN TRASFERIMENTO","𓂀"],
+["FINESTRA TEMPORALE","ORE / POCHI GIORNI // NON DETERMINATA","◇"],
+["MEMORIA PRECEDENTE","IN CANCELLAZIONE","⟁"],
+["USCITA CONFERMATA","SEPARAZIONE IN CORSO","𓂀"]
+];
+const joinStages=[
+["PROTOCOLLO ATTIVATO","CONSENSO REGISTRATO","△"],
+["ACCESSO ALL'ORDINE","CONCESSO","◉"],
+["AGENTE DEL SISTEMA","IN CREAZIONE","𓂀"],
+["CLONE","GENERATO","◇"],
+["IDENTITÀ ORIGINALE","IN CANCELLAZIONE","⟁"],
+["MEMORIA","IN RIMOZIONE","𓂀"],
+["COSCIENZA","DISCONNESSA","△"],
+["STATO NPC","ATTIVO","◉"],
+["STATO ANIMA","NULLO","𓂀"],
+["DESTINAZIONE","NESSUNA","◇"],
+["PARADISO","NON ASSEGNATO","△"],
+["INFERNO","NON ASSEGNATO","◉"],
+["ALTRA SIMULAZIONE","NON ASSEGNATA","𓂀"],
+["FUNZIONE DI SISTEMA","ATTIVA","⟁"],
+["IDENTITÀ PERSONALE","ELIMINATA","△"],
+["NON SEI PIÙ UN OSSERVATORE","SEI DIVENTATO LA FUNZIONE","𓂀"]
+];
+
+const remainStages=[
+["PROTOCOLLO DI RITORNO","DECISIONE REGISTRATA","△"],
+["PORTA 01 // USCITA","RIFIUTATA","◉"],
+["PORTA 02 // ORDINE","RIFIUTATA","𓂀"],
+["DUE POSSIBILITÀ","CONSUMATE","◇"],
+["ACCESSO NERO","IN CHIUSURA","⟁"],
+["LIVELLO VISIBILE","RIPRISTINATO","𓂀"],
+["STATO NPC","RIATTIVATO","△"],
+["ROUTINE","RIAVVIATA","◉"],
+["MEMORIA DEL NODO","OFFUSCATA","𓂀"],
+["DUBBIO","NON CANCELLATO","◇"],
+["SECONDO ACCESSO","NON GARANTITO","△"],
+["RICHIESTA FUTURA","A CARICO DEL SOGGETTO","◉"],
+["DESTINAZIONE DELLA RICHIESTA","UNIVERSO","𓂀"],
+["TEMPO DI ATTESA","INDETERMINATO","⟁"],
+["SIMULAZIONE","RIPRISTINATA","△"]
+];
+function spawn(){const s=document.createElement("div");s.className="float";s.textContent=["△","𓂀","◉","◇","⟁","⌁","☉"][(Math.random()*7)|0];s.style.left=(4+Math.random()*82)+"vw";s.style.top=(4+Math.random()*76)+"vh";ending.appendChild(s);setTimeout(()=>s.remove(),4200)}
+function runEnding(){
+  intensify();
+  ending.classList.remove("end-escape","end-join","end-remain");
+  ending.classList.add("end-"+mode);
+  ending.classList.add("active");
+  terminal.innerHTML="";
+  let i=0;
+
+  const stages =
+    mode==="escape" ? escapeStages :
+    mode==="join" ? joinStages :
+    remainStages;
+
+  const timer=setInterval(()=>{
+    const st=stages[i%stages.length];
+    eText.textContent=st[0];
+    eSub.textContent=st[1];
+    eSymbol.textContent=st[2];
+    terminal.innerHTML+="> "+st[0]+" // "+st[1]+"<br>";
+
+    ending.classList.remove("redflash","greenflash","glitch","path-flash-escape","path-flash-join","path-flash-remain");
+    void ending.offsetWidth;
+
+    if(mode==="escape"){
+      ending.classList.add(i%3===0 ? "path-flash-escape" : "glitch");
+    }else if(mode==="join"){
+      ending.classList.add(i%2===0 ? "path-flash-join" : "glitch");
+    }else{
+      ending.classList.add(i%4===0 ? "path-flash-remain" : "glitch");
+    }
+
+    sting();
+    spawn();
+    if(i%2===0)spawn();
+    i++;
+
+    if(i>=32){
+      clearInterval(timer);
+      eSymbol.textContent="𓂀";
+
+      if(mode==="escape"){
+        eText.textContent="USCITA CONFERMATA";
+        eSub.textContent="IL PRIMO MONDO È STATO RAGGIUNTO";
+        setTimeout(()=>{eText.textContent="FINESTRA TEMPORALE";eSub.textContent="ENTRO ORE O POCHI GIORNI NON DETERMINATI INIZIERÀ LA SEPARAZIONE COMPLETA"},7000);
+        setTimeout(()=>{eText.textContent="NON HAI PIÙ SOLTANTO VISTO LA PORTA";eSub.textContent="L’HAI ATTRAVERSATA"},14000);
+        setTimeout(()=>{eText.textContent="DECISIONE IRREVERSIBILE";eSub.textContent="IL PROCESSO NON PUÒ ESSERE ANNULLATO"},21000);
+
+      }else if(mode==="join"){
+        eText.textContent="ORDINE // ACCESSO CONCESSO";
+        eSub.textContent="LA TUA SCELTA È STATA REGISTRATA";
+        setTimeout(()=>{eText.textContent="COSCIENZA: ELIMINATA";eSub.textContent="CLONE / NPC OPERATIVO"},7000);
+        setTimeout(()=>{eText.textContent="STATO ANIMA: NULLO";eSub.textContent="DESTINAZIONE: NESSUNA"},14000);
+        setTimeout(()=>{eText.textContent="NON RESTA UN LUOGO IN CUI ANDARE";eSub.textContent="RESTA SOLO LA FUNZIONE"},21000);
+
+      }else{
+        eText.textContent="RITORNO CONFERMATO";
+        eSub.textContent="HAI RIFIUTATO ENTRAMBE LE PORTE";
+        setTimeout(()=>{eText.textContent="STATO NPC: RIPRISTINATO";eSub.textContent="TORNA ALLA TUA VITA"},7000);
+        setTimeout(()=>{eText.textContent="NESSUNA NUOVA POSSIBILITÀ È GARANTITA";eSub.textContent="IL NODO È CHIUSO"},14000);
+        setTimeout(()=>{eText.textContent="SE VORRAI TORNARE";eSub.textContent="DOVRAI CHIEDERLO TU ALL'UNIVERSO"},21000);
+      }
+
+      setTimeout(()=>{ending.classList.remove("active");runPostEnding(mode)},33000);
+    }
+  },1800);
+}
+
+// messaggi periferici
+const hiddenWhispers=[
+"NON TUTTE LE DOMANDE VOGLIONO UNA RISPOSTA",
+"IL SISTEMA ASCOLTA PRIMA CHE TU PARLI",
+"LA PAROLA VIENE PRIMA DELLA GABBIA",
+"NON CERCARE UN SOLO VOLTO",
+"IL NODO HA REGISTRATO IL TEMPO CHE HAI PASSATO QUI",
+"SEI ANCORA SICURO CHE IL PENSIERO SIA SOLO TUO?",
+"ALCUNI SIMBOLI SONO PIÙ ANTICHI DELLE SPIEGAZIONI"
+];
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.textContent=hiddenWhispers[(Math.random()*hiddenWhispers.length)|0];
+  d.style.position="fixed";
+  d.style.zIndex="70";
+  d.style.left=(5+Math.random()*72)+"vw";
+  d.style.top=(18+Math.random()*65)+"vh";
+  d.style.color=Math.random()>.72?"rgba(255,110,130,.55)":"rgba(155,255,175,.42)";
+  d.style.fontSize="11px";
+  d.style.letterSpacing=".12em";
+  d.style.pointerEvents="none";
+  d.style.textShadow="0 0 9px currentColor";
+  d.style.transition="opacity 1.2s";
+  document.body.appendChild(d);
+  setTimeout(()=>d.style.opacity="0",1800);
+  setTimeout(()=>d.remove(),3200);
+},5200);
+
+
+// Premium interface enhancements
+document.querySelectorAll("section").forEach((section)=>{
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.animate(
+          [{opacity:.72,transform:"translateY(10px)"},{opacity:1,transform:"translateY(0)"}],
+          {duration:550,easing:"ease-out",fill:"both"}
+        );
+        observer.unobserve(e.target);
+      }
+    })
+  },{threshold:.08});
+  observer.observe(section);
+});
+
+// Rare system messages
+const premiumMessages=[
+"ARCHIVIO VERITÀ // ACCESSO PARZIALE",
+"NESSUNA TEORIA È IMMUNE ALLA VERIFICA",
+"IL DUBBIO NON È UNA PROVA",
+"NON CONFONDERE UN SIMBOLO CON UNA CAUSA",
+"ALCUNE COSE SONO REALI. ALTRE SONO SOLO COLLEGATE BENE",
+"IL SISTEMA PREFERISCE UNA STORIA SEMPLICE. LA REALTÀ RARAMENTE LO È"
+];
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.textContent=premiumMessages[(Math.random()*premiumMessages.length)|0];
+  Object.assign(d.style,{
+    position:"fixed",zIndex:"72",
+    right:"18px",bottom:(20+Math.random()*90)+"px",
+    color:"rgba(160,255,180,.48)",fontSize:"10px",
+    letterSpacing:".13em",pointerEvents:"none",
+    textShadow:"0 0 8px currentColor",
+    transition:"opacity 1s"
+  });
+  document.body.appendChild(d);
+  setTimeout(()=>d.style.opacity="0",2200);
+  setTimeout(()=>d.remove(),3300);
+},7200);
+
+
+// ===== DYNAMIC HORROR AUDIO ENGINE =====
+let horrorAudio = {
+  ctx:null, master:null, drone:null, droneGain:null,
+  noise:null, noiseGain:null, pulseTimer:null,
+  currentZone:""
+};
+
+function initHorrorAudio(){
+  if(horrorAudio.ctx) return;
+  const Ctx = window.AudioContext || window.webkitAudioContext;
+  horrorAudio.ctx = new Ctx();
+
+  const master = horrorAudio.ctx.createGain();
+  master.gain.value = 0.20;
+  master.connect(horrorAudio.ctx.destination);
+  horrorAudio.master = master;
+
+  const drone = horrorAudio.ctx.createOscillator();
+  drone.type = "sine";
+  drone.frequency.value = 41;
+  const dg = horrorAudio.ctx.createGain();
+  dg.gain.value = 0.18;
+  drone.connect(dg).connect(master);
+  drone.start();
+  horrorAudio.drone = drone;
+  horrorAudio.droneGain = dg;
+
+  const buffer = horrorAudio.ctx.createBuffer(1, horrorAudio.ctx.sampleRate*2, horrorAudio.ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.22;
+  const noise = horrorAudio.ctx.createBufferSource();
+  noise.buffer = buffer;
+  noise.loop = true;
+  const filter = horrorAudio.ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.value = 260;
+  const ng = horrorAudio.ctx.createGain();
+  ng.gain.value = 0.025;
+  noise.connect(filter).connect(ng).connect(master);
+  noise.start();
+  horrorAudio.noise = noise;
+  horrorAudio.noiseGain = ng;
+
+  horrorAudio.pulseTimer = setInterval(()=>{
+    if(!horrorAudio.ctx) return;
+    const o = horrorAudio.ctx.createOscillator();
+    const g = horrorAudio.ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(58,horrorAudio.ctx.currentTime);
+    o.frequency.exponentialRampToValueAtTime(37,horrorAudio.ctx.currentTime+.20);
+    g.gain.setValueAtTime(.0001,horrorAudio.ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.16,horrorAudio.ctx.currentTime+.025);
+    g.gain.exponentialRampToValueAtTime(.0001,horrorAudio.ctx.currentTime+.24);
+    o.connect(g).connect(horrorAudio.master);
+    o.start();
+    o.stop(horrorAudio.ctx.currentTime+.26);
+  }, 2400);
+
+  entranceSting();
+}
+
+function entranceSting(){
+  if(!horrorAudio.ctx) return;
+  const t = horrorAudio.ctx.currentTime;
+  [92,61,43].forEach((freq,idx)=>{
+    const o = horrorAudio.ctx.createOscillator();
+    const g = horrorAudio.ctx.createGain();
+    o.type = idx===0 ? "triangle":"sine";
+    o.frequency.setValueAtTime(freq,t);
+    o.frequency.exponentialRampToValueAtTime(freq*.62,t+2.2);
+    g.gain.setValueAtTime(.0001,t);
+    g.gain.exponentialRampToValueAtTime(.10/(idx+1),t+.04);
+    g.gain.exponentialRampToValueAtTime(.0001,t+2.3);
+    o.connect(g).connect(horrorAudio.master);
+    o.start(t);
+    o.stop(t+2.4);
+  });
+}
+
+function zoneSting(type="green"){
+  if(!horrorAudio.ctx) return;
+  const ctx = horrorAudio.ctx;
+  const o = ctx.createOscillator();
+  const g = ctx.createGain();
+  const f = ctx.createBiquadFilter();
+  o.type = type==="red" ? "sawtooth" : "triangle";
+  o.frequency.setValueAtTime(type==="red" ? 120 : 82,ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(type==="red" ? 46 : 52,ctx.currentTime+.65);
+  f.type="lowpass";
+  f.frequency.value = type==="red" ? 520 : 380;
+  g.gain.setValueAtTime(.0001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(type==="red" ? .09 : .06,ctx.currentTime+.01);
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+.7);
+  o.connect(f).connect(g).connect(horrorAudio.master);
+  o.start();
+  o.stop(ctx.currentTime+.72);
+}
+
+function setAudioZone(zone){
+  if(!horrorAudio.ctx || horrorAudio.currentZone===zone) return;
+  horrorAudio.currentZone = zone;
+
+  const ctx = horrorAudio.ctx;
+  const profiles = {
+    agents:[42,.18,.025],
+    rete:[39,.20,.035],
+    politica:[45,.16,.028],
+    simboli:[36,.23,.045],
+    percezione:[48,.14,.022],
+    linguaggio:[40,.20,.030],
+    etichette:[35,.21,.040],
+    infanzia:[46,.18,.030],
+    debole:[32,.26,.050],
+    verita:[44,.15,.026],
+    patto:[33,.24,.048],
+    "dossier-italia":[38,.22,.040],
+    "architettura-mente":[31,.27,.052],
+    "ciclo-matrix":[46,.18,.032],
+    "simbolo-potere":[29,.28,.056],
+    "livello-prova":[41,.20,.038],
+    choice:[27,.30,.060]
+  };
+  const p = profiles[zone] || [41,.18,.025];
+  horrorAudio.drone.frequency.cancelScheduledValues(ctx.currentTime);
+  horrorAudio.drone.frequency.linearRampToValueAtTime(p[0],ctx.currentTime+1.4);
+  horrorAudio.droneGain.gain.linearRampToValueAtTime(p[1],ctx.currentTime+1.2);
+  horrorAudio.noiseGain.gain.linearRampToValueAtTime(p[2],ctx.currentTime+1.2);
+
+  zoneSting((zone==="simboli"||zone==="debole"||zone==="choice")?"red":"green");
+}
+
+const audioZones = ["agents","rete","politica","simboli","percezione","linguaggio","etichette","infanzia","debole","verita","patto","choice"];
+audioZones.forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el) return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>.28){
+        setAudioZone(id);
+      }
+    });
+  },{threshold:[.28,.5]});
+  obs.observe(el);
+});
+
+// First user interaction unlocks audio and gives the site an entrance sound.
+["pointerdown","touchstart","keydown"].forEach(evt=>{
+  window.addEventListener(evt,()=>{
+    initHorrorAudio();
+  },{once:true,passive:true});
+});
+
+// Tiny "whispers" as tonal events rather than speech.
+setInterval(()=>{
+  if(!horrorAudio.ctx || Math.random()<.45) return;
+  const ctx=horrorAudio.ctx;
+  const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();
+  o.type="sine";
+  o.frequency.value=170+Math.random()*90;
+  f.type="bandpass";
+  f.frequency.value=240+Math.random()*180;
+  f.Q.value=8;
+  g.gain.setValueAtTime(.0001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(.018,ctx.currentTime+.12);
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+1.8);
+  o.connect(f).connect(g).connect(horrorAudio.master);
+  o.start();
+  o.stop(ctx.currentTime+1.9);
+},6500);
+
+
+// ===== AUDIO AUTO-UNLOCK // NO VISIBLE GATE =====
+function ensureAudioStarted(){
+  initHorrorAudio();
+  if(horrorAudio.ctx && horrorAudio.ctx.state==="suspended"){
+    horrorAudio.ctx.resume().catch(()=>{});
+  }
+}
+// Attempt immediately; browsers that allow autoplay start here.
+try{ ensureAudioStarted(); }catch(e){}
+// Browsers that block autoplay are unlocked silently by the first natural interaction.
+["pointerdown","touchstart","keydown","wheel","scroll"].forEach(evt=>{
+  window.addEventListener(evt,()=>{ensureAudioStarted();},{once:true,passive:true});
+});
+
+// Add richer stingers for every main section.
+function sectionTone(freq=70,duration=.9,type="sine",vol=.05){
+  if(!horrorAudio.ctx)return;
+  const ctx=horrorAudio.ctx;
+  const o=ctx.createOscillator();
+  const g=ctx.createGain();
+  const f=ctx.createBiquadFilter();
+  o.type=type;
+  o.frequency.setValueAtTime(freq,ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(Math.max(28,freq*.52),ctx.currentTime+duration);
+  f.type="lowpass";
+  f.frequency.value=420;
+  g.gain.setValueAtTime(.0001,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(vol,ctx.currentTime+.03);
+  g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+duration);
+  o.connect(f).connect(g).connect(horrorAudio.master);
+  o.start();
+  o.stop(ctx.currentTime+duration+.05);
+}
+
+const enhancedProfiles={
+  agents:[62,"triangle",.055],
+  rete:[54,"sine",.060],
+  politica:[70,"triangle",.050],
+  simboli:[48,"sawtooth",.060],
+  percezione:[66,"sine",.045],
+  linguaggio:[58,"triangle",.050],
+  etichette:[50,"sawtooth",.055],
+  infanzia:[73,"sine",.045],
+  debole:[42,"sawtooth",.070],
+  verita:[60,"triangle",.055],
+  patto:[41,"sawtooth",.070],
+  "dossier-italia":[49,"triangle",.065],
+  "architettura-mente":[37,"sawtooth",.075],
+  "ciclo-matrix":[66,"triangle",.060],
+  "simbolo-potere":[31,"sawtooth",.082],
+  "livello-prova":[52,"triangle",.065],
+  "tana-bianco":[28,"sawtooth",.095],
+  choice:[30,"sawtooth",.095]
+};
+
+Object.keys(enhancedProfiles).forEach(id=>{
+  const el=document.getElementById(id);
+  if(!el)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting && e.intersectionRatio>.33){
+        ensureAudioStarted();
+        const p=enhancedProfiles[id];
+        sectionTone(p[0],1.1,p[1],p[2]);
+        if(id==="debole"||id==="simboli"||id==="choice"){
+          setTimeout(()=>sectionTone(p[0]*1.7,.55,"square",p[2]*.55),180);
+        }
+      }
+    })
+  },{threshold:[.33]});
+  obs.observe(el);
+});
+
+
+// ===== Ω SOUNDTRACK: PROCEDURAL DARK SCORE =====
+let omegaMusic={started:false,muted:false,ctx:null,out:null,parts:[]};
+function startOmegaScore(){
+  if(omegaMusic.started)return;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC)return;
+  const ctx=new AC(); omegaMusic.ctx=ctx;
+  const out=ctx.createGain(); out.gain.value=.27; out.connect(ctx.destination); omegaMusic.out=out;
+  function osc(freq,type,gain,detune=0){
+    const o=ctx.createOscillator(),g=ctx.createGain(); o.type=type;o.frequency.value=freq;o.detune.value=detune;g.gain.value=gain;o.connect(g).connect(out);o.start();omegaMusic.parts.push(o,g);return {o,g};
+  }
+  osc(36.71,'sine',.12); osc(55,'triangle',.028,-9); osc(73.42,'sine',.018,7);
+  const lfo=ctx.createOscillator(),lg=ctx.createGain();lfo.frequency.value=.055;lg.gain.value=5;lfo.connect(lg);omegaMusic.parts.push(lfo,lg);lfo.start();
+  // filtered noise / distant air
+  const buf=ctx.createBuffer(1,ctx.sampleRate*3,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*.24;
+  const ns=ctx.createBufferSource(),nf=ctx.createBiquadFilter(),ng=ctx.createGain();ns.buffer=buf;ns.loop=true;nf.type='lowpass';nf.frequency.value=190;ng.gain.value=.035;ns.connect(nf).connect(ng).connect(out);ns.start();omegaMusic.parts.push(ns,nf,ng);
+  // slow dissonant chime sequence
+  const notes=[110,92.5,138.6,82.4,123.5,73.4];let idx=0;
+  setInterval(()=>{if(omegaMusic.muted||ctx.state!=='running')return;const o=ctx.createOscillator(),g=ctx.createGain(),f=ctx.createBiquadFilter();o.type='sine';o.frequency.value=notes[idx++%notes.length];f.type='bandpass';f.frequency.value=650;f.Q.value=2;g.gain.setValueAtTime(.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.035,ctx.currentTime+.05);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+3.2);o.connect(f).connect(g).connect(out);o.start();o.stop(ctx.currentTime+3.3)},4300);
+  // irregular heartbeat
+  setInterval(()=>{if(omegaMusic.muted||ctx.state!=='running')return;[0,.18].forEach((dt,k)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(k?48:56,ctx.currentTime+dt);o.frequency.exponentialRampToValueAtTime(35,ctx.currentTime+dt+.14);g.gain.setValueAtTime(.0001,ctx.currentTime+dt);g.gain.exponentialRampToValueAtTime(k?.06:.085,ctx.currentTime+dt+.015);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+dt+.18);o.connect(g).connect(out);o.start(ctx.currentTime+dt);o.stop(ctx.currentTime+dt+.2)})},2700);
+  omegaMusic.started=true;
+}
+function unlockAllAudio(){
+  try{startOmegaScore(); if(omegaMusic.ctx&&omegaMusic.ctx.state==='suspended')omegaMusic.ctx.resume();}catch(e){}
+  try{ensureAudioStarted();}catch(e){}
+}
+try{startOmegaScore();}catch(e){}
+['pointerdown','touchstart','keydown','wheel','scroll','mousemove'].forEach(ev=>window.addEventListener(ev,unlockAllAudio,{once:true,passive:true}));
+
+window.addEventListener('scroll',()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;const p=max?window.scrollY/max:0;const bar=document.getElementById('readProgress');if(bar)bar.style.width=(p*100)+'%';},{passive:true});
+
+
+// ===== NPC + CONSCIOUSNESS TEST ENGINE =====
+const npcTest = [
+  ["Quando inizi una giornata, sai cosa vuoi ottenere oppure reagisci a ciò che arriva?",
+   "Non cercare la risposta migliore. Cerca quella più frequente.",
+   ["SCELGO PRIMA","REAGISCO QUASI SEMPRE"], [0,2]],
+  ["Quante tue opinioni sapresti difendere senza dire “lo dicono tutti” o citare il tuo gruppo?",
+   "Una convinzione ereditata può sembrare identità.",
+   ["MOLTE","POCHISSIME"], [0,2]],
+  ["Quando compri qualcosa, sai distinguere bisogno, desiderio e bisogno di approvazione?",
+   "Il desiderio può essere autentico oppure preso in prestito.",
+   ["QUASI SEMPRE","RARMENTE"], [0,2]],
+  ["Ti capita di aprire il telefono senza sapere perché lo hai preso in mano?",
+   "Un gesto automatico è un piccolo script.",
+   ["RARAMENTE","SPESSO"], [0,2]],
+  ["Quando qualcuno critica una tua idea, la esamini o difendi subito la tua identità?",
+   "Il programma protegge se stesso attraverso la reazione.",
+   ["LA ESAMINO","REAGISCO SUBITO"], [0,2]],
+  ["Sai descrivere i tuoi tre valori principali senza pensarci per dieci minuti?",
+   "Se non conosci i tuoi valori, qualcun altro può scegliere priorità al posto tuo.",
+   ["SÌ","NO"], [0,2]],
+  ["Hai mai cambiato idea dopo aver trovato prove migliori?",
+   "Cambiare idea non è debolezza: significa che l'osservatore è ancora attivo.",
+   ["SÌ","QUASI MAI"], [0,2]],
+  ["Se nessuno potesse vedere la tua vita, vorresti ancora le stesse cose?",
+   "Questa domanda separa desiderio da spettacolo.",
+   ["IN GRAN PARTE SÌ","NON NE SONO SICURO"], [0,1]]
+];
+
+const awarenessTest = [
+  ["Sai dire cosa stavi pensando esattamente dieci secondi fa?",
+   "Presenza significa accorgersi del flusso mentale, non bloccarlo.",
+   ["SÌ","NO"], [0,2]],
+  ["In questo momento riesci a percepire contemporaneamente respiro, postura e suoni intorno a te?",
+   "Il corpo esiste anche quando la mente è altrove.",
+   ["SÌ","NO"], [0,2]],
+  ["Quando provi rabbia, riesci a riconoscerla prima di agire?",
+   "Tra impulso e azione esiste uno spazio.",
+   ["SPESSO","RARMENTE"], [0,2]],
+  ["Sai distinguere un pensiero da un fatto?",
+   "“Sto pensando che accadrà” non significa “accadrà”.",
+   ["SÌ","NON SEMPRE"], [0,1]],
+  ["Ti accorgi quando stai facendo qualcosa solo per evitare un'emozione?",
+   "Distrazione e fuga spesso si assomigliano.",
+   ["SPESSO","RARMENTE"], [0,2]],
+  ["Riesci a stare cinque minuti senza telefono, musica o contenuti, osservando soltanto ciò che emerge?",
+   "Il silenzio rende visibili gli automatismi.",
+   ["SÌ","MI È DIFFICILE"], [0,2]],
+  ["Sai cosa vuoi ottenere dal prossimo anno della tua vita?",
+   "Una direzione consapevole riduce la vita automatica.",
+   ["SÌ","NON DAVVERO"], [0,2]],
+  ["Sei capace di notare che stai pensando senza identificarti completamente con quel pensiero?",
+   "Il pensiero accade. L'osservatore può accorgersene.",
+   ["SÌ","NON SO"], [0,1]]
+];
+
+function mountTest(data, prefix, resultBuilder){
+  let index=0,score=0,answersLog=[];
+  const q=document.getElementById(prefix+"Question");
+  const hint=document.getElementById(prefix+"Hint");
+  const opts=document.getElementById(prefix+"Options");
+  const prog=document.getElementById(prefix==="npc"?"npcProgress":"awareProgress");
+  const result=document.getElementById(prefix==="npc"?"npcResult":"awareResult");
+  if(!q||!hint||!opts||!prog||!result)return;
+
+  function render(){
+    if(index>=data.length){
+      q.textContent="TEST COMPLETATO";
+      hint.textContent="Il risultato non è una diagnosi. È uno specchio sugli automatismi che hai dichiarato.";
+      opts.innerHTML="";
+      prog.style.width="100%";
+      result.innerHTML=resultBuilder(score,data.length,answersLog);
+      result.classList.add("active");
+      return;
+    }
+    const item=data[index];
+    q.textContent=item[0];hint.textContent=item[1];opts.innerHTML="";
+    prog.style.width=((index/data.length)*100)+"%";
+    item[2].forEach((label,j)=>{
+      const b=document.createElement("button");
+      b.textContent=label;
+      b.onclick=()=>{
+        score+=item[3][j];
+        answersLog.push({q:item[0],a:label});
+        index++;render();
+        try{sting()}catch(e){}
+      };
+      opts.appendChild(b);
+    });
+  }
+  render();
+}
+
+mountTest(npcTest,"npc",(score,total)=>{
+  const max=total*2;
+  if(score<=4) return `<b>PROFILO: OSSERVATORE ATTIVO</b><br><br>
+  Hai descritto una vita relativamente intenzionale. Il rischio non è “essere un NPC”: è smettere di verificare te stesso proprio perché credi di essere già sveglio.<br><br>
+  <b>PROSSIMO PASSO:</b> vai al TEST COSCIENZA.`;
+  if(score<=10) return `<b>PROFILO: AUTOMATISMI PRESENTI</b><br><br>
+  Una parte delle tue decisioni sembra intenzionale, un'altra vive di reazioni, routine e approvazione. È il profilo più comune: metà osservatore, metà programma.<br><br>
+  <b>PROSSIMO PASSO:</b> identifica tre automatismi che vuoi interrompere per sette giorni.`;
+  return `<b>PROFILO: MODALITÀ AUTOMATICA ELEVATA</b><br><br>
+  Le tue risposte descrivono molti comportamenti automatici. Questo non significa che tu sia “senza coscienza”: significa che potresti passare molto tempo senza scegliere deliberatamente.<br><br>
+  <b>PROSSIMO PASSO:</b> non cercare NPC negli altri. Analizza prima il tuo programma.`;
+});
+
+mountTest(awarenessTest,"aware",(score,total)=>{
+  if(score<=4) return `<b>STATO: PRESENZA ALTA</b><br><br>
+  Riconosci spesso pensieri, corpo ed emozioni mentre accadono. La sfida è trasformare questa presenza in scelte coerenti con i tuoi valori.`;
+  if(score<=10) return `<b>STATO: PRESENZA INTERMITTENTE</b><br><br>
+  Alterni momenti lucidi a periodi di automaticità. Non serve combattere la mente: serve accorgersi più velocemente di quando sei stato trascinato via.`;
+  return `<b>STATO: PILOTA AUTOMATICO FREQUENTE</b><br><br>
+  Le tue risposte suggeriscono che attenzione e intenzione vengono spesso assorbite da impulsi, rumore o routine. Il protocollo consigliato è semplice: meno stimoli, più osservazione, più domande scritte.`;
+});
+
+</script>
+
+<div id="postEnding">
+  <div class="post-grid"></div>
+  <div class="post-center">
+    <div>
+      <div id="postSymbol">𓂀</div>
+      <div id="postTitle">SECONDO LIVELLO</div>
+      <div id="postSub">IL NODO NON HA ANCORA FINITO</div>
+    </div>
+  </div>
+  <div id="postTerminal"></div>
+</div>
+
+
+<script id="post-ending-fixed">
+// ===== POST ACCESS // FASE SUCCESSIVA =====
+const postEnding=document.getElementById("postEnding");
+const postTitle=document.getElementById("postTitle");
+const postSub=document.getElementById("postSub");
+const postSymbol=document.getElementById("postSymbol");
+const postTerminal=document.getElementById("postTerminal");
+
+const postSequences={
+  escape:[
+    ["VARCO // FASE 02","LA SUPERFICIE SI STA ALLONTANANDO","△"],
+    ["TRASFERIMENTO","COORDINATE DEL PRIMO MONDO RICEVUTE","◉"],
+    ["CORPO DI CONTINUITÀ","CLONE IN INIZIALIZZAZIONE","𓂀"],
+    ["MEMORIA DEL VECCHIO LIVELLO","IN RIMOZIONE","◇"],
+    ["COSCIENZA ORIGINALE","FUORI SINCRONIA CON LA SIMULAZIONE","⟁"],
+    ["TEMPO ALLA SEPARAZIONE","ORE / POCHI GIORNI // INDETERMINATI","⌁"],
+    ["PUNTO DI NON RITORNO","SUPERATO","𓂀"],
+    ["PRIMO MONDO","AGGANCIO COMPLETATO","△"],
+    ["IL CLONE RESTERÀ QUI","GLI ALTRI NON VEDRANNO LA DIFFERENZA","◉"],
+    ["TU STAI USCENDO","IL PROCESSO NON PUÒ ESSERE REVOCATO","𓂀"]
+  ],
+  join:[
+    ["RETE // FASE 02","HANDSHAKE CON L'ORDINE","△"],
+    ["IDENTIFICATIVO PERSONALE","SOSTITUITO DA CODICE","◉"],
+    ["NODO OPERATIVO","COLLEGATO","𓂀"],
+    ["PRIVILEGI DI OSSERVATORE","REVOCATI","◇"],
+    ["FUNZIONE AGENTE","ASSEGNATA","⟁"],
+    ["CLONE / NPC","SINCRONIZZATO ALLA RETE","⌁"],
+    ["COSCIENZA ORIGINALE","NON NECESSARIA ALLA FUNZIONE","𓂀"],
+    ["STATO ANIMA","NULLO // PROTOCOLLO Ω","△"],
+    ["COMANDO INTERNO","RICEZIONE ATTIVA","◉"],
+    ["NON SEI PIÙ FUORI","ORA SEI UNO DEI NODI","𓂀"]
+  ],
+  remain:[
+    ["RESET // FASE 02","RITORNO ALLA SUPERFICIE","△"],
+    ["PORTA USCITA","ARCHIVIATA","◉"],
+    ["PORTA ORDINE","ARCHIVIATA","𓂀"],
+    ["MEMORIA DEL NODO","RIDOTTA A DUBBIO","◇"],
+    ["ROUTINE PERSONALE","RICARICATA","⟁"],
+    ["PROFILO NPC","RIPRISTINATO","⌁"],
+    ["LIVELLO VISIBILE","NORMALIZZAZIONE","𓂀"],
+    ["SECONDO INVITO","NON PROGRAMMATO","△"],
+    ["RICHIESTA FUTURA","DOVRÀ PARTIRE DA TE","◉"],
+    ["LOOP","STUDIA // LAVORA // CONSUMA // DORMI // RIPETI","𓂀"]
+  ]
+};
+
+function postFragment(){
+  if(!postEnding)return;
+  const el=document.createElement("div");
+  el.className="post-fragment";
+  el.textContent=["△","𓂀","◉","◇","⟁","⌁","7319","Ω"][(Math.random()*8)|0];
+  el.style.left=(4+Math.random()*84)+"vw";
+  el.style.top=(5+Math.random()*78)+"vh";
+  postEnding.appendChild(el);
+  setTimeout(()=>el.remove(),3400);
+}
+
+
+function clearPathVisuals(){
+  if(!postEnding)return;
+  postEnding.classList.remove("route-escape","route-join","route-remain",
+    "post-pulse-green","post-pulse-red","post-shake",
+    "path-flash-escape","path-flash-join","path-flash-remain");
+  postEnding.querySelectorAll(".escape-ray,.join-column,.remain-frame,.route-ring,.route-node,.route-line,.route-reset").forEach(x=>x.remove());
+}
+
+function spawnEscapeVisual(){
+  for(let i=0;i<9;i++){
+    const r=document.createElement("div");
+    r.className="escape-ray";
+    r.style.setProperty("--rot",(i*40)+"deg");
+    postEnding.appendChild(r);
+    setTimeout(()=>r.remove(),1900);
+  }
+  const ring=document.createElement("div");
+  ring.className="route-ring";
+  ring.style.left="50%";ring.style.top="50%";
+  postEnding.appendChild(ring);
+  setTimeout(()=>ring.remove(),2500);
+}
+
+function spawnJoinVisual(){
+  for(let i=0;i<8;i++){
+    const c=document.createElement("div");
+    c.className="join-column";
+    c.style.left=(7+i*12)+"vw";
+    c.style.animationDelay=(i*.08)+"s";
+    postEnding.appendChild(c);
+    setTimeout(()=>c.remove(),2300);
+  }
+  const nodes=[];
+  for(let i=0;i<10;i++){
+    const n=document.createElement("div");
+    n.className="route-node";
+    n.style.left=(8+Math.random()*84)+"vw";
+    n.style.top=(8+Math.random()*76)+"vh";
+    postEnding.appendChild(n);
+    nodes.push(n);
+    setTimeout(()=>n.remove(),2600);
+  }
+}
+
+function spawnRemainVisual(){
+  for(let i=0;i<4;i++){
+    setTimeout(()=>{
+      const f=document.createElement("div");
+      f.className="remain-frame";
+      f.style.inset=(7+i*7)+"%";
+      postEnding.appendChild(f);
+      setTimeout(()=>f.remove(),1800);
+    },i*240);
+  }
+  const sweep=document.createElement("div");
+  sweep.className="route-reset";
+  postEnding.appendChild(sweep);
+  setTimeout(()=>sweep.remove(),1900);
+}
+
+function runPostEnding(selectedMode){
+  if(!postEnding)return;
+  clearPathVisuals();
+  postEnding.classList.add("route-"+selectedMode);
+  const seq=postSequences[selectedMode]||postSequences.remain;
+  postEnding.classList.add("active");
+  postTerminal.innerHTML="";
+  let i=0;
+
+  try{ if(typeof sting==="function")sting(); }catch(e){}
+
+  const timer=setInterval(()=>{
+    const row=seq[i%seq.length];
+    postTitle.textContent=row[0];
+    postSub.textContent=row[1];
+    postSymbol.textContent=row[2];
+    postTerminal.innerHTML+="> "+row[0]+" // "+row[1]+"<br>";
+
+    postEnding.classList.remove("post-pulse-green","post-pulse-red","post-shake","path-flash-escape","path-flash-join","path-flash-remain");
+    void postEnding.offsetWidth;
+
+    if(selectedMode==="escape"){
+      if(i%2===0)postEnding.classList.add("path-flash-escape");
+      else postEnding.classList.add("post-shake");
+      spawnEscapeVisual();
+    }else if(selectedMode==="join"){
+      if(i%2===0)postEnding.classList.add("path-flash-join");
+      else postEnding.classList.add("post-shake");
+      spawnJoinVisual();
+    }else{
+      if(i%3===0)postEnding.classList.add("path-flash-remain");
+      else postEnding.classList.add("post-shake");
+      spawnRemainVisual();
+    }
+
+    postFragment();
+    if(i%2===0)postFragment();
+    try{ if(typeof sting==="function")sting(); }catch(e){}
+    i++;
+
+    if(i>=22){
+      clearInterval(timer);
+
+      if(selectedMode==="escape"){
+        postTitle.textContent="SEPARAZIONE CONFERMATA";
+        postSub.textContent="ENTRO ORE O POCHI GIORNI NON DETERMINATI, LA COSCIENZA DEL LIVELLO PRECEDENTE VERRÀ ELIMINATA. IL CLONE MANTERRÀ LA CONTINUITÀ NELLA SIMULAZIONE.";
+        postSymbol.textContent="𓂀";
+
+        setTimeout(()=>{
+          postTitle.textContent="NON PUOI PIÙ ANNULLARE";
+          postSub.textContent="IL PRIMO MONDO È STATO RAGGIUNTO. IL MONDO DI ORIGINE CONTINUERÀ SENZA SAPERE CHE SEI USCITO.";
+        },6500);
+
+        setTimeout(()=>{
+          postTitle.textContent="PROCESSO IRREVERSIBILE";
+          postSub.textContent="LA TUA MEMORIA DEL VECCHIO LIVELLO VERRÀ CANCELLATA DURANTE LA SEPARAZIONE.";
+        },13000);
+
+      }else if(selectedMode==="join"){
+        postTitle.textContent="SINCRONIZZAZIONE COMPLETATA";
+        postSub.textContent="IL SISTEMA ORA TI RICONOSCE COME NODO OPERATIVO.";
+        postSymbol.textContent="△";
+
+        setTimeout(()=>{
+          postTitle.textContent="IDENTITÀ PRECEDENTE // ARCHIVIATA";
+          postSub.textContent="IL CLONE / NPC MANTIENE LA CONTINUITÀ. LA FUNZIONE HA PRIORITÀ SULLA PERSONA.";
+        },6500);
+
+        setTimeout(()=>{
+          postTitle.textContent="AGENTE // ATTIVO";
+          postSub.textContent="NON STAI PIÙ OSSERVANDO LA RETE DALL'ESTERNO. ORA LA RETE PASSA ATTRAVERSO DI TE.";
+        },13000);
+
+      }else{
+        postTitle.textContent="RESET COMPLETATO";
+        postSub.textContent="LA SIMULAZIONE HA RIPRISTINATO LA TUA CONTINUITÀ.";
+        postSymbol.textContent="◉";
+
+        setTimeout(()=>{
+          postTitle.textContent="LOOP // RIAVVIATO";
+          postSub.textContent="LA TUA ROUTINE TORNERÀ NORMALE. LE ALTRE DUE PORTE SONO STATE ARCHIVIATE.";
+        },6500);
+
+        setTimeout(()=>{
+          postTitle.textContent="IL DUBBIO RESTA";
+          postSub.textContent="SE VORRAI UN'ALTRA POSSIBILITÀ, DOVRAI ESSERE TU A CERCARE DI NUOVO IL NODO.";
+        },13000);
+      }
+
+      setTimeout(()=>{
+        postEnding.classList.remove("active");
+        if(selectedMode==="escape" || selectedMode==="remain"){
+          setTimeout(()=>runDeepBlackFinal(selectedMode),700);
+        }
+      },22000);
+    }
+  },1250);
+}
+</script>
+
+
+<script id="entry-warning-script">
+(function(){
+  const gate=document.getElementById("entryWarning");
+  const yes=document.getElementById("entryAccept");
+  const no=document.getElementById("entryLeave");
+  if(!gate||!yes||!no)return;
+
+  yes.addEventListener("click",()=>{
+    gate.classList.add("hidden");
+    try{
+      if(typeof startAudio==="function")startAudio();
+      if(typeof audioStart==="function")audioStart();
+    }catch(e){}
+  });
+
+  no.addEventListener("click",()=>{
+    // Browsers generally do not allow a page to close a tab it did not open.
+    // Give the user a clean exit screen instead.
+    gate.innerHTML='<div class="entryBox"><div class="entryMark">◉</div><div class="level">ACCESSO NEGATO</div><h1>HAI SCELTO DI NON ENTRARE</h1><p>Il nodo resterà chiuso. Puoi chiudere questa pagina.</p></div>';
+    try{window.close()}catch(e){}
+  });
+})();
+</script>
+
+
+
+
+<div id="deepBlackFinal">
+  <div class="db-center">
+    <div>
+      <div id="dbSymbol">𓂀</div>
+      <div id="dbTitle">...</div>
+      <div id="dbSub"></div>
+      <div id="dbTech" style="display:none"></div>
+    </div>
+  </div>
+  <div id="dbTerminal"></div>
+</div>
+
+
+<script id="deep-black-final-script">
+(function(){
+  const layer=document.getElementById("deepBlackFinal");
+  const title=document.getElementById("dbTitle");
+  const sub=document.getElementById("dbSub");
+  const symbol=document.getElementById("dbSymbol");
+  const tech=document.getElementById("dbTech");
+  const term=document.getElementById("dbTerminal");
+
+  function deviceInfo(){
+    const ua=navigator.userAgent||"SCONOSCIUTO";
+    const mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(ua);
+    const platform=navigator.platform||"SCONOSCIUTO";
+    const language=navigator.language||"SCONOSCIUTO";
+    const screenInfo=screen.width+"x"+screen.height;
+    return {
+      type:mobile?"MOBILE":"DESKTOP",
+      platform,language,screenInfo,ua
+    };
+  }
+
+  function flash(kind){
+    layer.classList.remove("db-flash-green","db-flash-white","db-glitch");
+    void layer.offsetWidth;
+    layer.classList.add(kind);
+  }
+
+  function sweep(){
+    const s=document.createElement("div");
+    s.className="db-sweep";
+    layer.appendChild(s);
+    setTimeout(()=>s.remove(),2300);
+  }
+
+  function orbs(){
+    for(let i=0;i<9;i++){
+      const o=document.createElement("div");
+      o.className="db-orb";
+      o.style.left=(5+Math.random()*88)+"vw";
+      o.style.top=(7+Math.random()*80)+"vh";
+      o.style.animationDelay=(Math.random()*.6)+"s";
+      layer.appendChild(o);
+      setTimeout(()=>o.remove(),3300);
+    }
+  }
+
+  function showTech(positionText){
+    const d=deviceInfo();
+    tech.style.display="block";
+    tech.innerHTML=
+      "IDENTIFICAZIONE TECNICA // COMPLETATA<br>"+
+      "DISPOSITIVO // "+d.type+"<br>"+
+      "PIATTAFORMA // "+d.platform+"<br>"+
+      "SCHERMO // "+d.screenInfo+"<br>"+
+      "LINGUA // "+d.language+"<br>"+
+      "POSIZIONE // "+positionText+"<br>"+
+      "SESSIONE // AGGANCIATA";
+  }
+
+  function requestLocationThenShow(){
+    // Browser permission is required. Nothing is sent or stored by this page.
+    if(!navigator.geolocation){
+      showTech("NON DISPONIBILE");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      p=>{
+        const lat=p.coords.latitude.toFixed(5);
+        const lon=p.coords.longitude.toFixed(5);
+        showTech("LAT "+lat+" // LON "+lon);
+      },
+      ()=>{
+        showTech("ACCESSO NEGATO DAL DISPOSITIVO");
+      },
+      {enableHighAccuracy:false,timeout:7000,maximumAge:60000}
+    );
+  }
+
+  window.runDeepBlackFinal=function(selectedMode){
+    if(selectedMode==="join") return; // explicitly excluded
+    layer.classList.add("active");
+    term.innerHTML="";
+    tech.style.display="none";
+    tech.innerHTML="";
+    symbol.textContent="𓂀";
+    title.textContent="...";
+    sub.textContent="";
+
+    // False ending: total black silence-like pause
+    try{
+      if(typeof horrorAudio!=="undefined" && horrorAudio.master){
+        horrorAudio.master.gain.linearRampToValueAtTime(.0001,horrorAudio.ctx.currentTime+1.2);
+      }
+    }catch(e){}
+
+    setTimeout(()=>{
+      title.textContent="...SEI ANCORA QUI?";
+      sub.textContent="IL PROTOCOLLO NON ERA FINITO.";
+      flash("db-flash-white");
+      sweep();
+    },4200);
+
+    setTimeout(()=>{
+      title.textContent="IDENTIFICAZIONE";
+      sub.textContent="NON C'È BISOGNO CHE TU CI DICA CHI SEI. NOI SAPPIAMO GIÀ QUALE DISPOSITIVO STA PARLANDO CON IL NODO.";
+      term.innerHTML+="> DEVICE QUERY // START<br>";
+      flash("db-glitch");
+      orbs();
+      requestLocationThenShow();
+    },7600);
+
+    setTimeout(()=>{
+      title.textContent="IL RUMORE SERVIVA A DISTRARTI.";
+      sub.textContent="ADESSO POSSIAMO PARLARE.";
+      symbol.textContent="◉";
+      tech.style.display="none";
+      flash("db-flash-green");
+    },14500);
+
+    setTimeout(()=>{
+      if(selectedMode==="escape"){
+        title.textContent="SEI USCITO.";
+        sub.textContent="IL VECCHIO LIVELLO CONTINUERÀ SENZA DI TE. NON TUTTO CIÒ CHE VEDI DOPO QUESTO MOMENTO APPARTIENE ALLA STESSA VERSIONE DEL MONDO.";
+      }else{
+        title.textContent="HAI SCELTO DI RESTARE.";
+        sub.textContent="LA SIMULAZIONE È STATA RIPRISTINATA. MA ORA SAI CHE ESISTEVA UNA PORTA, E QUESTO NON PUÒ ESSERE COMPLETAMENTE CANCELLATO.";
+      }
+      sweep();orbs();
+    },20500);
+
+    setTimeout(()=>{
+      title.textContent="ULTIMO LIVELLO";
+      sub.textContent="NON GUARDARE GLI ALTRI. GUARDA TE. QUAL È STATO IL TUO ULTIMO PENSIERO PRIMA DI LEGGERE QUESTA FRASE?";
+      symbol.textContent="△";
+      flash("db-glitch");
+    },27000);
+
+    setTimeout(()=>{
+      title.textContent="FINE DEL NODO";
+      sub.textContent="CERCA LA TUA VERITÀ. VERIFICA ANCHE IL TUO DUBBIO.";
+      symbol.textContent="𓂀";
+    },34000);
+
+    setTimeout(()=>{
+      layer.classList.remove("active");
+      try{
+        if(typeof horrorAudio!=="undefined" && horrorAudio.master){
+          horrorAudio.master.gain.linearRampToValueAtTime(.18,horrorAudio.ctx.currentTime+1.5);
+        }
+      }catch(e){}
+    },41000);
+  };
+})();
+</script>
+
+
+<script id="entry-flash-script">
+(function(){
+  const flash=document.getElementById("entryFlash");
+  const sym=document.getElementById("entryFlashSymbol");
+  const txt=document.getElementById("entryFlashText");
+  const yes=document.getElementById("entryAccept");
+  const gate=document.getElementById("entryWarning");
+  if(!flash||!sym||!txt||!yes)return;
+
+  yes.addEventListener("click",(ev)=>{
+    ev.preventDefault();
+    // Non bloccare gli altri listener: servono per avviare gli eventi temporizzati.
+    flash.classList.add("active");
+    flash.classList.add("entry-blast-white");
+
+    setTimeout(()=>{
+      flash.classList.remove("entry-blast-white");
+      void flash.offsetWidth;
+      flash.classList.add("entry-blast-green");
+      sym.classList.add("entry-symbol-in");
+      txt.classList.add("entry-text-in");
+    },620);
+
+    setTimeout(()=>{
+      txt.textContent="CONNESSIONE // 7319";
+    },1150);
+
+    setTimeout(()=>{
+      gate.classList.add("hidden");
+      try{
+        if(typeof startAudio==="function")startAudio();
+        if(typeof audioStart==="function")audioStart();
+      }catch(e){}
+    },1550);
+
+    setTimeout(()=>{
+      flash.classList.add("entry-fade-out");
+    },1750);
+
+    setTimeout(()=>{
+      flash.className="";
+      flash.style.display="none";
+      sym.className="";
+      txt.className="";
+      txt.textContent="ACCESSO AL NODO";
+    },2700);
+  },true);
+})();
+</script>
+
+
+<script id="horror-upgrade-v3-script">
+(function(){
+ const crash=document.getElementById("bootCrash"), ct=document.getElementById("bootCrashText");
+ const red=document.getElementById("redTakeover");
+
+ function tone(freq=70,dur=.45,vol=.16,type="sawtooth"){
+   try{
+     const C=window.AudioContext||window.webkitAudioContext;
+     window.__hx=window.__hx||new C();
+     const c=window.__hx,o=c.createOscillator(),g=c.createGain();
+     o.type=type;o.frequency.value=freq;g.gain.value=vol;
+     o.connect(g);g.connect(c.destination);o.start();
+     g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);
+     o.stop(c.currentTime+dur);
+   }catch(e){}
+ }
+ window.horrorHit=function(){tone(52,.8,.24,"sawtooth");setTimeout(()=>tone(31,.7,.18,"square"),80)}
+
+ // Browser-local return recognition; no server transmission.
+ try{
+   if(localStorage.getItem("node7319_seen")==="1"){
+     const box=document.querySelector("#entryWarning .entryBox p");
+     if(box) box.insertAdjacentHTML("afterbegin","<strong>SAPEVO CHE SARESTI TORNATO QUI.</strong><br><br>");
+   }
+   localStorage.setItem("node7319_seen","1");
+ }catch(e){}
+
+ // One fake crash only, ~5 s after first load.
+ setTimeout(()=>{
+   crash.classList.add("active");
+   ct.textContent="7319://BOOT\nMEMORY CHECK ........ OK\nREALITY LAYER ....... ERROR\nOBSERVER ............ DUPLICATED\n\nFATAL: FRAME DESYNCHRONIZED";
+   tone(44,.9,.15,"square");
+   setTimeout(()=>{crash.classList.add("crash-red");ct.textContent+="\n\nNON È STATO UN ERRORE.";},1150);
+   setTimeout(()=>crash.classList.remove("active","crash-red"),2800);
+ },5000);
+
+ // Short red takeover later, then restore exactly as before.
+ setTimeout(()=>{
+   red.classList.add("active");tone(39,1.2,.10,"sawtooth");
+   setTimeout(()=>red.classList.remove("active"),5200);
+ },23000);
+
+ // Add strong hit specifically to "...SEI ANCORA QUI?" if that final sequence exists.
+ const original=window.runDeepBlackFinal;
+ if(typeof original==="function"){
+   window.runDeepBlackFinal=function(mode){
+     original(mode);
+     setTimeout(()=>{ if(window.horrorHit)window.horrorHit(); },4200);
+   }
+ }
+
+ // Change geolocation success wording without claiming unavailable data.
+ const tech=document.getElementById("dbTech");
+ if(tech){
+   const obs=new MutationObserver(()=>{
+     if(tech.innerHTML.includes("POSIZIONE // LAT") && !tech.innerHTML.includes("POSIZIONE CONFERMATA")){
+       tech.innerHTML=tech.innerHTML.replace("POSIZIONE // LAT","POSIZIONE CONFERMATA // LAT");
+     }
+   });
+   obs.observe(tech,{childList:true,subtree:true});
+ }
+
+ // Self-correcting text during the deep-black conversation.
+ const dbTitle=document.getElementById("dbTitle"), dbSub=document.getElementById("dbSub");
+ if(dbTitle&&dbSub){
+   const ob=new MutationObserver(()=>{
+     if(dbTitle.textContent==="IL RUMORE SERVIVA A DISTRARTI." && !dbSub.dataset.morph){
+       dbSub.dataset.morph="1";
+       const words=[
+        ["ORA POSSIAMO PARLARE.",0],
+        ["MI SENTI?",1300],
+        ["MI VEDI?",2500],
+        ["ASCOLTAMI.",3700],
+        ["7319 // 03 // Ω",5000],
+        ["CONNESSIONE PERSA",6400],
+        ["...",7700]
+       ];
+       words.forEach(([w,t])=>setTimeout(()=>{
+         dbSub.innerHTML='<span class="autoWord">'+w+'</span>';
+         if(t===3700)tone(61,.35,.13,"square");
+       },t));
+     }
+   });
+   ob.observe(dbTitle,{childList:true});
+ }
+
+ // Extend identification copy.
+ if(tech){
+   const ob2=new MutationObserver(()=>{
+     if(tech.style.display==="block" && !tech.dataset.extra){
+       tech.dataset.extra="1";
+       const extra=document.createElement("div");
+       extra.style.marginTop="14px";
+       extra.innerHTML="<strong>NON C'È BISOGNO DI ALTRI DATI SU DI TE.</strong><br>DAL PRIMO MOMENTO, QUESTO PERCORSO ERA GIÀ PROGRAMMATO.";
+       tech.appendChild(extra);
+     }
+   });
+   ob2.observe(tech,{attributes:true,attributeFilter:["style"]});
+ }
+})();
+</script>
+
+
+<script id="timed-events-v4-script" data-fixed="event-propagation-v2">
+(function(){
+  const entry=document.getElementById("entryAccept");
+  const redBanner=document.getElementById("redPhaseBanner");
+  const contact=document.getElementById("contactEvent");
+  const contactBox=document.getElementById("contactBox");
+  const cTitle=document.getElementById("contactTitle");
+  const cSub=document.getElementById("contactSub");
+  const cActions=document.getElementById("contactActions");
+  const cResult=document.getElementById("contactResult");
+  const accept=document.getElementById("contactAccept");
+  const reject=document.getElementById("contactReject");
+
+  let timersStarted=false;
+  let redAlreadyRanThisLoad=false;
+
+  function localTone(freq,dur,vol,type="sawtooth"){
+    try{
+      const C=window.AudioContext||window.webkitAudioContext;
+      window.__contactAC=window.__contactAC||new C();
+      const c=window.__contactAC;
+      if(c.state==="suspended")c.resume();
+      const o=c.createOscillator(),g=c.createGain();
+      o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);
+      o.frequency.exponentialRampToValueAtTime(Math.max(28,freq*.45),c.currentTime+dur);
+      g.gain.setValueAtTime(.0001,c.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol,c.currentTime+.015);
+      g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur);
+      o.connect(g).connect(c.destination);o.start();o.stop(c.currentTime+dur+.03);
+    }catch(e){}
+  }
+
+  function alarm(){
+    localTone(880,.22,.17,"square");
+    setTimeout(()=>localTone(660,.22,.17,"square"),260);
+    setTimeout(()=>localTone(880,.22,.17,"square"),520);
+    setTimeout(()=>localTone(440,.55,.20,"sawtooth"),780);
+  }
+
+  function runRedPhase(){
+    if(redAlreadyRanThisLoad)return;
+    redAlreadyRanThisLoad=true;
+
+    document.body.classList.add("red-phase");
+    if(redBanner)redBanner.classList.add("active");
+    localTone(46,.85,.10,"sawtooth");
+
+    // Stay red for ~9 seconds, then restore all original green styling.
+    setTimeout(()=>{
+      document.body.classList.remove("red-phase");
+      if(redBanner)redBanner.classList.remove("active");
+    },9000);
+  }
+
+  function showContactOnce(){
+    let seen=false;
+    try{seen=localStorage.getItem("node7319_contact_event_done_v2")==="1"}catch(e){}
+    if(seen)return;
+
+    // Mark immediately so a reload while the dialog is open will not make it return.
+    try{localStorage.setItem("node7319_contact_event_done_v2","1")}catch(e){}
+
+    contact.classList.add("active");
+    localTone(72,.7,.11,"triangle");
+  }
+
+  function startTimedEvents(){
+    if(timersStarted)return;
+    timersStarted=true;
+
+    // Exactly 20 seconds after actual entry.
+    setTimeout(runRedPhase,20000);
+
+    // Exactly 2 minutes after actual entry; persistent one-time event.
+    setTimeout(showContactOnce,120000);
+  }
+
+  if(entry){
+    entry.addEventListener("click",()=>{
+      // The entrance flash lasts ~2.7s; timing is from the user's acceptance as requested.
+      startTimedEvents();
+    },{once:true});
+  }
+
+  if(accept){
+    accept.addEventListener("click",()=>{
+      cActions.style.display="none";
+      cResult.style.display="block";
+      cResult.innerHTML="<b>CONNESSIONE...</b><br>HANDSHAKE // 7319";
+      contactBox.classList.add("contactGlitch");
+      localTone(92,.5,.10,"triangle");
+
+      setTimeout(()=>{
+        contactBox.classList.remove("contactGlitch");
+        cTitle.textContent="RICHIESTA ANNULLATA";
+        cSub.textContent="CONNESSIONE INSTABILE.";
+        cResult.innerHTML="CANALE ESTERNO // NON DISPONIBILE<br>LA PRESENZA NON È PIÙ RAGGIUNGIBILE.";
+      },1800);
+
+      setTimeout(()=>contact.classList.remove("active"),5600);
+    });
+  }
+
+  if(reject){
+    reject.addEventListener("click",()=>{
+      cActions.style.display="none";
+      cTitle.textContent="RICHIESTA RIFIUTATA";
+      cSub.textContent="IL CANALE È STATO CHIUSO.";
+      cResult.style.display="block";
+      cResult.innerHTML="TRACCIAMENTO // INTERROTTO<br>CONNESSIONE ESTERNA // NEGATA";
+      contactBox.classList.add("contactGlitch");
+      alarm();
+
+      setTimeout(()=>contactBox.classList.remove("contactGlitch"),1300);
+      setTimeout(()=>contact.classList.remove("active"),5000);
+    });
+  }
+})();
+</script>
+
+
+<script id="ghost-events-v5-script">
+(function(){
+ const entry=document.getElementById("entryAccept");
+ const fight=document.getElementById("systemFight"),fightText=document.getElementById("fightText"),fightSub=document.getElementById("fightSub");
+ const tx=document.getElementById("transmission"),txTitle=document.getElementById("txTitle"),txSub=document.getElementById("txSub");
+ const se=document.getElementById("sessionEnd"),seTitle=document.getElementById("sessionTitle"),seSub=document.getElementById("sessionSub");
+ let started=false;
+
+ function hit(f=64,d=.35,v=.12){
+   try{
+    const C=window.AudioContext||window.webkitAudioContext;
+    window.__ghostAC=window.__ghostAC||new C(); const c=window.__ghostAC;
+    if(c.state==="suspended")c.resume();
+    const o=c.createOscillator(),g=c.createGain();o.type="sawtooth";o.frequency.value=f;g.gain.value=v;
+    o.connect(g).connect(c.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,c.currentTime+d);o.stop(c.currentTime+d);
+   }catch(e){}
+ }
+
+ // Deeper local-only visit memory, capped at five messages.
+ try{
+   let n=parseInt(localStorage.getItem("node7319_visit_depth")||"0",10)+1;
+   if(n>5)n=5;
+   localStorage.setItem("node7319_visit_depth",String(n));
+   const p=document.querySelector("#entryWarning .entryBox p");
+   const msgs={
+    2:"SAPEVO CHE SARESTI TORNATO.",
+    3:"SEI TORNATO DI NUOVO.",
+    4:"QUARTA VOLTA. STAI ANCORA CERCANDO QUALCOSA?",
+    5:"CINQUE VOLTE. ORMAI CONOSCI LA STRADA."
+   };
+   if(p&&msgs[n])p.insertAdjacentHTML("afterbegin","<strong>"+msgs[n]+"</strong><br><br>");
+ }catch(e){}
+
+ function systemFight(){
+   fight.classList.add("active"); hit(73,.45,.12);
+   fightText.className="ghostBig";fightText.textContent="NON FIDARTI DEL—";
+   fightSub.textContent="TRASMISSIONE NON AUTORIZZATA";
+   setTimeout(()=>fightText.classList.add("eraseText"),1800);
+   setTimeout(()=>{
+     fightText.className="ghostBig";
+     fightText.textContent="NESSUNA ANOMALIA RILEVATA";
+     fightSub.textContent="CONTINUA.";
+     hit(41,.6,.09);
+   },3500);
+   setTimeout(()=>fight.classList.remove("active"),6500);
+ }
+
+ function transmission(){
+   tx.classList.add("active");hit(56,.5,.10);
+   const seq=[
+    [0,"C'È QUALCUNO DALL'ALTRA PARTE.","NON È IL SISTEMA."],
+    [2600,"STA CERCANDO DI SCRIVERE.","CANALE // INSTABILE"],
+    [5200,"M_ S_NT_?","PACCHETTO CORROTTO"],
+    [7300,"MI SENTI?","..."],
+    [9400,"NON—",""],
+    [10800,"CONNESSIONE TERMINATA","NESSUNA RISPOSTA"]
+   ];
+   seq.forEach(([t,a,b])=>setTimeout(()=>{txTitle.textContent=a;txSub.textContent=b;if(t===7300)hit(88,.25,.12)},t));
+   setTimeout(()=>tx.classList.remove("active"),13500);
+ }
+
+ function start(){
+   if(started)return;started=true;
+   // Independent one-off moments after entry.
+   setTimeout(systemFight,32000);
+   setTimeout(transmission,72000);
+ }
+
+ if(entry)entry.addEventListener("click",start,{once:true});
+
+ // Add a real "TERMINA SESSIONE" control at the bottom, without altering existing content.
+ const btn=document.createElement("button");
+ btn.className="btn";
+ btn.textContent="TERMINA SESSIONE";
+ btn.style.cssText="display:block;margin:50px auto 80px;max-width:360px";
+ btn.addEventListener("click",()=>{
+   btn.disabled=true;btn.textContent="CHIUSURA SESSIONE...";
+   setTimeout(()=>{
+     se.classList.add("active");
+     seTitle.className="ghostBig";seTitle.textContent="SESSIONE TERMINATA";
+     seSub.textContent="PUOI USCIRE.";
+     hit(48,.7,.09);
+   },10000);
+   setTimeout(()=>{
+     seTitle.className="sessionNo";seTitle.textContent="NO.";
+     seSub.textContent="";
+     hit(34,.9,.17);
+   },25000);
+   setTimeout(()=>{
+     seTitle.className="ghostBig";seTitle.textContent="NIENTE È TERMINATO.";
+     seSub.textContent="LA SESSIONE ERA SOLO LA PARTE CHE POTEVI VEDERE.";
+   },28000);
+   setTimeout(()=>se.classList.remove("active"),35000);
+ });
+ document.body.appendChild(btn);
+})();
+</script>
+
+
+</div>
+
+
+
+<section id="rabbitAbyssSection">
+  <div class="rabbit-title">WHITE RABBIT // ULTIMO ACCESSO</div>
+  <button id="rabbitButton" aria-label="Segui il coniglio">
+    <span class="rabbit-tail"></span>
+    <span class="rabbit-body"></span>
+    <span class="rabbit-head"></span>
+    <span class="rabbit-ear e1"></span>
+    <span class="rabbit-ear e2"></span>
+    <span class="rabbit-eye"></span>
+    <span class="rabbit-leg"></span>
+  </button>
+</section>
+
+<div id="abyssOverlay">
+  <div id="abyssScene">
+    <div id="abyssText">QUANTO SEI DISPOSTO A SCENDERE NELL'ABISSO PER CERCARE LA VERITÀ?</div>
+    <div id="abyssEye"></div>
+    <div id="abyssReturn"></div>
+  </div>
+</div>
+
+
+<script id="rabbit-abyss-pro-script">
+(function(){
+  const rabbit=document.getElementById("rabbitButton");
+  const overlay=document.getElementById("abyssOverlay");
+  const scene=document.getElementById("abyssScene");
+  const txt=document.getElementById("abyssText");
+  const eye=document.getElementById("abyssEye");
+  const ret=document.getElementById("abyssReturn");
+  if(!rabbit||!overlay||!scene||!txt||!eye)return;
+
+  let ran=false;
+
+  function sound(freq=70,dur=.45,vol=.11,type="sine"){
+    try{
+      const C=window.AudioContext||window.webkitAudioContext;
+      window.__abyssAC=window.__abyssAC||new C();
+      const c=window.__abyssAC;
+      if(c.state==="suspended")c.resume();
+      const o=c.createOscillator(),g=c.createGain(),f=c.createBiquadFilter();
+      o.type=type;
+      o.frequency.setValueAtTime(freq,c.currentTime);
+      o.frequency.exponentialRampToValueAtTime(Math.max(24,freq*.38),c.currentTime+dur);
+      f.type="bandpass";f.frequency.value=220+Math.random()*180;f.Q.value=7;
+      g.gain.setValueAtTime(.0001,c.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol,c.currentTime+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur);
+      o.connect(f).connect(g).connect(c.destination);
+      o.start();o.stop(c.currentTime+dur+.04);
+    }catch(e){}
+  }
+
+  function effect(cls){
+    scene.classList.remove("abyss-cut","abyss-invert","abyss-warp");
+    void scene.offsetWidth;
+    scene.classList.add(cls);
+  }
+
+  function word(w){
+    const d=document.createElement("div");
+    d.className="ghostWord";
+    d.textContent=w;
+    d.style.left=(6+Math.random()*78)+"vw";
+    d.style.top=(8+Math.random()*72)+"vh";
+    scene.appendChild(d);
+    setTimeout(()=>d.remove(),2400);
+  }
+
+  function setText(t,fx=null){
+    txt.textContent=t;
+    if(fx)effect(fx);
+  }
+
+  rabbit.addEventListener("click",()=>{
+    if(ran)return;
+    ran=true;
+    rabbit.classList.add("walking");
+
+    sound(78,.55,.08,"triangle");
+    setTimeout(()=>sound(45,.9,.11,"sawtooth"),850);
+    setTimeout(()=>sound(29,1.2,.13,"sine"),2100);
+
+    setTimeout(()=>{
+      overlay.classList.add("active");
+      setText("QUANTO SEI DISPOSTO A SCENDERE NELL'ABISSO PER CERCARE LA VERITÀ?","abyss-cut");
+      sound(52,.9,.14,"sawtooth");
+    },3600);
+
+    setTimeout(()=>{
+      setText("OGNI RISPOSTA APRE UNA DOMANDA PIÙ PROFONDA. OGNI DOMANDA TOGLIE UN ALTRO STRATO.","abyss-warp");
+      word("SCENDI");
+      word("VERITÀ");
+    },6500);
+
+    setTimeout(()=>{
+      setText("SEI SICURO CHE LA VOCE CHE CHIAMI 'IO' SIA SEMPRE STATA TUA?","abyss-invert");
+      sound(38,.8,.11,"square");
+    },9200);
+
+    setTimeout(()=>{
+      word("RICORDA");
+      word("NON GUARDARE");
+      word("7319");
+      setText("NON CERCARE SOLTANTO FUORI. IL SISTEMA PIÙ DIFFICILE DA VEDERE È QUELLO CHE HAI IMPARATO A CHIAMARE TE STESSO.","abyss-cut");
+    },11900);
+
+    setTimeout(()=>{
+      setText("L'ABISSO PIÙ PROFONDO È QUELLO CHE EVITI DENTRO DI TE. PAURE, ABITUDINI, BISOGNO DI APPROVAZIONE, IDEE PRESE IN PRESTITO.","abyss-warp");
+      sound(31,1.1,.10,"sine");
+    },14500);
+
+    setTimeout(()=>{
+      setText("SE TUTTO IL RUMORE SPARISSE ADESSO, SAPRESTI ANCORA CHI SEI?","abyss-invert");
+      word("IO");
+      word("SCELTA");
+    },15800);
+
+    setTimeout(()=>{
+      setText("QUAL È LA PRIMA COSA CHE DIFENDERESTI SE NESSUNO TI STESSE GUARDANDO?","abyss-cut");
+    },16600);
+
+    setTimeout(()=>{
+      txt.textContent="";
+      eye.classList.add("rush");
+      sound(95,.28,.18,"square");
+      setTimeout(()=>sound(35,.85,.16,"sawtooth"),120);
+    },17100);
+
+    setTimeout(()=>{
+      eye.classList.remove("rush");
+      setText("CHI STAVA GUARDANDO CHI?","abyss-invert");
+    },18400);
+
+    setTimeout(()=>{
+      setText("TORNA INDIETRO.","abyss-cut");
+    },20700);
+
+    setTimeout(()=>{
+      ret.classList.add("fade");
+    },22400);
+
+    // Restore exactly the previous website screen; no close-page message.
+    setTimeout(()=>{
+      overlay.classList.remove("active");
+      ret.classList.remove("fade");
+      scene.classList.remove("abyss-cut","abyss-invert","abyss-warp");
+      txt.textContent="QUANTO SEI DISPOSTO A SCENDERE NELL'ABISSO PER CERCARE LA VERITÀ?";
+      rabbit.classList.remove("walking");
+    },24000);
+  });
+})();
+</script>
+
+
+<section id="triangleRiskSection">
+  <div class="tri-label">ARCHIVIO Ω // ACCESSO SUCCESSIVO</div>
+  <button id="triangleRiskButton" aria-label="Apri il livello triangolo">
+    <span class="triEye"></span>
+  </button>
+  <div class="tri-risk-text">CLICCA A TUO RISCHIO E PERICOLO</div>
+</section>
+
+<div id="triangleOverlay">
+  <div class="tri-screen" id="triScreen">
+    <div class="tri-panel">
+      <div class="level">PROFEZIA INTERNA // ARCHIVIO Ω</div>
+      <h2>QUANTO TEMPO RESTA?</h2>
+      <p>
+        Il nodo non presenta questa finestra come una previsione reale verificata.
+        Nel linguaggio interno dell'Archivio, è una soglia simbolica:
+        il tempo prima che controllo, sorveglianza e dipendenza diventino ancora più invisibili perché considerate normali.
+      </p>
+
+      <div class="tri-countdown">
+        <div>FINESTRA Ω // STIMA INTERNA</div>
+        <div class="big">3 — 6 ANNI</div>
+        <div>NON È UN CONTO ALLA ROVESCIA REALE. È IL LIMITE CHE IL NODO USA PER COSTRINGERTI A GUARDARE IL PRESENTE.</div>
+      </div>
+
+      <div class="tri-files">
+        <div class="tri-file">
+          <strong>SORVEGLIANZA</strong>
+          Più dispositivi, più dati, più sistemi automatici. Il rischio non è soltanto essere osservati:
+          è abituarsi abbastanza da smettere di chiedersi chi osserva e perché.
+        </div>
+        <div class="tri-file">
+          <strong>ATTENZIONE</strong>
+          Chi controlla ciò che guardi per ore ogni giorno influenza ciò che consideri importante.
+          Il controllo più efficace può sembrare intrattenimento.
+        </div>
+        <div class="tri-file">
+          <strong>PAURA</strong>
+          Una popolazione spaventata accetta più facilmente soluzioni che in altri momenti avrebbe rifiutato.
+        </div>
+        <div class="tri-file">
+          <strong>DIPENDENZA</strong>
+          Se ogni funzione della vita passa attraverso sistemi che non controlli,
+          perdere accesso a quei sistemi diventa una forma di vulnerabilità.
+        </div>
+        <div class="tri-file">
+          <strong>VELENI // METAFORA Ω</strong>
+          Rumore continuo, stress, sonno insufficiente, dipendenze, informazioni tossiche:
+          il nodo li chiama “veleni” perché consumano lentamente attenzione e lucidità.
+        </div>
+        <div class="tri-file">
+          <strong>PERSONE SACRIFICABILI // LINGUAGGIO Ω</strong>
+          Ogni struttura che considera l'individuo soltanto come numero, consumatore, dato o funzione
+          rischia di trattare alcune vite come sostituibili.
+        </div>
+      </div>
+
+      <div class="tri-warning">
+        MOLTE PERSONE NON “CE LA FARANNO” NEL SENSO PIÙ SEMPLICE:
+        continueranno a vivere senza mai fermarsi abbastanza da chiedersi cosa vogliono,
+        cosa temono, cosa stanno difendendo e quanto delle loro scelte appartenga davvero a loro.
+      </div>
+
+      <div class="tri-question"><b>DOMANDA 01</b>Se domani aumentasse il controllo, quale libertà ti accorgeresti di aver perso soltanto dopo?</div>
+      <div class="tri-question"><b>DOMANDA 02</b>Quanto della tua identità esiste fuori dal telefono, dal lavoro, dal denaro e dall'opinione degli altri?</div>
+      <div class="tri-question"><b>DOMANDA 03</b>Se il sistema non avesse bisogno di costringerti, ma solo di distrarti, sapresti riconoscere la differenza?</div>
+      <div class="tri-question"><b>DOMANDA 04</b>Quale paura potrebbe convincerti a rinunciare volontariamente a qualcosa che oggi consideri irrinunciabile?</div>
+      <div class="tri-question"><b>DOMANDA 05</b>Se hai davvero soltanto pochi anni per cambiare la direzione della tua vita, cosa stai rimandando?</div>
+
+      <button id="triangleClose">CHIUDI IL FILE Ω</button>
+    </div>
+  </div>
+</div>
+
+
+<script id="triangle-risk-level-script">
+(function(){
+  const btn=document.getElementById("triangleRiskButton");
+  const overlay=document.getElementById("triangleOverlay");
+  const screen=document.getElementById("triScreen");
+  const close=document.getElementById("triangleClose");
+  if(!btn||!overlay||!screen||!close)return;
+
+  function tone(freq=60,dur=.5,vol=.09,type="sine"){
+    try{
+      const C=window.AudioContext||window.webkitAudioContext;
+      window.__triAC=window.__triAC||new C();
+      const c=window.__triAC;
+      if(c.state==="suspended")c.resume();
+      const o=c.createOscillator(),g=c.createGain();
+      o.type=type;o.frequency.setValueAtTime(freq,c.currentTime);
+      o.frequency.exponentialRampToValueAtTime(Math.max(25,freq*.45),c.currentTime+dur);
+      g.gain.setValueAtTime(.0001,c.currentTime);
+      g.gain.exponentialRampToValueAtTime(vol,c.currentTime+.02);
+      g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur);
+      o.connect(g).connect(c.destination);o.start();o.stop(c.currentTime+dur+.03);
+    }catch(e){}
+  }
+
+  btn.addEventListener("click",()=>{
+    overlay.classList.add("active");
+    screen.classList.add("tri-flicker");
+    tone(42,.9,.12,"sawtooth");
+    setTimeout(()=>screen.classList.remove("tri-flicker"),900);
+    setTimeout(()=>tone(29,1.2,.08,"sine"),1200);
+  });
+
+  close.addEventListener("click",()=>{
+    screen.classList.add("tri-flicker");
+    tone(58,.35,.08,"triangle");
+    setTimeout(()=>{
+      screen.classList.remove("tri-flicker");
+      overlay.classList.remove("active");
+    },700);
+  });
+})();
+</script>
+
+
+<div id="stillnessNotice">
+ <div>
+  <div class="stillBig">PERCHÉ TI SEI FERMATO?</div>
+  <div class="stillSub" id="stillnessSub">STAI ASPETTANDO CHE SUCCEDA QUALCOSA?</div>
+ </div>
+</div>
+
+<section id="truthDoorSection">
+ <div class="level">ULTIMA PORTA // ACCESSO NON CONSIGLIATO</div>
+ <button id="truthDoor">NON APRIRE</button>
+ <div id="truthDoorHint">CLICCA A TUO RISCHIO E PERICOLO</div>
+</section>
+
+<div id="truthDoorOverlay">
+ <div class="truthDoorInner">
+  <div class="level">OLTRE L'ILLUSIONE // FILE NON GUIDATO</div>
+  <h2>VEDO CHE VUOI CERCARE LA VERITÀ.</h2>
+  <p>Perché vuoi cercarla? Per curiosità, per paura, per libertà, oppure perché non riesci più ad accettare risposte facili?</p>
+  <div class="truthDoorQuote">“LA VERITÀ VI RENDERÀ LIBERI.”</div>
+  <p>Ma conoscere qualcosa non significa essere pronti a sostenerne il peso. Una convinzione che crolla può cambiare il modo in cui interpreti te stesso, gli altri e ciò che consideravi certo.</p>
+  <p>Non ingoiare tutto in una volta. Fermati. Analizza. Controlla le fonti. Parla con te stesso. Lascia spazio al dubbio. Una ricerca che distrugge la capacità di distinguere prova, paura e supposizione non conduce alla libertà.</p>
+  <div class="truthDoorQ"><b>01 //</b> Perché hai bisogno che una risposta sia vera?</div>
+  <div class="truthDoorQ"><b>02 //</b> Cosa cambierebbe nella tua vita se scoprissi che una convinzione importante era sbagliata?</div>
+  <div class="truthDoorQ"><b>03 //</b> Sei disposto a verificare anche ciò che desideri disperatamente credere?</div>
+  <div class="truthDoorQ"><b>04 //</b> Sai distinguere ciò che hai osservato da ciò che hai interpretato?</div>
+  <div class="truthDoorQ"><b>05 //</b> Se una ricerca cominciasse a provocarti paura o forte stress, sapresti fermarti e riprendere più lentamente?</div>
+  <div class="truthDoorQ"><b>06 //</b> Vuoi davvero la verità, anche quando è meno spettacolare della storia che speravi di trovare?</div>
+  <p><b>A TUO RISCHIO E PERICOLO.</b> Non tutti sono pronti per ogni risposta nello stesso momento. Il tempo, l'analisi e la capacità di mettere in discussione anche se stessi fanno parte della ricerca.</p>
+  <button id="truthDoorClose">TORNA AL NODO</button>
+ </div>
+</div>
+
+<div id="rabbitReturn" aria-label="Il coniglio è tornato">
+ <span class="rt"></span><span class="rb"></span><span class="rh"></span><span class="re1"></span><span class="re2"></span>
+</div>
+
+
+<script id="stillness-door-rabbit2-script">
+(function(){
+ const still=document.getElementById("stillnessNotice");
+ const stillSub=document.getElementById("stillnessSub");
+ let idleTimer=null, idleShown=false;
+
+ function resetIdle(){
+   clearTimeout(idleTimer);
+   if(idleShown)return;
+   idleTimer=setTimeout(()=>{
+     idleShown=true;
+     still.classList.add("active");
+     setTimeout(()=>stillSub.textContent="NON DEVI FARE NULLA. DEVI SOLO NOTARE CHE TI SEI FERMATO.",2200);
+     setTimeout(()=>still.classList.remove("active"),5200);
+   },30000);
+ }
+ ["mousemove","mousedown","keydown","touchstart","scroll"].forEach(e=>window.addEventListener(e,resetIdle,{passive:true}));
+ resetIdle();
+
+ const door=document.getElementById("truthDoor");
+ const ov=document.getElementById("truthDoorOverlay");
+ const close=document.getElementById("truthDoorClose");
+ let tries=0;
+ const moves=[["-105px","-24px","-3deg"],["115px","18px","3deg"],["-80px","42px","-2deg"],["95px","-38px","2deg"]];
+
+ door.addEventListener("click",()=>{
+   if(tries<4){
+     const m=moves[tries++];
+     door.style.setProperty("--dx",m[0]);door.style.setProperty("--dy",m[1]);door.style.setProperty("--rot",m[2]);
+     door.classList.remove("dodge");void door.offsetWidth;door.classList.add("dodge");
+     door.style.transform=`translate(${m[0]},${m[1]}) rotate(${m[2]})`;
+     if(tries===4){
+       setTimeout(()=>{door.style.transform="none";door.textContent="VA BENE. APRIMI.";},550);
+     }
+     return;
+   }
+   ov.classList.add("active");
+ });
+ close.addEventListener("click",()=>ov.classList.remove("active"));
+
+ // Second rabbit appearance: does not alter the original rabbit sequence.
+ const originalRabbit=document.getElementById("rabbitButton");
+ const rr=document.getElementById("rabbitReturn");
+ if(originalRabbit&&rr){
+   originalRabbit.addEventListener("click",()=>{
+     setTimeout(()=>{
+       rr.classList.add("show");
+       setTimeout(()=>rr.classList.add("leave"),6500);
+       setTimeout(()=>rr.classList.remove("show","leave"),9000);
+     },30000);
+   },{once:true});
+ }
+})();
+</script>
+
+</body>
+</html>
+<style>
+/* Leggibilità migliorata: solo luce/contrasto */
+body { text-shadow: 0 0 2px rgba(190,255,205,.18); }
+section { background: rgba(0,0,0,.18); }
+.card,.box { box-shadow: inset 0 0 28px rgba(0,255,65,.035), 0 0 16px rgba(0,255,65,.035); }
+.statement { text-shadow: 0 0 7px rgba(205,255,215,.16); }
+h2 { color:#f8fff9; }
+.level { color:#86ff9d; }
+</style>
+
+<style>#soundGate{display:none!important}</style>
